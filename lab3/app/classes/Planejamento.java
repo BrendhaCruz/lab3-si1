@@ -3,6 +3,7 @@ package classes;
 //CONTROLLER: controlador do sistema
 public class Planejamento { 
 
+	// CREATOR: Classe planejamento regista a lista das disciplina
 	private Disciplina[] listaDisciplinas;
 
 	public Planejamento() {
@@ -12,20 +13,27 @@ public class Planejamento {
 	public Disciplina[] listaDeDisciplinas() {
 		return listaDisciplinas;
 	}
-
+// INFORMATION EXPERT: tem a lista de disciplinas para calcular o total de creditos
 	public int calculaTotalDeCreditos() {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		for (int i = 0; i < this.listaDeDisciplinas().length; i++) {
+			result += listaDeDisciplinas()[i].getCreditos();
+		}
+		return result;
 	}
-
+// INFORMATION EXPERT: Pois é onde está a lista de disciplinas
 	public void adicionaDisciplinas(Disciplina disciplina) {
-		for (int i = 0; i < listaDisciplinas.length; i++) {
-			if (listaDisciplinas[i] == null) {
+		for (int i = 0; i < this.listaDeDisciplinas().length; i++) {
+			if (this.listaDeDisciplinas()[i] == null) {
 				listaDisciplinas[i] = disciplina;
 				break;
 			}
 		}
 
+	}
+
+	public Object creditosPorDisciplina(Disciplina disciplina) {
+		return disciplina.getCreditos();
 	}
 
 }

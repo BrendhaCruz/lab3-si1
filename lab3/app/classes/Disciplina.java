@@ -1,7 +1,7 @@
 package classes;
 
 
-//CREATOR: classe Disciplina registra objetos do tipo disciplica; 
+//CREATOR: classe Disciplina registra objetos do tipo disciplica
 
 public class Disciplina {
 	
@@ -23,7 +23,7 @@ public class Disciplina {
 
 	@Override
 	public String toString() {
-		return nomeDaDisciplina;
+		return this.getNomeDaDisciplina();
 	}
 
 }

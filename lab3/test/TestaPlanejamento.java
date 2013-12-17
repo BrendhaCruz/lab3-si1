@@ -48,9 +48,17 @@ public class TestaPlanejamento {
 
 	@Test
 	public void deveCalcularCreditos() {
-		// assertEquals("Erro na quantidade de creditos da disciplina!", 4,
-		// sistema.creditosPorDisciplina(calculo1));
-		// assertEquals(24, sistema.calculaTotalDeCreditos());
+		 assertEquals("Erro na quantidade de creditos da disciplina!", 4, sistema.creditosPorDisciplina(calculo1));
+		 assertEquals("Erro na quantidade de creditos da disciplina!", 4, sistema.creditosPorDisciplina(programacao1));
+		 assertEquals("Erro na quantidade de creditos da disciplina!", 4, sistema.creditosPorDisciplina(ic));
+		 assertEquals("Erro na quantidade de creditos da disciplina!", 4, sistema.creditosPorDisciplina(lpt));
+		sistema.adicionaDisciplinas(calculo1);
+		sistema.adicionaDisciplinas(programacao1);
+		sistema.adicionaDisciplinas(labprogramacao1);
+		sistema.adicionaDisciplinas(ic);
+		sistema.adicionaDisciplinas(lpt);
+		sistema.adicionaDisciplinas(vetorial);
+		 assertEquals(24, sistema.calculaTotalDeCreditos());
 
 	}
 
