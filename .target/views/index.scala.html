@@ -1,0 +1,13 @@
+@(planejamentos: Planejamento, planForm: Form[Planejamento])
+
+@import helper._
+
+@main("Planejamento de Curso - CCC") {
+
+ @for(planejamento <- planejamentos){
+ 
+ 	@for(disciplina <- planejamento.listaDeDisciplinas()){
+
+    }
+}
+}
