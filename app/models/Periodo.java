@@ -1,4 +1,4 @@
-package classes;
+package models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,9 @@ public class Periodo extends Model {
 	
 	// CREATOR: Periodo é feito de disciplinas
     private List<Disciplina> listaDisciplinas;
-
+    private static final int CREDITOS_MINIMOS = 16;
+    private static final int CREDITOS_MAXIMOS = 28;
+    
     public Periodo(){
     	listaDisciplinas = new ArrayList<Disciplina>();
     }
@@ -43,6 +45,10 @@ public class Periodo extends Model {
 
 	public Object creditosPorDisciplina(Disciplina disciplina) {
 		return disciplina.getCreditos();
+	}
+	
+	public int minimoDeCreditosPermitidos(){
+		return CREDITOS_MINIMOS;
 	}
 
 }

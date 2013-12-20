@@ -1,13 +1,16 @@
-@(planejamentos: Planejamento, planForm: Form[Planejamento])
+@(planejamentoDeCurso: List[models.Periodo])
 
 @import helper._
 
 @main("Planejamento de Curso - CCC") {
 
- @for(planejamento <- planejamentos){
- 
- 	@for(disciplina <- planejamento.listaDeDisciplinas()){
-
-    }
-}
-}
+                @for(periodo <- planejamentoDeCurso){
+                        @for(disciplina <- periodo.getListaDeDisciplinas()){        
+                                <div class="disciplina">
+                                        <nome>@disciplina.getNomeDaDisciplina()</nome><br/>
+                                        <creditos>@disciplina.getCreditos() creditos</creditos>
+                                </div>
+                        } <total> TOTAL DE CREDITOS NO PERIODO:@periodo.calculaTotalDeCreditos()</total><br/>
+                        
+                }
+ }               

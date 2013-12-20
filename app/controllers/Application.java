@@ -1,6 +1,6 @@
 package controllers;
 
-import classes.*;
+import models.*;
 import play.mvc.*;
 import play.data.*;
 
