@@ -3,52 +3,78 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
+public class Periodo {
 
-import play.db.ebean.Model;
-
-@Entity
-public class Periodo extends Model {
-	
 	// CREATOR: Periodo é feito de disciplinas
-    private List<Disciplina> listaDisciplinas;
-    private static final int CREDITOS_MINIMOS = 16;
-    private static final int CREDITOS_MAXIMOS = 28;
-    
-    public Periodo(){
-    	listaDisciplinas = new ArrayList<Disciplina>();
-    }
-    
- // INFORMATION EXPERT: Pois é onde está a lista de disciplinas
-    public void adicionaDisciplinas(Disciplina disciplina) {
-    	listaDisciplinas.add(disciplina);
-    }
-    
-    //CREATOR: a classe Periodo guarda objetos do tipo Disciplina
-    public List<Disciplina> getListaDeDisciplinas() {
+	private List<Disciplina> listaDisciplinas;
+	private Curriculo curriculo;
+
+	public Periodo() {
+		this.listaDisciplinas = new ArrayList<Disciplina>();
+		curriculo = new Curriculo();
+	}
+
+	// INFORMATION EXPERT: Pois é onde está a lista de disciplinas
+	public void adicionaDisciplinas(Disciplina disciplina) {
+		boolean resp = true;
+		Disciplina[] preRequisitos = disciplina.getPreRequisitos();
+		if (this.calculaTotalDeCreditos() + disciplina.getCreditos() <= 28) {
+			if (preRequisitos.length != 0) {
+				for (int i = 0; i < preRequisitos.length; i++) {
+					if (preRequisitos[i].getStatus() == Disciplina.DISCIPLINA_PENDENTE) {
+						resp = false;
+					}
+				}
+			} if (resp) {
+				listaDisciplinas.add(disciplina);
+			}
+		}
+	}
+
+	// CREATOR: a classe Periodo guarda objetos do tipo Disciplina
+	public List<Disciplina> getListaDeDisciplinas() {
 		return listaDisciplinas;
 	}
-    
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.listaDisciplinas = disciplinas;
-}
-    
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.listaDisciplinas = disciplinas;
+	}
+
+	public void criaPrimeiroPeriodo() {
+		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Cálculo I")));
+		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Programação I")));
+		this.adicionaDisciplinas((curriculo
+				.pesquisaDisciplina("Lab. de Programação I")));
+		this.adicionaDisciplinas((curriculo
+				.pesquisaDisciplina("Introdução a Computação")));
+		this.adicionaDisciplinas((curriculo
+				.pesquisaDisciplina("Leitura e Produção de Textos")));
+		this.adicionaDisciplinas((curriculo
+				.pesquisaDisciplina("Álgebra Vetorial e Geometria Analítica")));
+	}
 	
- // INFORMATION EXPERT: tem a lista de disciplinas para calcular o total de creditos
- 	public int calculaTotalDeCreditos() {
- 		int result = 0;
- 		for (int i = 0; i < this.getListaDeDisciplinas().size(); i++) {
- 			result += getListaDeDisciplinas().get(i).getCreditos();
- 		}
- 		return result;
- 	}
+	@Override
+	public String toString() {
+		// String temp = "";
+		// for (int i = 0; i < listaDisciplinas.size(); i++) {
+		// temp += listaDisciplinas.get(i).getNomeDaDisciplina() + " ";
+		// }
+		// return temp;
+		return listaDisciplinas.toString();
+	}
+
+	// INFORMATION EXPERT: tem a lista de disciplinas para calcular o total de
+	// creditos
+	public int calculaTotalDeCreditos() {
+		int result = 0;
+		for (int i = 0; i < this.getListaDeDisciplinas().size(); i++) {
+			result += getListaDeDisciplinas().get(i).getCreditos();
+		}
+		return result;
+	}
 
 	public Object creditosPorDisciplina(Disciplina disciplina) {
 		return disciplina.getCreditos();
-	}
-	
-	public int minimoDeCreditosPermitidos(){
-		return CREDITOS_MINIMOS;
 	}
 
 }

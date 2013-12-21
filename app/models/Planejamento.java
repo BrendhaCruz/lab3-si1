@@ -3,15 +3,9 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-
-
-import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
 
 //CONTROLLER: controlador do sistema
-@Entity
-public class Planejamento extends Model { 
+public class Planejamento{ 
 
 	// CREATOR: Classe planejamento regista a lista das disciplina
     private List<Periodo> periodos;

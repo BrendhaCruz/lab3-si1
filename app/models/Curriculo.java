@@ -1,46 +1,34 @@
 package models;
 
+
 public class Curriculo {
 	
-	Disciplina[] listaDeDisciplinas;
-	//6 primeiros - new Disciplina[0]
-	//new Disciplina[]{this.preRequisito("Cálculo I")}
-	//new Disciplina[]{this.preRequisito("Programacao I"), this.preRequisito("Lab. de Programação I"), this.preRequisito("Introdução a Computação")}
-	//new Disciplina[]{this.preRequisito("Programacao I"), this.preRequisito("Lab. de Programação I"), this.preRequisito("Introdução a Computação")}
-	//new Disciplina[]{this.preRequisito("Programacao I"), this.preRequisito("Lab. de Programação I")}
-	// 2 new Disciplina[0]
-	// new Disciplina[]{this.preRequisito("Cálculo I"), this.preRequisito("Algebra Vetorial e Geometria Analítica")}
-	//  new Disciplina[]{this.preRequisito("Programação II"), this.preRequisito("Lab. de Programação II"), this.preRequisito("Teoria dos Grafos")}
-	//  new Disciplina[]{this.preRequisito("Programação II"), this.preRequisito("Lab. de Programação II"), this.preRequisito("Teoria dos Grafos")}
-	// new Disciplina[]{this.preRequisito("Algebra Vetorial e Geometria Analítica")}
-	// , new Disciplina[]{this.preRequisito("Cálculo II")}
-	// new Disciplina[]{this.preRequisito("Introdução a Computação"), this.preRequisito("Matematica Discreta"), this.preRequisito("Teoria dos Grafos")}
-	// new Disciplina[]{this.preRequisito("Cálculo II"), this.preRequisito("Fundamentos de Fisica Classica")}
-	// new Disciplina[0]
+	private Disciplina[] listaDeDisciplinas;
+	private Disciplina calc1, prog1, labProg1, ic, lpt, vetorial, calc2, prog2,labProg2, discreta, grafos,metodologia, fisicaClassica,eda,leda,linear,prob,tc, fisicaModerna,gi;
+	
 	public Curriculo() {
 		listaDeDisciplinas = new Disciplina[]{
-			new Disciplina("Cálculo I", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Programação I", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Lab. de Programação I", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Introdução a Computação", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Leitura e Produção de Textos", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Algebra Vetorial e Geometria Analítica", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Cálculo II", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Programação II", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Lab. de Programação II", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Teoria dos Grafos", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Matematica Discreta", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Metodologia Cientifica", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Fundamentos de Fisica Classica", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Estrutura de Dados e Algoritmos", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Lab. de Estrutura de Dados e Algoritmos", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Algebra Linear", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Probabilidade e Estatistica", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Teoria da Computação", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Fundamentos de Fisica Moderna", 4, Disciplina.DISCIPLINA_PENDENTE),
-			new Disciplina("Gerência da Informação", 4, Disciplina.DISCIPLINA_PENDENTE)
+			calc1 = new Disciplina("Cálculo I", 4, new Disciplina[0]),
+			prog1 = new Disciplina("Programação I", 4, new Disciplina[0]),
+			labProg1 = new Disciplina("Lab. de Programação I", 4, new Disciplina[0]),
+			ic = new Disciplina("Introdução a Computação", 4, new Disciplina[0]),
+			lpt = new Disciplina("Leitura e Produção de Textos", 4, new Disciplina[0]),
+			vetorial = new Disciplina("Álgebra Vetorial e Geometria Analítica", 4, new Disciplina[0]),
+			calc2 = new Disciplina("Cálculo II", 4, new Disciplina[]{calc1}),
+			prog2 = new Disciplina("Programação II", 4, new Disciplina[]{prog1,labProg1,ic}),
+			labProg2 = new Disciplina("Lab. de Programação II", 4, new Disciplina[]{prog1,labProg1,ic}),
+			grafos = new Disciplina("Teoria dos Grafos", 2, new Disciplina[]{prog1,labProg1}),
+			discreta = new Disciplina("Matemática Discreta", 4, new Disciplina[0]),
+			metodologia = new Disciplina("Metodologia Científica", 4, new Disciplina[0]),
+			fisicaClassica = new Disciplina("Fundamentos de Física Clássica", 4, new Disciplina[]{calc1, vetorial}),
+			eda = new Disciplina("Estrutura de Dados e Algoritmos", 4,new Disciplina[]{prog2,labProg2,grafos}),
+			leda = new Disciplina("Lab. de Estrutura de Dados e Algoritmos", 4, new Disciplina[]{prog2,labProg2,grafos}),
+			linear = new Disciplina("Álgebra Linear", 4, new Disciplina[]{vetorial}),
+			prob = new Disciplina("Probabilidade e Estatística", 4, new Disciplina[]{calc2}),
+			tc = new Disciplina("Teoria da Computação", 4, new Disciplina[]{ic,discreta,grafos}),
+			fisicaModerna = new Disciplina("Fundamentos de Física Moderna", 4, new Disciplina[]{fisicaClassica,calc2}),
+			gi = new Disciplina("Gerência da Informação", 4, new Disciplina[0])
 		};
-		this.setaPreRequisitos();
 	
 	}
 	
@@ -62,48 +50,13 @@ public class Curriculo {
 		return resp;
 	}
 	
-	public Disciplina preRequisito(String nomeDaDisciplina){
+	public Disciplina pesquisaDisciplina(String nomeDaDisciplina){
 		for (int i = 0; i < this.quantDeDisciplinasCadastradas(); i++) {
 			if (this.getListaDeDisciplinas()[i].getNomeDaDisciplina() == nomeDaDisciplina) {
 				return this.getListaDeDisciplinas()[i];
 			}
 		}
 		return null;
-	}
-	
-	public void setaPreRequisitos(){
-		for (int i = 0; i < this.quantDeDisciplinasCadastradas(); i++) {
-			if(i == 0 |i ==  1 |i ==  2 |i ==  3 |i ==  4 |i ==  5 |i ==  10 |i ==  11 |i ==  19){
-				this.getListaDeDisciplinas()[i].setPreRequisitos(new Disciplina[0]);
-			}
-			if(i == 6){
-				this.getListaDeDisciplinas()[i].setPreRequisitos(new Disciplina[]{this.preRequisito("Cálculo I")});				
-			}
-			if(i == 7 |i == 8){
-				this.getListaDeDisciplinas()[i].setPreRequisitos(new Disciplina[]{this.preRequisito("Programação I"), this.preRequisito("Lab. de Programação I"), this.preRequisito("Introdução a Computação")});
-			}
-			if(i == 9){
-				this.getListaDeDisciplinas()[i].setPreRequisitos(new Disciplina[]{this.preRequisito("Programação I"), this.preRequisito("Lab. de Programação I")});
-			}if (i == 12){
-				this.getListaDeDisciplinas()[i].setPreRequisitos(new Disciplina[]{this.preRequisito("Cálculo I"), this.preRequisito("Algebra Vetorial e Geometria Analítica")});
-			}
-			if (i == 13| i == 14){
-				this.getListaDeDisciplinas()[i].setPreRequisitos(new Disciplina[]{this.preRequisito("Programação II"), this.preRequisito("Lab. de Programação II"), this.preRequisito("Teoria dos Grafos")});
-			}
-			if( i ==15){
-				this.getListaDeDisciplinas()[i].setPreRequisitos(new Disciplina[]{this.preRequisito("Algebra Vetorial e Geometria Analítica")});
-			}
-			if (i == 16){
-				this.getListaDeDisciplinas()[i].setPreRequisitos(new Disciplina[]{this.preRequisito("Cálculo II")});
-			}
-			if (i == 17){
-				this.getListaDeDisciplinas()[i].setPreRequisitos(new Disciplina[]{this.preRequisito("Introdução a Computação"), this.preRequisito("Matematica Discreta"), this.preRequisito("Teoria dos Grafos")});
-			}
-			if (i == 18){
-				this.getListaDeDisciplinas()[i].setPreRequisitos(new Disciplina[]{this.preRequisito("Cálculo II"), this.preRequisito("Fundamentos de Fisica Classica")});
-			}
-			
-		}
 	}
 
 }
