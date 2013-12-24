@@ -6,7 +6,9 @@
 GET / controllers.Application.index()
 
 # Planejamento
-GET /planejamentoDeCurso                 controllers.Application.planejamentoDeCurso()
-
+GET /planejamentoDeCurso                                          controllers.Application.planejamentoDeCurso()
+POST /planejamentoDeCurso/criaPeriodo                             controllers.Application.criaPeriodo()
+POST /planejamentoDeCurso/adicionaDisciplinaEmPeriodo             controllers.Application.adicionaDisciplinaEmPeriodo()
+ 
 # Map static resources from the /public folder to the /assets URL path
 GET /assets/*file controllers.Assets.at(path="/public", file)

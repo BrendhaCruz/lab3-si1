@@ -11,22 +11,25 @@ public class Periodo {
 
 	public Periodo() {
 		this.listaDisciplinas = new ArrayList<Disciplina>();
-		curriculo = new Curriculo();
+		curriculo = Curriculo.getInstance();
 	}
 
 	// INFORMATION EXPERT: Pois é onde está a lista de disciplinas
 	public void adicionaDisciplinas(Disciplina disciplina) {
 		boolean resp = true;
 		Disciplina[] preRequisitos = disciplina.getPreRequisitos();
-		if (this.calculaTotalDeCreditos() + disciplina.getCreditos() <= 28) {
-			if (preRequisitos.length != 0) {
-				for (int i = 0; i < preRequisitos.length; i++) {
-					if (preRequisitos[i].getStatus() == Disciplina.DISCIPLINA_PENDENTE) {
-						resp = false;
+		if (!disciplina.getStatus()) {
+			if (this.calculaTotalDeCreditos() + disciplina.getCreditos() <= 28) {
+				if (preRequisitos.length != 0) {
+					for (int i = 0; i < preRequisitos.length; i++) {
+						if (preRequisitos[i].getStatus() == Disciplina.DISCIPLINA_PENDENTE) {
+							resp = false;
+						}
 					}
+				} if (resp && !disciplina.isAlocada()) {
+					disciplina.setAlocada(Disciplina.DISCIPLINA_ALOCADA);
+					listaDisciplinas.add(disciplina);
 				}
-			} if (resp) {
-				listaDisciplinas.add(disciplina);
 			}
 		}
 	}
@@ -43,23 +46,14 @@ public class Periodo {
 	public void criaPrimeiroPeriodo() {
 		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Cálculo I")));
 		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Programação I")));
-		this.adicionaDisciplinas((curriculo
-				.pesquisaDisciplina("Lab. de Programação I")));
-		this.adicionaDisciplinas((curriculo
-				.pesquisaDisciplina("Introdução a Computação")));
-		this.adicionaDisciplinas((curriculo
-				.pesquisaDisciplina("Leitura e Produção de Textos")));
-		this.adicionaDisciplinas((curriculo
-				.pesquisaDisciplina("Álgebra Vetorial e Geometria Analítica")));
+		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Lab. de Programação I")));
+		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Introdução a Computação")));
+		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Leitura e Produção de Textos")));
+		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Álgebra Vetorial e Geometria Analítica")));
 	}
 	
 	@Override
 	public String toString() {
-		// String temp = "";
-		// for (int i = 0; i < listaDisciplinas.size(); i++) {
-		// temp += listaDisciplinas.get(i).getNomeDaDisciplina() + " ";
-		// }
-		// return temp;
 		return listaDisciplinas.toString();
 	}
 
@@ -77,4 +71,8 @@ public class Periodo {
 		return disciplina.getCreditos();
 	}
 
+	public void removeDisciplina(Disciplina disciplina) {
+		this.getListaDeDisciplinas().remove(disciplina);
+		disciplina.setAlocada(Disciplina.DISCIPLINA_NAO_ALOCADA);
+	}
 }

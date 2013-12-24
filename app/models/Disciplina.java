@@ -9,14 +9,18 @@ public class Disciplina {
 	public static final boolean DISCIPLINA_CONCLUIDA = true;
 	private String nomeDaDisciplina;
 	private int creditos;
-	private boolean status;
+	private boolean status = false;
 	private Disciplina[] preRequisitos;
+	private boolean alocada = false;
+	public static final boolean DISCIPLINA_ALOCADA = true;
+	public static final boolean DISCIPLINA_NAO_ALOCADA = false;
 
 	public Disciplina(String nomeDaDisciplina, int creditos, Disciplina[] preRequisitos) {
 		this.nomeDaDisciplina = nomeDaDisciplina;
 		this.creditos = creditos;
 		this.status = DISCIPLINA_PENDENTE;
 		this.preRequisitos = preRequisitos;
+		this.alocada = DISCIPLINA_NAO_ALOCADA;
 	}
 
 	@Override
@@ -24,12 +28,7 @@ public class Disciplina {
 		Disciplina other = (Disciplina) obj;
 		if (creditos != other.creditos)
 			return false;
-		if (nomeDaDisciplina == null) {
-			if (other.nomeDaDisciplina != null)
-				return false;
-		} else if (!nomeDaDisciplina.equals(other.nomeDaDisciplina))
-			return false;
-		if (!Arrays.equals(preRequisitos, other.preRequisitos))
+		if (!nomeDaDisciplina.equals(other.nomeDaDisciplina))
 			return false;
 		if (status != other.status)
 			return false;
@@ -47,7 +46,18 @@ public class Disciplina {
 	public Disciplina[] getPreRequisitos() {
 		return preRequisitos;
 	}
-
+	
+	public String formataPreRequisitos(Disciplina[] lista) {
+		String temp = "";
+		for (int i = 0; i < lista.length; i++) {
+			if (i == lista.length-1)
+				temp += lista[i] + " ";
+			else
+				temp += lista[i] + ", ";
+		}
+		return temp;
+	}
+	
 	public void setPreRequisitos(Disciplina[] preRequisitos) {
 		this.preRequisitos = preRequisitos;
 	}
@@ -58,6 +68,14 @@ public class Disciplina {
 
 	public int getCreditos() {
 		return creditos;
+	}
+
+	public boolean isAlocada() {
+		return this.alocada;
+	}
+
+	public void setAlocada(boolean alocada) {
+		this.alocada = alocada;
 	}
 
 	@Override
