@@ -8,7 +8,7 @@ public class Curriculo {
 	metodos, plp, logic, oac, loac, es, si1, atal, infosoc, direito, comp, redes, bd1, si2, labEs, so, interResedes, LabInterResedes, bd2, ia, softNum, sistemasDiscretos, projeto1, projeto2,
 	adm, sociologia, economia, futsal, basq, calc3, eqDif, ingles, didatica1, didatica2, sistemasDist, segurancaRedes, realidadeVirt, empreendorismo;
 	private static Curriculo myCurriculo;
-	
+	// CREATOR: Cria a lista das disciplinas.
 	private Curriculo() {
 		listaDeDisciplinas = new Disciplina[]{
 			calc1 = new Disciplina("Cálculo I", 4, new Disciplina[0]),

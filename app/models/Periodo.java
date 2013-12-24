@@ -42,7 +42,7 @@ public class Periodo {
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.listaDisciplinas = disciplinas;
 	}
-
+	// INFORMATION EXPERT: Pois é onde está a lista de disciplinas
 	public void criaPrimeiroPeriodo() {
 		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Cálculo I")));
 		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Programação I")));

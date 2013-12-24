@@ -7,7 +7,7 @@ import java.util.List;
 //CONTROLLER: controlador do sistema
 public class Planejamento{ 
 
-	// CREATOR: Classe planejamento regista a lista das disciplina
+	// CREATOR: Classe planejamento regista a lista dos periodos.
     private List<Periodo> periodos;
     private Periodo periodo;
     private static final int MINIMO_DE_CREDITOS = 16;
@@ -19,24 +19,24 @@ public class Planejamento{
 		periodo = new Periodo();
 		curriculo = Curriculo.getInstance();
 	}
-	
+	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void adicionaPrimeiroPeriodo(){
 		periodo.criaPrimeiroPeriodo();
 		periodos.add(periodo);
 	}
-	
+	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void adicionaPeriodo(){
 		periodos.add(new Periodo());
 	}
-
+	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void adicionaPeriodo(Periodo periodo){
 		this.periodos.add(periodo);
 	}
-	
+	// INFORMATION EXPERT: Tem a lista de periodos.
 	public List<Periodo> getPeriodos() {
         return this.periodos;
 	}
-	
+	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void removePeriodo(Periodo periodo){
 		this.periodos.remove(this.periodos.remove(periodo));
 	}
@@ -48,7 +48,7 @@ public class Planejamento{
 	public int maximoDeCreditos() {
 		return this.MAXIMO_DE_CREDITOS;
 	}
-
+	// INFORMATION EXPERT: Tem a lista de periodos.
 	public List<Disciplina> getDisciplinasDadoPeriodo(int indicePeriodo) {
 		return getPeriodos().get(indicePeriodo).getListaDeDisciplinas();
 	}
@@ -68,7 +68,7 @@ public class Planejamento{
 	public Curriculo getCurriculo(){
 		return curriculo;
 	}
-
+	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void removeDisciplinaDoPeriodo(int periodo, String nomeDaDisciplina) {
 		Disciplina disciplina = curriculo.pesquisaDisciplina(nomeDaDisciplina);
 		this.getPeriodos().get(periodo).removeDisciplina(disciplina);

@@ -46,7 +46,7 @@ public class Disciplina {
 	public Disciplina[] getPreRequisitos() {
 		return preRequisitos;
 	}
-	
+	//INFORMATION EXPERT: a disciplina possui os proprios preRequisitos
 	public String formataPreRequisitos(Disciplina[] lista) {
 		String temp = "";
 		for (int i = 0; i < lista.length; i++) {
