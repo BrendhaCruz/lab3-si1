@@ -1,18 +1,16 @@
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.AssertTrue;
-
 import models.Curriculo;
 import models.Disciplina;
 import models.Periodo;
-import models.Planejamento;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import controllers.Planejamento;
 
 
 public class TestaPeriodo {
@@ -38,18 +36,14 @@ public class TestaPeriodo {
 		ic = new Disciplina("Introdução a Computação", 4, new Disciplina[0]);
 		lpt = new Disciplina("Leitura e Produção de Textos", 4, new Disciplina[0]);
 		vetorial = new  Disciplina("Álgebra Vetorial e Geometria Analítica", 4, new Disciplina[0]);
-		calculo1.setPreRequisitos(new Disciplina[0]);
-		programacao1.setPreRequisitos(new Disciplina[0]);
-		labprogramacao1.setPreRequisitos(new Disciplina[0]);
-		ic.setPreRequisitos(new Disciplina[0]);
-		lpt.setPreRequisitos(new Disciplina[0]);
-		vetorial.setPreRequisitos(new Disciplina[0]);
 		listaDisciplinas.add(calculo1);
 		listaDisciplinas.add(programacao1);
 		listaDisciplinas.add(labprogramacao1);
 		listaDisciplinas.add(ic);
 		listaDisciplinas.add(lpt);
 		listaDisciplinas.add(vetorial);
+		primeiroPeriodo.criaPrimeiroPeriodo();
+
 	}
 
 	
@@ -58,9 +52,6 @@ public class TestaPeriodo {
 		assertEquals("Cálculo I", calculo1.getNomeDaDisciplina());
 		assertEquals(4, calculo1.getCreditos());
 		assertEquals(new Disciplina[0], calculo1.getPreRequisitos());
-		
-		labprogramacao1.setStatus(true);
-		assertEquals(true, labprogramacao1.getStatus());
 	}
 	
 	@Test
@@ -104,16 +95,11 @@ public class TestaPeriodo {
 	
 	@Test
 	public void deveAdicionarDisciplinasDoSegundoPeriodo() {
-		curriculo.pesquisaDisciplina("Cálculo I").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Álgebra Vetorial e Geometria Analítica").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Lab. de Programação I").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Programação I").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Leitura e Produção de Textos").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Introdução a Computação").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		
+
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Matemática Discreta"));
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Metodologia Científica"));
 		assertEquals(2, segundoPeriodo.getListaDeDisciplinas().size());
+		
 
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Cálculo II"));
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Programação II"));
@@ -130,12 +116,6 @@ public class TestaPeriodo {
 	
 	@Test
 	public void deveAdicionarDisciplinasNoPeriodoSelecionado(){
-		curriculo.pesquisaDisciplina("Cálculo I").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Álgebra Vetorial e Geometria Analítica").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Lab. de Programação I").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Programação I").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Leitura e Produção de Textos").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Introdução a Computação").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
 		planejamento.adicionaPeriodo(primeiroPeriodo);
 		planejamento.adicionaPeriodo(segundoPeriodo);
 		assertEquals(0, segundoPeriodo.calculaTotalDeCreditos());
@@ -150,29 +130,16 @@ public class TestaPeriodo {
 	public void deveRemoverDisciplinasNoPeriodoSelecionadoEAsDisciplinasAsQuaisSaoPreRequisitosDelasQuandoPedido(){
 		
 
-		planejamento.adicionaPrimeiroPeriodo();
+		planejamento.adicionaPrimeiroPeriodo(primeiroPeriodo);
 		
-		curriculo.pesquisaDisciplina("Cálculo I").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Álgebra Vetorial e Geometria Analítica").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Lab. de Programação I").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Programação I").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Leitura e Produção de Textos").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Introdução a Computação").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		
+
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Programação II"));
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Lab. de Programação II"));
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Teoria dos Grafos"));
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Matemática Discreta"));
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Fundamentos de Física Clássica"));
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Cálculo II"));
-		
-		curriculo.pesquisaDisciplina("Cálculo II").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Programação II").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Lab. de Programação II").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Teoria dos Grafos").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Fundamentos de Física Clássica").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Matemática Discreta").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		
+
 		planejamento.adicionaPeriodo(segundoPeriodo);
 		
 		terceiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Estrutura de Dados e Algoritmos"));
@@ -181,13 +148,6 @@ public class TestaPeriodo {
 		terceiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Probabilidade e Estatística"));
 		terceiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Teoria da Computação"));
 		terceiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Álgebra Linear"));
-		
-		curriculo.pesquisaDisciplina("Álgebra Linear").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Estrutura de Dados e Algoritmos").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Lab. de Estrutura de Dados e Algoritmos").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Fundamentos de Física Moderna").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Probabilidade e Estatística").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
-		curriculo.pesquisaDisciplina("Teoria da Computação").setStatus(Disciplina.DISCIPLINA_CONCLUIDA);
 		
 		planejamento.adicionaPeriodo(terceiroPeriodo);
 		

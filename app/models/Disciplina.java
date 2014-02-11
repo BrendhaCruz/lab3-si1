@@ -1,26 +1,17 @@
 package models;
 
-import java.util.Arrays;
-
 //CREATOR: classe Disciplina registra objetos do tipo disciplica
 public class Disciplina {
 
-	public static final boolean DISCIPLINA_PENDENTE = false;
-	public static final boolean DISCIPLINA_CONCLUIDA = true;
 	private String nomeDaDisciplina;
 	private int creditos;
-	private boolean status = false;
 	private Disciplina[] preRequisitos;
 	private boolean alocada = false;
-	public static final boolean DISCIPLINA_ALOCADA = true;
-	public static final boolean DISCIPLINA_NAO_ALOCADA = false;
-
+	
 	public Disciplina(String nomeDaDisciplina, int creditos, Disciplina[] preRequisitos) {
 		this.nomeDaDisciplina = nomeDaDisciplina;
 		this.creditos = creditos;
-		this.status = DISCIPLINA_PENDENTE;
 		this.preRequisitos = preRequisitos;
-		this.alocada = DISCIPLINA_NAO_ALOCADA;
 	}
 
 	@Override
@@ -30,38 +21,13 @@ public class Disciplina {
 			return false;
 		if (!nomeDaDisciplina.equals(other.nomeDaDisciplina))
 			return false;
-		if (status != other.status)
-			return false;
 		return true;
 	}
-
-	public boolean getStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
+	//INFORMATION EXPERT: a disciplina possui os proprios preRequisitos
 	public Disciplina[] getPreRequisitos() {
 		return preRequisitos;
 	}
-	//INFORMATION EXPERT: a disciplina possui os proprios preRequisitos
-	public String formataPreRequisitos(Disciplina[] lista) {
-		String temp = "";
-		for (int i = 0; i < lista.length; i++) {
-			if (i == lista.length-1)
-				temp += lista[i] + " ";
-			else
-				temp += lista[i] + ", ";
-		}
-		return temp;
-	}
 	
-	public void setPreRequisitos(Disciplina[] preRequisitos) {
-		this.preRequisitos = preRequisitos;
-	}
-
 	public String getNomeDaDisciplina() {
 		return nomeDaDisciplina;
 	}
@@ -74,8 +40,11 @@ public class Disciplina {
 		return this.alocada;
 	}
 
-	public void setAlocada(boolean alocada) {
-		this.alocada = alocada;
+	public void setAlocada() {
+		this.alocada = true;
+	}
+	public void setNaoAlocada() {
+		this.alocada = false;
 	}
 
 	@Override

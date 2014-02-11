@@ -18,16 +18,16 @@ public class Periodo {
 	public void adicionaDisciplinas(Disciplina disciplina) {
 		boolean resp = true;
 		Disciplina[] preRequisitos = disciplina.getPreRequisitos();
-		if (!disciplina.getStatus()) {
+		if (!disciplina.isAlocada()) {
 			if (this.calculaTotalDeCreditos() + disciplina.getCreditos() <= 28) {
 				if (preRequisitos.length != 0) {
 					for (int i = 0; i < preRequisitos.length; i++) {
-						if (preRequisitos[i].getStatus() == Disciplina.DISCIPLINA_PENDENTE) {
+						if (!preRequisitos[i].isAlocada()) {
 							resp = false;
 						}
 					}
 				} if (resp && !disciplina.isAlocada()) {
-					disciplina.setAlocada(Disciplina.DISCIPLINA_ALOCADA);
+					disciplina.setAlocada();
 					listaDisciplinas.add(disciplina);
 				}
 			}
@@ -73,6 +73,6 @@ public class Periodo {
 
 	public void removeDisciplina(Disciplina disciplina) {
 		this.getListaDeDisciplinas().remove(disciplina);
-		disciplina.setAlocada(Disciplina.DISCIPLINA_NAO_ALOCADA);
+		disciplina.setNaoAlocada();
 	}
 }
