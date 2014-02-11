@@ -7,30 +7,15 @@ public class Periodo {
 
 	// CREATOR: Periodo é feito de disciplinas
 	private List<Disciplina> listaDisciplinas;
-	private Curriculo curriculo;
 
 	public Periodo() {
 		this.listaDisciplinas = new ArrayList<Disciplina>();
-		curriculo = Curriculo.getInstance();
 	}
 
 	// INFORMATION EXPERT: Pois é onde está a lista de disciplinas
 	public void adicionaDisciplinas(Disciplina disciplina) {
-		boolean resp = true;
-		Disciplina[] preRequisitos = disciplina.getPreRequisitos();
-		if (!disciplina.isAlocada()) {
-			if (this.calculaTotalDeCreditos() + disciplina.getCreditos() <= 28) {
-				if (preRequisitos.length != 0) {
-					for (int i = 0; i < preRequisitos.length; i++) {
-						if (!preRequisitos[i].isAlocada()) {
-							resp = false;
-						}
-					}
-				} if (resp && !disciplina.isAlocada()) {
-					disciplina.setAlocada();
-					listaDisciplinas.add(disciplina);
-				}
-			}
+		if (this.calculaTotalDeCreditos() + disciplina.getCreditos() <= 28) {
+				listaDisciplinas.add(disciplina);
 		}
 	}
 
@@ -42,15 +27,7 @@ public class Periodo {
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.listaDisciplinas = disciplinas;
 	}
-	// INFORMATION EXPERT: Pois é onde está a lista de disciplinas
-	public void criaPrimeiroPeriodo() {
-		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Cálculo I")));
-		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Programação I")));
-		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Lab. de Programação I")));
-		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Introdução a Computação")));
-		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Leitura e Produção de Textos")));
-		this.adicionaDisciplinas((curriculo.pesquisaDisciplina("Álgebra Vetorial e Geometria Analítica")));
-	}
+
 	
 	@Override
 	public String toString() {
@@ -67,12 +44,11 @@ public class Periodo {
 		return result;
 	}
 
-	public Object creditosPorDisciplina(Disciplina disciplina) {
+	public int creditosPorDisciplina(Disciplina disciplina) {
 		return disciplina.getCreditos();
 	}
 
 	public void removeDisciplina(Disciplina disciplina) {
 		this.getListaDeDisciplinas().remove(disciplina);
-		disciplina.setNaoAlocada();
 	}
 }

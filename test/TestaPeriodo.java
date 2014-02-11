@@ -24,8 +24,8 @@ public class TestaPeriodo {
 	@Before
 	public void setUp() throws Exception {
 		listaDisciplinas = new ArrayList<Disciplina>();
-		curriculo = Curriculo.creatNewInstance();
-		planejamento = new Planejamento();
+		curriculo = new Curriculo();
+		planejamento = new Planejamento(curriculo);
 		primeiroPeriodo = new Periodo(); 
 		segundoPeriodo = new Periodo();
 		terceiroPeriodo = new Periodo();
@@ -42,8 +42,8 @@ public class TestaPeriodo {
 		listaDisciplinas.add(ic);
 		listaDisciplinas.add(lpt);
 		listaDisciplinas.add(vetorial);
-		primeiroPeriodo.criaPrimeiroPeriodo();
-
+		planejamento.adicionaPrimeiroPeriodo();
+		primeiroPeriodo = planejamento.getPeriodos().get(0);
 	}
 
 	
@@ -60,9 +60,12 @@ public class TestaPeriodo {
 		 assertEquals("Erro na quantidade de creditos da disciplina!", 4, primeiroPeriodo.creditosPorDisciplina(programacao1));
 		 assertEquals("Erro na quantidade de creditos da disciplina!", 4, primeiroPeriodo.creditosPorDisciplina(ic));
 		 assertEquals("Erro na quantidade de creditos da disciplina!", 4, primeiroPeriodo.creditosPorDisciplina(lpt));
-		 primeiroPeriodo.criaPrimeiroPeriodo();
 		 assertEquals(24, primeiroPeriodo.calculaTotalDeCreditos());
-		 primeiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Cálculo I"));
+		 try {
+			planejamento.adicionaDisciplinaNoPeriodo(0, "Cálculo I");
+		} catch (Exception e) {
+			e.getMessage();
+		}
 		 assertEquals(24, primeiroPeriodo.calculaTotalDeCreditos());
 	}
 	
@@ -74,7 +77,6 @@ public class TestaPeriodo {
 	
 	@Test
 	public void deveRetornarOsPeriodosCadastradosQuandoPedido(){
-		planejamento.adicionaPeriodo(primeiroPeriodo);
 		assertEquals(1, planejamento.getPeriodos().size());
 		planejamento.adicionaPeriodo(segundoPeriodo);
 		assertEquals(2, planejamento.getPeriodos().size());
@@ -87,8 +89,6 @@ public class TestaPeriodo {
 
 	@Test
 	public void deveFornecerListaDeDisciplinasPrimeiroprimeiroPeriodo() {
-		primeiroPeriodo.criaPrimeiroPeriodo();
-		planejamento.adicionaPeriodo(primeiroPeriodo);
 		assertEquals(listaDisciplinas.toString(), primeiroPeriodo.getListaDeDisciplinas().toString());
 		assertEquals(listaDisciplinas.toString(), planejamento.getDisciplinasDadoPeriodo(0).toString());
 	}
@@ -116,22 +116,32 @@ public class TestaPeriodo {
 	
 	@Test
 	public void deveAdicionarDisciplinasNoPeriodoSelecionado(){
-		planejamento.adicionaPeriodo(primeiroPeriodo);
 		planejamento.adicionaPeriodo(segundoPeriodo);
 		assertEquals(0, segundoPeriodo.calculaTotalDeCreditos());
-		planejamento.adicionaDisciplinaNoPeriodo(1, "Cálculo II");
-		planejamento.adicionaDisciplinaNoPeriodo(1, "Metodologia Científica");
-		planejamento.adicionaDisciplinaNoPeriodo(1, "Gerência da Informação");
+		 try {
+			 	planejamento.adicionaDisciplinaNoPeriodo(1, "Cálculo II");
+				
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Metodologia Científica");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Gerência da Informação");
+		} catch (Exception e) {
+			e.getMessage();
+		}
 		
 		assertEquals(12, segundoPeriodo.calculaTotalDeCreditos());
 	}
 	
 	@Test
 	public void deveRemoverDisciplinasNoPeriodoSelecionadoEAsDisciplinasAsQuaisSaoPreRequisitosDelasQuandoPedido(){
-		
-
-		planejamento.adicionaPrimeiroPeriodo(primeiroPeriodo);
-		
+				
 
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Programação II"));
 		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Lab. de Programação II"));

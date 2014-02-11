@@ -1,15 +1,19 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Curriculo {
 	
 	private Disciplina[] listaDeDisciplinas;
+	private List<Disciplina> disciplinasPrimeiroPeriodo; 
 	private Disciplina calc1, prog1, labProg1, ic, lpt, vetorial, calc2, prog2, labProg2, discreta, grafos, metodologia, fisicaClassica, eda, leda, linear, prob, tc, fisicaModerna, gi,
 	metodos, plp, logic, oac, loac, es, si1, atal, infosoc, direito, comp, redes, bd1, si2, labEs, so, interResedes, LabInterResedes, bd2, ia, softNum, sistemasDiscretos, projeto1, projeto2,
 	adm, sociologia, economia, futsal, basq, calc3, eqDif, ingles, didatica1, didatica2, sistemasDist, segurancaRedes, realidadeVirt, empreendorismo;
 	private static Curriculo myCurriculo;
 	// CREATOR: Cria a lista das disciplinas.
-	private Curriculo() {
+	public Curriculo() {
 		listaDeDisciplinas = new Disciplina[]{
 			calc1 = new Disciplina("Cálculo I", 4, new Disciplina[0]),
 			prog1 = new Disciplina("Programação I", 4, new Disciplina[0]),
@@ -71,6 +75,7 @@ public class Curriculo {
 			empreendorismo = new Disciplina("TECC(Empreendedorismo em Software)", 4,  new Disciplina[0])
 		};
 		
+		disciplinasPrimeiroPeriodo = new ArrayList<Disciplina>(); 
 	
 	}
 	
@@ -92,6 +97,17 @@ public class Curriculo {
 		return resp;
 	}
 	
+	// INFORMATION EXPERT: Pois é onde está a lista de disciplinas
+	public List<Disciplina> criaPrimeiroPeriodo() {
+		disciplinasPrimeiroPeriodo.add(calc1);
+		disciplinasPrimeiroPeriodo.add(prog1);
+		disciplinasPrimeiroPeriodo.add(labProg1);
+		disciplinasPrimeiroPeriodo.add(ic);
+		disciplinasPrimeiroPeriodo.add(lpt);
+		disciplinasPrimeiroPeriodo.add(vetorial);
+		return disciplinasPrimeiroPeriodo;
+	}
+	
 	public Disciplina pesquisaDisciplina(String nomeDaDisciplina){
 		for (int i = 0; i < this.quantDeDisciplinasCadastradas(); i++) {
 			if (this.getListaDeDisciplinas()[i].getNomeDaDisciplina().equalsIgnoreCase(nomeDaDisciplina)) {
@@ -99,18 +115,6 @@ public class Curriculo {
 			}
 		}
 		return null;
-	}
-
-	public static Curriculo getInstance() {
-		if(myCurriculo == null){
-			myCurriculo = new Curriculo();
-		}
-		return myCurriculo;
-	}
-
-	public static Curriculo creatNewInstance() {
-		myCurriculo = new Curriculo();
-		return myCurriculo;
 	}
 
 }

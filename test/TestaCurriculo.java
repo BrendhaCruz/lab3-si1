@@ -14,7 +14,7 @@ public class TestaCurriculo {
 	
 	@Before
 	public void criaCurriculo(){
-		curriculo = Curriculo.getInstance();
+		curriculo = new Curriculo();
 		calculo1 = new Disciplina("Cálculo I", 4, new Disciplina[0]);
 		gi = new Disciplina("Gerência da Informação", 4, new Disciplina[0]);
 		calculo2 = new Disciplina("Cálculo II", 4, new Disciplina[]{calculo1});

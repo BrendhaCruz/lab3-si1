@@ -3,6 +3,7 @@ package controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sourceforge.htmlunit.corejs.javascript.ast.ThrowStatement;
 import models.Curriculo;
 import models.Disciplina;
 import models.Periodo;
@@ -13,32 +14,43 @@ public class Planejamento{
 
 	// CREATOR: Classe planejamento regista a lista dos periodos.
     private List<Periodo> periodos;
-    private Periodo periodo;
     private static final int MINIMO_DE_CREDITOS = 16;
     private static final int MAXIMO_DE_CREDITOS = 28;
     private Curriculo curriculo;
+    private Periodo primeiroPeriodo;
 
-	public Planejamento() {
+	public Planejamento(Curriculo curriculo) {
 		periodos = new ArrayList<Periodo>();
-		periodo = new Periodo();
-		curriculo = Curriculo.getInstance();
+		this.curriculo = curriculo;
+		primeiroPeriodo = new Periodo();
 	}
+	
 	// INFORMATION EXPERT: Tem a lista de periodos.
-	public void adicionaPrimeiroPeriodo(Periodo primeiroPeriodo){
+	public void adicionaPrimeiroPeriodo(){
+		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(0));
+		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(1));
+		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(2));
+		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(3));
+		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(4));
+		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(5));
 		periodos.add(primeiroPeriodo);
 	}
+	
 	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void adicionaPeriodo(){
 		periodos.add(new Periodo());
 	}
+	
 	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void adicionaPeriodo(Periodo periodo){
 		this.periodos.add(periodo);
 	}
+	
 	// INFORMATION EXPERT: Tem a lista de periodos.
 	public List<Periodo> getPeriodos() {
         return this.periodos;
 	}
+	
 	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void removePeriodo(Periodo periodo){
 		this.periodos.remove(this.periodos.remove(periodo));
@@ -51,6 +63,7 @@ public class Planejamento{
 	public int maximoDeCreditos() {
 		return this.MAXIMO_DE_CREDITOS;
 	}
+	
 	// INFORMATION EXPERT: Tem a lista de periodos.
 	public List<Disciplina> getDisciplinasDadoPeriodo(int indicePeriodo) {
 		return getPeriodos().get(indicePeriodo).getListaDeDisciplinas();
@@ -60,17 +73,29 @@ public class Planejamento{
 		return curriculo.pesquisaDisciplina(nomeDaDisciplina) ;
 	}
 
-	public Disciplina[] getListaDeDisciplina(){
-		return curriculo.getListaDeDisciplinas();
-	}
-
-	public void adicionaDisciplinaNoPeriodo(int indicePeriodo, String nome){
-		this.getPeriodos().get(indicePeriodo).adicionaDisciplinas(curriculo.pesquisaDisciplina(nome));
+	public void adicionaDisciplinaNoPeriodo(int indicePeriodo, String nome) throws Exception{
+		Disciplina disciplina = curriculo.pesquisaDisciplina(nome);
+		boolean verificaPreRequisitos = true;
+		if (disciplina.getPreRequisitos().length > 0) {
+			for (int i = 0; i < disciplina.getPreRequisitos().length; i++) {
+				if (!this.estaAlocada(disciplina.getPreRequisitos()[i])) {
+					verificaPreRequisitos = this.estaAlocada(disciplina.getPreRequisitos()[i]);
+				}
+			}	
+		}
+		
+		if (!this.estaAlocada(disciplina) && verificaPreRequisitos) {
+			this.getPeriodos().get(indicePeriodo).adicionaDisciplinas(disciplina);
+		} else{
+			throw new Exception("Disciplina ja esta alocada"); 
+		}
+			
 	}
 	
 	public Curriculo getCurriculo(){
 		return curriculo;
 	}
+	
 	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void removeDisciplinaDoPeriodo(int periodo, String nomeDaDisciplina) {
 		Disciplina disciplina = curriculo.pesquisaDisciplina(nomeDaDisciplina);
@@ -90,7 +115,7 @@ public class Planejamento{
 		}
 	}
 	
-	/*
+	
 	public boolean estaAlocada(Disciplina disciplina){
 		boolean resp = false;
 		for (int i = 0; i < periodos.size(); i++) {
@@ -102,6 +127,6 @@ public class Planejamento{
 		}
 		return resp;
 	}
-	*/
+	
 }
 

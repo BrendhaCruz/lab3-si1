@@ -6,7 +6,6 @@ public class Disciplina {
 	private String nomeDaDisciplina;
 	private int creditos;
 	private Disciplina[] preRequisitos;
-	private boolean alocada = false;
 	
 	public Disciplina(String nomeDaDisciplina, int creditos, Disciplina[] preRequisitos) {
 		this.nomeDaDisciplina = nomeDaDisciplina;
@@ -34,17 +33,6 @@ public class Disciplina {
 
 	public int getCreditos() {
 		return creditos;
-	}
-
-	public boolean isAlocada() {
-		return this.alocada;
-	}
-
-	public void setAlocada() {
-		this.alocada = true;
-	}
-	public void setNaoAlocada() {
-		this.alocada = false;
 	}
 
 	@Override
