@@ -2,8 +2,6 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import net.sourceforge.htmlunit.corejs.javascript.ast.ThrowStatement;
 import models.Curriculo;
 import models.Disciplina;
 import models.Periodo;
@@ -14,7 +12,7 @@ public class Planejamento{
 
 	// CREATOR: Classe planejamento regista a lista dos periodos.
     private List<Periodo> periodos;
-    private static final int MINIMO_DE_CREDITOS = 16;
+	private static final int MINIMO_DE_CREDITOS = 16;
     private static final int MAXIMO_DE_CREDITOS = 28;
     private Curriculo curriculo;
     private Periodo primeiroPeriodo;
@@ -26,14 +24,14 @@ public class Planejamento{
 	}
 	
 	// INFORMATION EXPERT: Tem a lista de periodos.
-	public void adicionaPrimeiroPeriodo(){
+	public void adicionaPrimeiroPeriodo() throws Exception{
 		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(0));
 		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(1));
 		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(2));
 		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(3));
 		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(4));
 		primeiroPeriodo.adicionaDisciplinas(curriculo.criaPrimeiroPeriodo().get(5));
-		periodos.add(primeiroPeriodo);
+		this.periodos.add(primeiroPeriodo);
 	}
 	
 	// INFORMATION EXPERT: Tem a lista de periodos.
@@ -42,18 +40,17 @@ public class Planejamento{
 	}
 	
 	// INFORMATION EXPERT: Tem a lista de periodos.
-	public void adicionaPeriodo(Periodo periodo){
-		this.periodos.add(periodo);
-	}
-	
-	// INFORMATION EXPERT: Tem a lista de periodos.
 	public List<Periodo> getPeriodos() {
         return this.periodos;
 	}
 	
+    public void setPeriodos(List<Periodo> periodos) {
+		this.periodos = periodos;
+	}
+	
 	// INFORMATION EXPERT: Tem a lista de periodos.
-	public void removePeriodo(Periodo periodo){
-		this.periodos.remove(this.periodos.remove(periodo));
+	public void removePeriodo(int i){
+		this.periodos.remove(this.periodos.remove(i));
 	}
 	
 	public int minimoDeCreditos() {
@@ -66,10 +63,10 @@ public class Planejamento{
 	
 	// INFORMATION EXPERT: Tem a lista de periodos.
 	public List<Disciplina> getDisciplinasDadoPeriodo(int indicePeriodo) {
-		return getPeriodos().get(indicePeriodo).getListaDeDisciplinas();
+		return this.periodo(indicePeriodo).getListaDeDisciplinas();
 	}
 
-	public Disciplina getDisciplinaCurriculo(String nomeDaDisciplina) {
+	public Disciplina getDisciplinaCurriculo(String nomeDaDisciplina) throws Exception {
 		return curriculo.pesquisaDisciplina(nomeDaDisciplina) ;
 	}
 
@@ -84,10 +81,12 @@ public class Planejamento{
 			}	
 		}
 		
-		if (!this.estaAlocada(disciplina) && verificaPreRequisitos) {
-			this.getPeriodos().get(indicePeriodo).adicionaDisciplinas(disciplina);
+		if ((indicePeriodo != 0) && !this.estaAlocada(disciplina) && verificaPreRequisitos && (this.periodo(indicePeriodo).calculaTotalDeCreditos() < maximoDeCreditos())) {
+			this.periodo(indicePeriodo).adicionaDisciplinas(disciplina);
 		} else{
-			throw new Exception("Disciplina ja esta alocada"); 
+			if(indicePeriodo == 0)throw new Exception("Nao pode adicionar disciplinas no primeiro periodo.");
+			
+			throw new Exception("Disciplina ja esta alocada ou os pre Requisitos nao foram alocados."); 
 		}
 			
 	}
@@ -97,22 +96,28 @@ public class Planejamento{
 	}
 	
 	// INFORMATION EXPERT: Tem a lista de periodos.
-	public void removeDisciplinaDoPeriodo(int periodo, String nomeDaDisciplina) {
+	public void removeDisciplinaDoPeriodo(int periodo, String nomeDaDisciplina) throws Exception {
+		List<Periodo> periodosBackup = this.getPeriodos();
 		Disciplina disciplina = curriculo.pesquisaDisciplina(nomeDaDisciplina);
-		this.getPeriodos().get(periodo).removeDisciplina(disciplina);
-		if (periodo<(getPeriodos().size())){ 
-			periodo +=1;
-			for (int i = periodo; i < getPeriodos().size(); i++) {
-				for (int j = 0; j < getPeriodos().get(i).getListaDeDisciplinas().size(); j++) {
-					for (int k = 0; k < getPeriodos().get(i).getListaDeDisciplinas().get(j).getPreRequisitos().length; k++) {
-						if (getPeriodos().get(i).getListaDeDisciplinas().get(j).getPreRequisitos()[k].equals(disciplina)) {
-							removeDisciplinaDoPeriodo(periodo, getPeriodos().get(i).getListaDeDisciplinas().get(j).getNomeDaDisciplina());
-							j--;
+		this.periodo(periodo).removeDisciplina(disciplina);
+		if(periodo != 0){
+			if (periodo<(getPeriodos().size()) && (periodo!=0)){ 
+				periodo +=1;
+				for (int i = periodo; i < getPeriodos().size(); i++) {
+					for (int j = 0; j < periodo(i).getListaDeDisciplinas().size(); j++) {
+						for (int k = 0; k < periodo(i).getListaDeDisciplinas().get(j).getPreRequisitos().length; k++) {
+							if (periodo(i).getListaDeDisciplinas().get(j).getPreRequisitos()[k].equals(disciplina)) {
+								removeDisciplinaDoPeriodo(periodo, periodo(i).getListaDeDisciplinas().get(j).getNomeDaDisciplina());
+								j--;
+							}
 						}
 					}
 				}
 			}
+		}else {
+			throw new Exception("Nao pode remover disciplina do primeiro periodo.");
 		}
+		
 	}
 	
 	
@@ -126,6 +131,26 @@ public class Planejamento{
 			}
 		}
 		return resp;
+	}
+
+	public Periodo periodo(int periodo) {
+		return this.getPeriodos().get(periodo);
+	}
+
+	public int getCreditosDeUmPeriodo(int periodo) {
+		return this.periodo(periodo).calculaTotalDeCreditos();
+	}
+
+	public int quantidadeDePeriodos() {
+		return this.getPeriodos().size();
+	}
+
+	public String toStringDeUmDeterminadoPeriodo(int periodo) {
+		return getDisciplinasDadoPeriodo(periodo).toString();
+	}
+
+	public int quantidadeDeDisciplinasNoPeriodo(int periodo) {
+		return getDisciplinasDadoPeriodo(periodo).size();
 	}
 	
 }

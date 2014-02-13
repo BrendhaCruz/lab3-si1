@@ -13,9 +13,11 @@ public class Periodo {
 	}
 
 	// INFORMATION EXPERT: Pois é onde está a lista de disciplinas
-	public void adicionaDisciplinas(Disciplina disciplina) {
+	public void adicionaDisciplinas(Disciplina disciplina) throws Exception{
 		if (this.calculaTotalDeCreditos() + disciplina.getCreditos() <= 28) {
 				listaDisciplinas.add(disciplina);
+		}else{
+			throw new Exception(" O maximo de creditos seria ultrapassado");
 		}
 	}
 

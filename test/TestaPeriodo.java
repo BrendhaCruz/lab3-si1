@@ -15,7 +15,7 @@ import controllers.Planejamento;
 
 public class TestaPeriodo {
 
-	private Periodo primeiroPeriodo, segundoPeriodo, terceiroPeriodo, quartoPeriodo;
+	private Periodo primeiroPeriodo;
 	private Disciplina calculo1, programacao1, labprogramacao1, ic, lpt, vetorial;
     private List<Disciplina> listaDisciplinas;
     private Curriculo curriculo;
@@ -26,10 +26,7 @@ public class TestaPeriodo {
 		listaDisciplinas = new ArrayList<Disciplina>();
 		curriculo = new Curriculo();
 		planejamento = new Planejamento(curriculo);
-		primeiroPeriodo = new Periodo(); 
-		segundoPeriodo = new Periodo();
-		terceiroPeriodo = new Periodo();
-		quartoPeriodo = new Periodo();
+		primeiroPeriodo = new Periodo();
 		calculo1 = new Disciplina("Cálculo I", 4, new Disciplina[0]);
 		programacao1 = new Disciplina("Programação I", 4, new Disciplina[0]);
 		labprogramacao1 = new Disciplina("Lab. de Programação I", 4,new Disciplina[0]);
@@ -43,7 +40,6 @@ public class TestaPeriodo {
 		listaDisciplinas.add(lpt);
 		listaDisciplinas.add(vetorial);
 		planejamento.adicionaPrimeiroPeriodo();
-		primeiroPeriodo = planejamento.getPeriodos().get(0);
 	}
 
 	
@@ -56,6 +52,7 @@ public class TestaPeriodo {
 	
 	@Test
 	public void deveCalcularCreditos() {
+		primeiroPeriodo = planejamento.periodo(0);
 		 assertEquals("Erro na quantidade de creditos da disciplina!", 4, primeiroPeriodo.creditosPorDisciplina(calculo1));
 		 assertEquals("Erro na quantidade de creditos da disciplina!", 4, primeiroPeriodo.creditosPorDisciplina(programacao1));
 		 assertEquals("Erro na quantidade de creditos da disciplina!", 4, primeiroPeriodo.creditosPorDisciplina(ic));
@@ -77,50 +74,92 @@ public class TestaPeriodo {
 	
 	@Test
 	public void deveRetornarOsPeriodosCadastradosQuandoPedido(){
-		assertEquals(1, planejamento.getPeriodos().size());
-		planejamento.adicionaPeriodo(segundoPeriodo);
-		assertEquals(2, planejamento.getPeriodos().size());
-		planejamento.removePeriodo(primeiroPeriodo);
-		assertEquals(1, planejamento.getPeriodos().size());
-		planejamento.removePeriodo(segundoPeriodo);
-		assertEquals(0, planejamento.getPeriodos().size());
+		assertEquals(1, planejamento.quantidadeDePeriodos());
+		planejamento.adicionaPeriodo();
+		assertEquals(2, planejamento.quantidadeDePeriodos());
+		planejamento.removePeriodo(0);
+		assertEquals(1, planejamento.quantidadeDePeriodos());
+		planejamento.removePeriodo(0);
+		assertEquals(0, planejamento.quantidadeDePeriodos());
 		
 	}
 
 	@Test
-	public void deveFornecerListaDeDisciplinasPrimeiroprimeiroPeriodo() {
+	public void deveFornecerCaracteristicasDoDisciplinasPrimeiroprimeiroPeriodo() {
+		primeiroPeriodo = planejamento.periodo(0);
 		assertEquals(listaDisciplinas.toString(), primeiroPeriodo.getListaDeDisciplinas().toString());
-		assertEquals(listaDisciplinas.toString(), planejamento.getDisciplinasDadoPeriodo(0).toString());
+		assertEquals(listaDisciplinas.toString(), planejamento.toStringDeUmDeterminadoPeriodo(0));
+		try {
+			this.planejamento.adicionaDisciplinaNoPeriodo(0, "Cálculo II");
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	}
 	
 	@Test
 	public void deveAdicionarDisciplinasDoSegundoPeriodo() {
-
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Matemática Discreta"));
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Metodologia Científica"));
-		assertEquals(2, segundoPeriodo.getListaDeDisciplinas().size());
+			planejamento.adicionaPeriodo();
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Matemática Discreta");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Metodologia Científica");
+		} catch (Exception e) {
+			e.getMessage();
+		}
 		
-
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Cálculo II"));
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Programação II"));
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Lab. de Programação II"));
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Teoria dos Grafos"));
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Fundamentos de Física Clássica"));
-		assertEquals(7, segundoPeriodo.getListaDeDisciplinas().size());
-		assertEquals(26, segundoPeriodo.calculaTotalDeCreditos());
+		planejamento.getDisciplinasDadoPeriodo(1);
+		assertEquals(2, planejamento.quantidadeDeDisciplinasNoPeriodo(1));
 		
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Gerência da Informação"));
-		assertEquals(26, segundoPeriodo.calculaTotalDeCreditos());
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Cálculo II");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Programação II");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Lab. de Programação II");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Teoria dos Grafos");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Fundamentos de Física Clássica");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		assertEquals(7, planejamento.quantidadeDeDisciplinasNoPeriodo(1));
+		assertEquals(26, planejamento.getCreditosDeUmPeriodo(1));
+		
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Gerência da Informação");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		
+		assertEquals(26, planejamento.getCreditosDeUmPeriodo(1));
 	}
 	
 	
 	@Test
 	public void deveAdicionarDisciplinasNoPeriodoSelecionado(){
-		planejamento.adicionaPeriodo(segundoPeriodo);
-		assertEquals(0, segundoPeriodo.calculaTotalDeCreditos());
+		planejamento.adicionaPeriodo();
+		planejamento.getDisciplinasDadoPeriodo(1);
+		assertEquals(0, planejamento.getCreditosDeUmPeriodo(1));
+		
 		 try {
-			 	planejamento.adicionaDisciplinaNoPeriodo(1, "Cálculo II");
-				
+			 planejamento.adicionaDisciplinaNoPeriodo(1, "Cálculo II");
 		} catch (Exception e) {
 			e.getMessage();
 		}
@@ -136,51 +175,83 @@ public class TestaPeriodo {
 			e.getMessage();
 		}
 		
-		assertEquals(12, segundoPeriodo.calculaTotalDeCreditos());
+		assertEquals(12, planejamento.getCreditosDeUmPeriodo(1));
 	}
 	
 	@Test
 	public void deveRemoverDisciplinasNoPeriodoSelecionadoEAsDisciplinasAsQuaisSaoPreRequisitosDelasQuandoPedido(){
 				
+		planejamento.adicionaPeriodo();
 
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Programação II"));
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Lab. de Programação II"));
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Teoria dos Grafos"));
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Matemática Discreta"));
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Fundamentos de Física Clássica"));
-		segundoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Cálculo II"));
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Matemática Discreta");
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Metodologia Científica");
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Cálculo II");
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Programação II");
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Lab. de Programação II");
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Teoria dos Grafos");
+			planejamento.adicionaDisciplinaNoPeriodo(1, "Fundamentos de Física Clássica");
+		} catch (Exception e) {
+			e.getMessage();
+		}
 
-		planejamento.adicionaPeriodo(segundoPeriodo);
 		
-		terceiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Estrutura de Dados e Algoritmos"));
-		terceiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Lab. de Estrutura de Dados e Algoritmos"));
-		terceiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Fundamentos de Física Moderna"));
-		terceiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Probabilidade e Estatística"));
-		terceiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Teoria da Computação"));
-		terceiroPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Álgebra Linear"));
+		planejamento.adicionaPeriodo();
 		
-		planejamento.adicionaPeriodo(terceiroPeriodo);
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(2, "Estrutura de Dados e Algoritmos");
+			planejamento.adicionaDisciplinaNoPeriodo(2, "Lab. de Estrutura de Dados e Algoritmos");
+			planejamento.adicionaDisciplinaNoPeriodo(2, "Fundamentos de Física Moderna");
+			planejamento.adicionaDisciplinaNoPeriodo(2, "Probabilidade e Estatística");
+			planejamento.adicionaDisciplinaNoPeriodo(2, "Gerência da Informação");
+			planejamento.adicionaDisciplinaNoPeriodo(2, "Teoria da Computação");
+			planejamento.adicionaDisciplinaNoPeriodo(2, "Álgebra Linear");
+		} catch (Exception e) {
+			e.getMessage();
+		}
 		
-		quartoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Lógica Matemática"));
-		quartoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Organização e Arquitetura de Computadores"));
-		quartoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Lab. de Organizacao e Arquitetura de Computadores"));
-		quartoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Engenharia de Software 1"));
-		quartoPeriodo.adicionaDisciplinas(curriculo.pesquisaDisciplina("Métodos Estatísticos"));
-
-		planejamento.adicionaPeriodo(quartoPeriodo);
+		planejamento.adicionaPeriodo();
 		
-		assertEquals(24, planejamento.getPeriodos().get(0).calculaTotalDeCreditos());
-		assertEquals(22, planejamento.getPeriodos().get(1).calculaTotalDeCreditos());
-		assertEquals(24, planejamento.getPeriodos().get(2).calculaTotalDeCreditos());
-		assertEquals(20, planejamento.getPeriodos().get(3).calculaTotalDeCreditos());
+		try {
+			planejamento.adicionaDisciplinaNoPeriodo(3, "Lógica Matemática");
+			planejamento.adicionaDisciplinaNoPeriodo(3, "Organização e Arquitetura de Computadores");
+			planejamento.adicionaDisciplinaNoPeriodo(3, "Lab. de Organizacao e Arquitetura de Computadores");
+			planejamento.adicionaDisciplinaNoPeriodo(3, "Engenharia de Software 1");
+			planejamento.adicionaDisciplinaNoPeriodo(3, "Métodos Estatísticos");
+			planejamento.adicionaDisciplinaNoPeriodo(3, "Paradigmas de Linguagens de Programação");
+			planejamento.adicionaDisciplinaNoPeriodo(3, "Sistemas de Informação 1");
+		} catch (Exception e) {
+			e.getMessage();
+		}
 		
-		planejamento.removeDisciplinaDoPeriodo(3, "Métodos Estatísticos");
+		assertEquals(24, planejamento.periodo(0).calculaTotalDeCreditos());
+		assertEquals(26, planejamento.periodo(1).calculaTotalDeCreditos());
+		assertEquals(28, planejamento.periodo(2).calculaTotalDeCreditos());
+		assertEquals(26, planejamento.periodo(3).calculaTotalDeCreditos());
 		
-		assertEquals(16, planejamento.getPeriodos().get(3).calculaTotalDeCreditos());
+		try {
+			planejamento.removeDisciplinaDoPeriodo(3, "Métodos Estatísticos");
+		} catch (Exception e) {
+			e.getMessage();
+		}
 		
-		planejamento.removeDisciplinaDoPeriodo(1, "Fundamentos de Física Clássica");
-		assertEquals(18, planejamento.getPeriodos().get(1).calculaTotalDeCreditos());
-		assertEquals(20, planejamento.getPeriodos().get(2).calculaTotalDeCreditos());
-		assertEquals(8, planejamento.getPeriodos().get(3).calculaTotalDeCreditos()); 
-	}
+		assertEquals(22, planejamento.getCreditosDeUmPeriodo(3));
+		
+		try {
+			planejamento.removeDisciplinaDoPeriodo(1, "Fundamentos de Física Clássica");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		assertEquals(22, planejamento.periodo(1).calculaTotalDeCreditos());
+		assertEquals(24, planejamento.periodo(2).calculaTotalDeCreditos());
+		assertEquals(14, planejamento.periodo(3).calculaTotalDeCreditos());
+		
+		try {
+			planejamento.removeDisciplinaDoPeriodo(0, "Cálculo I");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		
+		}
+		
 }

@@ -30,8 +30,12 @@ public class Application extends Controller {
 	public static Result adicionaDisciplinaEmPeriodo() {
 		Form<Task> form = formTask.bindFromRequest();
 		int idPeriodo = form.get().getIdPeriodo() - 1;
+		try {
 		sistemaPlanejamento.adicionaDisciplinaNoPeriodo(idPeriodo, form.get()
 				.getInsereDisciplina());
+		}catch(Exception e) {
+		     e.getMessage();
+	     }
 		return redirect(routes.Application.planejamentoDeCurso());
 	}
 

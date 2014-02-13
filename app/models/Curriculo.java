@@ -90,7 +90,7 @@ public class Curriculo {
 	public boolean contains(Disciplina disciplina) {
 		boolean resp = false;
 			for (int i = 0; i < this.getListaDeDisciplinas().length; i++) {
-				if (this.getListaDeDisciplinas()[i].getNomeDaDisciplina().equalsIgnoreCase(disciplina.getNomeDaDisciplina())) {
+				if (this.getListaDeDisciplinas()[i].equals(disciplina)) {
 					resp = true;
 				}
 			}
@@ -108,13 +108,13 @@ public class Curriculo {
 		return disciplinasPrimeiroPeriodo;
 	}
 	
-	public Disciplina pesquisaDisciplina(String nomeDaDisciplina){
+	public Disciplina pesquisaDisciplina(String nomeDaDisciplina) throws Exception{
 		for (int i = 0; i < this.quantDeDisciplinasCadastradas(); i++) {
 			if (this.getListaDeDisciplinas()[i].getNomeDaDisciplina().equalsIgnoreCase(nomeDaDisciplina)) {
 				return this.getListaDeDisciplinas()[i];
 			}
 		}
-		return null;
+		throw new Exception("Nao existe essa disciplina");
 	}
 
 }
