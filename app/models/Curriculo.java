@@ -12,6 +12,10 @@ public class Curriculo {
 	metodos, plp, logic, oac, loac, es, si1, atal, infosoc, direito, comp, redes, bd1, si2, labEs, so, interResedes, LabInterResedes, bd2, ia, softNum, sistemasDiscretos, projeto1, projeto2,
 	adm, sociologia, economia, futsal, basq, calc3, eqDif, ingles, didatica1, didatica2, sistemasDist, segurancaRedes, realidadeVirt, empreendorismo;
 	private static Curriculo myCurriculo;
+
+	/**
+	 * Construtor da Classe Currículo, que contém todas as Disciplinas do Curso de Ciência da Computação.
+	 */
 	// CREATOR: Cria a lista das disciplinas.
 	public Curriculo() {
 		listaDeDisciplinas = new Disciplina[]{
@@ -79,14 +83,30 @@ public class Curriculo {
 	
 	}
 	
+	/**
+	 * Retorna todas as disciplinas do Curso de Ciência da Computação.
+	 * @return Vetor de Disciplina contendo todas as disciplinas do Curso de Ciência da Computação.
+	 */
+	// INFORMATION EXPERT: Possui a lista das disciplinas cadastradas
 	public Disciplina[] getListaDeDisciplinas() {
 		return this.listaDeDisciplinas;
 	}
 
+	/**
+	 * Informa quantas Disciplinas foram cadastradas no Currículo.
+	 * @return Número de Disciplinas em Currículo.
+	 */
+	// INFORMATION EXPERT: Possui a lista das disciplinas cadastradas e deve saber sua quantidade.
 	public int quantDeDisciplinasCadastradas() {
 		return this.listaDeDisciplinas.length;
 	}
-
+	
+	/**
+	 * Pesquisa se existe uma Disciplina em Currículo a partir de um objeto Disciplina.
+	 * @param disciplina Disciplina a ser pesquisada.
+	 * @return valor booleano true - se a Disciplina está cadastrada no Currículo ou false - caso contrário.
+	 */
+	// INFORMATION EXPERT: Contém a lista das disciplinas cadastradas e sabe as disciplinas que estão contidas nela.
 	public boolean contains(Disciplina disciplina) {
 		boolean resp = false;
 			for (int i = 0; i < this.getListaDeDisciplinas().length; i++) {
@@ -97,7 +117,11 @@ public class Curriculo {
 		return resp;
 	}
 	
-	// INFORMATION EXPERT: Pois é onde está a lista de disciplinas
+	/**
+	* Adiciona em uma lista as disciplinas do primeiro período e retorna essa lista.
+	* @return Uma lista de Disciplinas do primeiro período.
+	*/
+	// INFORMATION EXPERT: Pois é onde está a lista de disciplinas que é onde contém as disciplinas do primeiro período.
 	public List<Disciplina> criaPrimeiroPeriodo() {
 		disciplinasPrimeiroPeriodo.add(calc1);
 		disciplinasPrimeiroPeriodo.add(prog1);
@@ -108,6 +132,12 @@ public class Curriculo {
 		return disciplinasPrimeiroPeriodo;
 	}
 	
+	/**
+	 * Pesquisa se existe uma Disciplina em Currículo a partir de um String.
+	 * @param disciplina String da Disciplina a ser pesquisada.
+	 * @return valor booleano true - se existe uma Disciplina com o mesmo nome em Currículo ou false - caso contrário.
+	 */
+	// INFORMATION EXPERT: Pois é onde está a lista de disciplinas que podemos pesquisar.
 	public Disciplina pesquisaDisciplina(String nomeDaDisciplina) throws Exception{
 		for (int i = 0; i < this.quantDeDisciplinasCadastradas(); i++) {
 			if (this.getListaDeDisciplinas()[i].getNomeDaDisciplina().equalsIgnoreCase(nomeDaDisciplina)) {
