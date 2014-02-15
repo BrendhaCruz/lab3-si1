@@ -4,10 +4,10 @@ import play.data.validation.Constraints.Required;
 
 public class Task {
     @Required
-    private String Nomedisciplina;
+    public String inputNameDisc;
     
     @Required
-    private int idPeriodo;
+    public int idPeriodo;
     
     public void setIdPeriodo(int idPeriodo) {
             this.idPeriodo = idPeriodo;
@@ -16,12 +16,12 @@ public class Task {
             return idPeriodo;
     }
     
-    public void setInsereDisciplina(String insereDisciplina) {
-            this.Nomedisciplina = insereDisciplina;
+    public void setInsereDisciplina(String inputNameDisc) {
+            this.inputNameDisc = inputNameDisc;
     }
     
     public String getInsereDisciplina() {
-            return Nomedisciplina;
+            return inputNameDisc;
     }
     
     

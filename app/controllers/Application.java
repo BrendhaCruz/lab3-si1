@@ -16,10 +16,12 @@ public class Application extends Controller {
 	}
 
 	public static Result planejamentoDeCurso() {
-		try {
-			sistemaPlanejamento.adicionaPrimeiroPeriodo();
-		} catch (Exception e) {
-			e.getMessage();
+		if(sistemaPlanejamento.quantidadeDePeriodos() == 0){
+			try {
+				sistemaPlanejamento.adicionaPrimeiroPeriodo();
+			} catch (Exception e) {
+				e.getMessage();
+			}
 		}
 		return ok(views.html.index.render(sistemaPlanejamento, formTask));
 	}
@@ -39,10 +41,9 @@ public class Application extends Controller {
 
 	public static Result adicionaDisciplinaEmPeriodo()throws Exception {
 		Form<Task> form = formTask.bindFromRequest();
-		int idPeriodo = form.get().getIdPeriodo() - 1;
+		int idPeriodo = form.get().getIdPeriodo();
 		try {
-		sistemaPlanejamento.adicionaDisciplinaNoPeriodo(idPeriodo, form.get()
-				.getInsereDisciplina());
+		sistemaPlanejamento.adicionaDisciplinaNoPeriodo(idPeriodo, form.get().getInsereDisciplina());
 		}catch(Exception e) {
 		     e.getMessage();
 	     }
