@@ -1,20 +1,31 @@
-@(sistemaPlanejamento: controllers.Planejamento, formTask: Form[models.Task])
+@(sistemaPlanejamento: controllers.Planejamento, formTask:Form[models.Task])
+ 
+ @import helper._ 
+ 
+ @main("Planejamento de Curso - CCC") {
 
-@import helper._
+	<!-- calcula o total de creditos de qualquer periodo-->
+	@for(periodo <- sistemaPlanejamento.getPeriodos()){
+    	@(sistemaPlanejamento.getPeriodos.indexOf(periodo)+1)º PERIODO! 
+        @for(disciplina <- sistemaPlanejamento.getDisciplinasDadoPeriodo(sistemaPlanejamento.getPeriodos.indexOf(periodo))){
+        	@disciplina.getNomeDaDisciplina()
+           	@disciplina.getCreditos() Creditos 
+        } 
+        TOTAL DE CREDITOS NO PERIODO: @periodo.calculaTotalDeCreditos()
+     }   
 
-@main("Planejamento de Curso - CCC") {
-
-	<!-- mostra lista primeiro periodo -->
-	@for(disciplina <- sistemaPlanejamento.getDisciplinasDadoPeriodo(0)){
-		@disciplina.getNomeDaDisciplina()
-		@disciplina.getCreditos()
-	}
-	@sistemaPlanejamento.getCreditosDeUmPeriodo(0)
-	
 	<!-- mostra lista todas as disciplinas e seus respectivos creditos -->
-	@for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()){ 
-			@disciplina.getNomeDaDisciplina()
-			@disciplina.getCreditos()
-		}
-
+	@for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()){	
+		@disciplina.getNomeDaDisciplina() 
+		@disciplina.getCreditos() 
+	    @disciplina.getPreRequisitos()
+	} 
+	
+	  @form(routes.Application.criaPeriodo()) {
+                @if(sistemaPlanejamento.getPeriodos.size() > 1) {
+                  <button type="submit" class="btn btn-large btn-primary disabled" type="button" disabled="disabled">Adicionar Periodo</button>
+        	     } else {
+                  <button type="submit" class="btn btn-large btn-primary type="button">Adicionar periodo</button>
+                 }
+        }
 }
