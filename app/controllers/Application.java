@@ -23,6 +23,7 @@ public class Application extends Controller {
 				e.getMessage();
 			}
 		}
+		
 		return ok(views.html.index.render(sistemaPlanejamento, formTask));
 	}
 
@@ -43,10 +44,10 @@ public class Application extends Controller {
 		Form<Task> form = formTask.bindFromRequest();
 		int idPeriodo = form.get().getIdPeriodo();
 		try {
-		sistemaPlanejamento.adicionaDisciplinaNoPeriodo(idPeriodo, form.get().getInsereDisciplina());
+			sistemaPlanejamento.adicionaDisciplinaNoPeriodo(idPeriodo, form.get().getInsereDisciplina());
 		}catch(Exception e) {
 		     e.getMessage();
-	     }
+	    }
 		return redirect(routes.Application.planejamentoDeCurso());
 	}
 

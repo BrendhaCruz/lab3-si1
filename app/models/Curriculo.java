@@ -35,7 +35,7 @@ public class Curriculo {
 			eda = new Disciplina("Estrutura de Dados e Algoritmos", 4,new Disciplina[]{prog2,labProg2,grafos}),
 			leda = new Disciplina("Lab. de Estrutura de Dados e Algoritmos", 4, new Disciplina[]{prog2,labProg2,grafos}),
 			linear = new Disciplina("Álgebra Linear", 4, new Disciplina[]{vetorial}),
-			prob = new Disciplina("Probabilidade e EstatÃ­stica", 4, new Disciplina[]{calc2}),
+			prob = new Disciplina("Probabilidade e Estatástica", 4, new Disciplina[]{calc2}),
 			tc = new Disciplina("Teoria da Computação", 4, new Disciplina[]{ic,discreta,grafos}),
 			fisicaModerna = new Disciplina("Fundamentos de Física Moderna", 4, new Disciplina[]{fisicaClassica,calc2}),
 			gi = new Disciplina("Gerência da Informação", 4, new Disciplina[0]),

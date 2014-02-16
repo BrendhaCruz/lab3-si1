@@ -1,103 +1,77 @@
-@(sistemaPlanejamento: models.Planejamento, formTask: Form[models.Task], periodos: List[models.Periodo])
+@(sistemaPlanejamento: controllers.Planejamento, formTask:Form[models.Task])
+ 
+ @import helper._ 
+ @main("Planejamento de Curso - CCC") {
 
-@import helper._
+ <font color="#FFFFFF"> 
+<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../public/stylesheets/main.css">
+	</head>
 
-@main("Planejamento de Curso - CCC") {
+	<body background="../public/images/background.jpg">
+	<table>
+	
+	<!-- calcula o total de creditos de qualquer periodo-->
+	@for(periodo <- sistemaPlanejamento.getPeriodos()){
+	<th class="cabeçalho">@(sistemaPlanejamento.getPeriodos.indexOf(periodo)+1)º PERIODO </th>
+		<tr><td>			
+        @for(disciplina <- sistemaPlanejamento.getDisciplinasDadoPeriodo(sistemaPlanejamento.getPeriodos.indexOf(periodo))){
+        	<tr><td>			
+					@disciplina.getNomeDaDisciplina()
+				</td><td class="numero">@disciplina.getCreditos() Créditos</td>
+				</tr>
+        } 
+        <tr><td class="numero">Total de Créditos No Período: </td><td>@periodo.calculaTotalDeCreditos()</tr></td>
+        
+     
+     }   
 
-     <div class="wrapper" style="height: 100%;">
-	     <div class="titulo">
-		     <nome-principal>Meu Curso</nome-principal>
-	         </div>
-	         
- <form name="contactformfree" method="post" action="free_process.php" onSubmit="return validate.check(this)">
-      <table width="400px" class="cffree">
-      <tr>
-      <td colspan="2"></td>
-      </tr>
-      <div id="curriculo">
-      <table class="tabela" style="float:left;">
-         <tr style="background-color: #D9D9F3;">
-         <th style="border:none;font-size: 20px;">
-             DISCIPLINAS:
-         </th>
-         </tr>
-            <tr style="background-color: #3366FF;">
-            <th >Disciplina</td>
-            <th >Creditos</td>
-            <th >Pre-Requisitos</td>
-            </tr>
-        @for(disciplina <- sistemaPlanejamento.getListaDeDisciplina()){
-            <tr>
-                    <td >@disciplina.getNomeDaDisciplina()</td>
-                    <td >@disciplina.getCreditos()</td>
-                    <td >@disciplina.formataPreRequisitos(disciplina.getPreRequisitos())</td>
-            </tr>
+	<!-- mostra lista todas as disciplinas e seus respectivos creditos -->
+	<table class="table table-bordered">
+		<TH> Nome da disciplina</TH><TH> Créditos </TH> <TH> Pre-Requisitos</TH>
+		@for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()){	
+		
+			<TR><TD> @disciplina.getNomeDaDisciplina()</td><td> @disciplina.getCreditos()</td><td>@disciplina.getPreRequisitos() </TD></TR> 
+	
+	} 
+	
+	  @form(routes.Application.criaPeriodo()) {
+                @if(sistemaPlanejamento.getPeriodos.size() > 1) {
+                  <button type="submit" class="btn btn-large btn-primary disabled" type="button" disabled="disabled">Adicionar Periodo</button>
+        	     } else {
+                  <button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Periodo</button>
+                 }
         }
-        </table>
-        </div>
-      </table>
-      </form>	         
-	          <div id="colunas">
-              @for(periodo <- sistemaPlanejamento.getPeriodos()){
-              <br>
-                  <small>@(sistemaPlanejamento.getPeriodos.indexOf(periodo)+1)º PERIODO! </small>
-              <br>
-                   @for(disciplina <- sistemaPlanejamento.getDisciplinasDadoPeriodo(sistemaPlanejamento.getPeriodos.indexOf(periodo))){
-                       <div id="c1" class="coluna">
-                         <div class="disciplina" name="Nomedisciplina">
-                              <nome>@disciplina.getNomeDaDisciplina()</nome><br/>
-                                <descricao>@disciplina.getCreditos() Creditos </descricao>
-                         </div>
-                      </div>
-                   } 
-              <br>
-              <nome> TOTAL DE CREDITOS NO PERIODO:@periodo.calculaTotalDeCreditos()</nome>
-                   
-             }      
-                    <br>
-                    <div id="c2" class="coluna"></div>
-                    <div id="c3" class="coluna"></div>
-                    <div id="c4" class="coluna"></div>
-                    <div id="c5" class="coluna"></div>
-                    <div id="c6" class="coluna"></div>
-                    <div id="c7" class="coluna"></div>
-                    <div id="c8" class="coluna"></div>
-                </div>
-                
-                  <br>
-        <div id="addDisciplina">
+        
+                        <br>
+       <div id="addDisciplina">
       @form(routes.Application.adicionaDisciplinaEmPeriodo()){
          @if(sistemaPlanejamento.getPeriodos.size() > 1) {
                  <br>
                  <nome> Adicionar Disciplina em Periodo :</nome>
                         <br>
-                        <select class="selectpicker" data-live-search="true" name="Nomedisciplina" >
-                        @for(disciplina <- sistemaPlanejamento.getListaDeDisciplina()) {
-                             <option value="@disciplina.getNomeDaDisciplina()" name="Nomedisciplina" >@disciplina.getNomeDaDisciplina()</option>
+                        <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
+                        @for(disciplina <-  sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
+                             <option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>
                         }
                 </select>
                 <br>
                 <select class="selectpicker" data-width="100px" name="idPeriodo" >
                     @for(periodo <- sistemaPlanejamento.getPeriodos()) {
                          @if(sistemaPlanejamento.getPeriodos().indexOf(periodo) != 0) {
-                              <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option>
+                              <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option>
                          }
                     }
                 </select>
+                
                 <button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>                
          }
       }
-        </div>
-        <div id="addperiodos">
-        @form(routes.Application.criaPeriodo()) {
-                @if(sistemaPlanejamento.getPeriodos.size() > 1) {
-                  <button type="submit" class="btn btn-large btn-primary disabled" type="button" disabled="disabled">Adicionar Periodo</button>
-        	     } else {
-                  <button type="submit" class="btn btn-large btn-primary type="button">Adicionar periodo</button>
-                 }
-        }
       
-        </div>
         
-</div>
+        	</table>
+	</body>
+	</font>
 }
+

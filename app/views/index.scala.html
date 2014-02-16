@@ -1,9 +1,9 @@
 @(sistemaPlanejamento: controllers.Planejamento, formTask:Form[models.Task])
  
  @import helper._ 
- 
  @main("Planejamento de Curso - CCC") {
 
+ <font color="#FFFFFF"> 
 <head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="../public/stylesheets/main.css">
@@ -28,17 +28,19 @@
      }   
 
 	<!-- mostra lista todas as disciplinas e seus respectivos creditos -->
-	@for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()){	
-		@disciplina.getNomeDaDisciplina() 
-		@disciplina.getCreditos() 
-	    @disciplina.getPreRequisitos()
+	<table class="table table-bordered">
+		<TH> Nome da disciplina</TH><TH> Créditos </TH> <TH> Pre-Requisitos</TH>
+		@for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()){	
+		
+			<TR><TD> @disciplina.getNomeDaDisciplina()</td><td> @disciplina.getCreditos()</td><td>@disciplina.getPreRequisitos() </TD></TR> 
+	
 	} 
 	
 	  @form(routes.Application.criaPeriodo()) {
                 @if(sistemaPlanejamento.getPeriodos.size() > 1) {
                   <button type="submit" class="btn btn-large btn-primary disabled" type="button" disabled="disabled">Adicionar Periodo</button>
         	     } else {
-                  <button type="submit" class="btn btn-large btn-primary type="button">Adicionar Periodo</button>
+                  <button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Periodo</button>
                  }
         }
         
@@ -58,15 +60,18 @@
                 <select class="selectpicker" data-width="100px" name="idPeriodo" >
                     @for(periodo <- sistemaPlanejamento.getPeriodos()) {
                          @if(sistemaPlanejamento.getPeriodos().indexOf(periodo) != 0) {
-                              <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option>
+                              <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option>
                          }
                     }
                 </select>
+                
                 <button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>                
          }
       }
+      
         
         	</table>
 	</body>
+	</font>
 }
 
