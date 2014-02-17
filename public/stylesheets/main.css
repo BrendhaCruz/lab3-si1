@@ -1,5 +1,5 @@
 nome {
-	color: #153e63;
+	color: #FFFFFF;
 	font-size: 15px;
 	font-weight: bold;
 }
@@ -8,14 +8,29 @@ descricao {
 	font-size: 12px;
 }
 
+
 nome-principal {
 	color: #FFFFFF;
 	font-size: 25px;
 	font-weight: bold;
+	text-align: center;
 }
 
 .body-back {
 	background-color: #153e63;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1190px;
+}
+.planejamento{
+	
+
+}
+
+.curriculo {
+	margin: auto;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 
 .wrapper {
@@ -25,6 +40,16 @@ nome-principal {
 	padding-top: 10px;
 	padding-bottom: 20px;
 }
+.addDisciplina, .removeDisciplina {
+	margin: auto;
+/*	display: inline;*/
+	float: left;
+}
+
+.addPeriodo {
+	float: right;
+}
+
 
 #content {
 	padding-top: 80px;
@@ -67,7 +92,7 @@ nome-principal {
 }
 
 .disciplina {
-	background-color: #FFFFFF;
+	background-color: #4682B4;
 	margin:auto;
 	margin-top:6px;
 	width: 138px;
