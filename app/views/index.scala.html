@@ -68,6 +68,31 @@
                 <button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>                
          }
       }
+      </div>
+      
+    <div id="removeDisciplina">
+	@form(routes.Application.removeDisciplinaPeriodo()){
+		@if(sistemaPlanejamento.getPeriodos.size() > 1) {
+		  <br>
+          <nome> Remove Disciplina do Periodo :</nome>
+          <br>
+           <select class="selectpicker" name="idPeriodo">
+		   @for(periodo <- sistemaPlanejamento.getPeriodos()){
+				 @if(sistemaPlanejamento.getPeriodos().indexOf(periodo) != 0) {
+                      <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option>
+                 }
+		   
+		  </select>
+          <select class="selectpicker"  name="inputNameDisc" >
+              @for(disciplina <- sistemaPlanejamento.getDisciplinasDadoPeriodo(sistemaPlanejamento.getPeriodos.indexOf(periodo))){
+                    <option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>
+                }
+          </select>
+           <br>
+		 }
+		<button type="submit" class="btn btn-primary" type="button">Remover</button>
+    	}
+	}</div>
       
         
         	</table>
