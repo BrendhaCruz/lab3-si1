@@ -37,11 +37,7 @@
 	} 
 	
 	  @form(routes.Application.criaPeriodo()) {
-                @if(sistemaPlanejamento.getPeriodos.size() > 1) {
-                  <button type="submit" class="btn btn-large btn-primary disabled" type="button" disabled="disabled">Adicionar Periodo</button>
-        	     } else {
                   <button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Periodo</button>
-                 }
         }
         
                         <br>
@@ -53,7 +49,9 @@
                         <br>
                         <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
                         @for(disciplina <-  sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
+                        	@if(!sistemaPlanejamento.estaAlocada(disciplina)){
                              <option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>
+                             }
                         }
                 </select>
                 <br>
@@ -68,6 +66,24 @@
                 <button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>                
          }
       }
+      </div>
+      
+    <div id="removeDisciplina">
+	@form(routes.Application.removeDisciplinaPeriodo()){
+		@if(sistemaPlanejamento.getPeriodos.size() > 1) {
+		  <br>
+          <nome> Remove Disciplina do Periodo :</nome><br>
+                        <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
+                        @for(disciplina <-  sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
+                        	@if(sistemaPlanejamento.estaAlocada(disciplina) && !sistemaPlanejamento.getPeriodos().get(0).getListaDeDisciplinas().contains(disciplina)){
+                             <option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>
+                             }
+                        }
+                </select>
+                <br>
+		<button type="submit" class="btn btn-primary" type="button">Remover</button>
+    	}
+	}</div>
       
         
         	</table>

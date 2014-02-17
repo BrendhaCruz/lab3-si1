@@ -53,9 +53,12 @@ public class Application extends Controller {
 	
 	public static Result removeDisciplinaPeriodo()throws Exception {
 		Form<Task> form = formTask.bindFromRequest();
-		int idPeriodo = form.get().getIdPeriodo();
 		try {
-	     sistemaPlanejamento.removeDisciplinaDoPeriodo(idPeriodo, form.get().getInsereDisciplina());
+			for (int i = 0; i < sistemaPlanejamento.getPeriodos().size(); i++) {
+				if(sistemaPlanejamento.getDisciplinasDadoPeriodo(i).contains(sistemaPlanejamento.getCurriculo().pesquisaDisciplina(form.get().getInsereDisciplina()))){
+					sistemaPlanejamento.removeDisciplinaDoPeriodo(i, form.get().getInsereDisciplina());
+				}
+			}
 		}catch(Exception e) {
 		     e.getMessage();
 	    }

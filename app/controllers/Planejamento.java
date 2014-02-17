@@ -162,7 +162,7 @@ public class Planejamento{
 	 */
 	// INFORMATION EXPERT: Tem a lista de periodos e pode chamar o removeDisciplina de um determinado periodo.
 	public void removeDisciplinaDoPeriodo(int periodo, String nomeDaDisciplina) throws Exception {
-		List<Periodo> periodosBackup = this.getPeriodos();
+//		List<Periodo> periodosBackup = this.getPeriodos();
 		Disciplina disciplina = curriculo.pesquisaDisciplina(nomeDaDisciplina);
 		this.periodo(periodo).removeDisciplina(disciplina);
 		if(periodo != 0){
