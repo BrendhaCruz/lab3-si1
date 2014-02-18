@@ -86,6 +86,9 @@
 							<tr><td class="disciplina">@disciplina.getNomeDaDisciplina()</tr>
 						} 
 						<tr><td class="numero">Total de Créditos No Período: @periodo.calculaTotalDeCreditos()</tr></td>
+						@if(sistemaPlanejamento.getCreditosDeUmPeriodo(sistemaPlanejamento.getPeriodos.indexOf(periodo)) < sistemaPlanejamento.minimoDeCreditos()){
+							<tr><td class="numero">Creditos desse periodo estao abaixo do minimo de creditos.</tr></td>
+						}
 				 }   
 		</section> 
 		<footer class="curriculo">	

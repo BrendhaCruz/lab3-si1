@@ -20,6 +20,7 @@ public class Application extends Controller {
 		if (sistemaPlanejamento.quantidadeDePeriodos() == 0) {
 			try {
 				sistemaPlanejamento.adicionaPrimeiroPeriodo();
+				message = "";
 			} catch (Exception e) {
 				message = e.getMessage();
 			}
@@ -33,6 +34,7 @@ public class Application extends Controller {
 			if (sistemaPlanejamento.getPeriodos().size() >= 1) {
 				sistemaPlanejamento.adicionaPeriodo();
 			}
+			message = "";
 		} catch (Exception e) {
 			message = e.getMessage();
 		}
@@ -45,6 +47,7 @@ public class Application extends Controller {
 		try {
 			sistemaPlanejamento.adicionaDisciplinaNoPeriodo(idPeriodo, form
 					.get().getInsereDisciplina());
+			message = "";
 		} catch (Exception e) {
 			message = e.getMessage();
 		}
@@ -62,6 +65,7 @@ public class Application extends Controller {
 							.getInsereDisciplina());
 				}
 			}
+			message = "";
 		} catch (Exception e) {
 			message = e.getMessage();
 		}

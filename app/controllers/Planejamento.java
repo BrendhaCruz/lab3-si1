@@ -140,12 +140,13 @@ public class Planejamento{
 			}	
 		}
 		
-		if ((indicePeriodo != 0) && !this.estaAlocada(disciplina) && verificaPreRequisitos && (this.periodo(indicePeriodo).calculaTotalDeCreditos() < maximoDeCreditos())) {
+		if ((indicePeriodo != 0) && !this.estaAlocada(disciplina) && verificaPreRequisitos && (this.periodo(indicePeriodo).calculaTotalDeCreditos() + disciplina.getCreditos() <= maximoDeCreditos())) {
 			this.periodo(indicePeriodo).adicionaDisciplinas(disciplina);
 		} else{
 			if(indicePeriodo == 0)throw new Exception("Nao pode adicionar disciplinas no primeiro periodo.");
-			
-			throw new Exception("Disciplina ja esta alocada ou os pre Requisitos nao foram alocados."); 
+			if(this.estaAlocada(disciplina))throw new Exception("Disciplina ja esta alocada");
+			if(!verificaPreRequisitos) throw new Exception("Os pre Requisitos nao foram alocados.");
+			if(this.periodo(indicePeriodo).calculaTotalDeCreditos() + disciplina.getCreditos() > maximoDeCreditos())throw new Exception("Vai ultrapassar o maximo de creditos.");
 		}
 			
 	}
