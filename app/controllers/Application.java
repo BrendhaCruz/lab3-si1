@@ -10,6 +10,7 @@ public class Application extends Controller {
 	static Planejamento sistemaPlanejamento = new Planejamento(curriculo);
 	static Form<Task> formTask = Form.form(Task.class);
 	static Periodo periodo = new Periodo();
+	static String message = "";
 
 	public static Result index() {
 		return redirect(routes.Application.planejamentoDeCurso());
@@ -20,10 +21,11 @@ public class Application extends Controller {
 			try {
 				sistemaPlanejamento.adicionaPrimeiroPeriodo();
 			} catch (Exception e) {
-				e.getMessage();
+				message = e.getMessage();
 			}
 		}
-		return ok(views.html.index.render(sistemaPlanejamento, formTask));
+		return ok(views.html.index.render(sistemaPlanejamento, formTask,
+				message));
 	}
 
 	public static Result criaPeriodo() {
@@ -32,9 +34,8 @@ public class Application extends Controller {
 				sistemaPlanejamento.adicionaPeriodo();
 			}
 		} catch (Exception e) {
-			e.getMessage();
+			message = e.getMessage();
 		}
-
 		return redirect(routes.Application.planejamentoDeCurso());
 	}
 
@@ -45,7 +46,7 @@ public class Application extends Controller {
 			sistemaPlanejamento.adicionaDisciplinaNoPeriodo(idPeriodo, form
 					.get().getInsereDisciplina());
 		} catch (Exception e) {
-			e.getMessage();
+			message = e.getMessage();
 		}
 		return redirect(routes.Application.planejamentoDeCurso());
 	}
@@ -62,7 +63,7 @@ public class Application extends Controller {
 				}
 			}
 		} catch (Exception e) {
-			e.getMessage();
+			message = e.getMessage();
 		}
 		return redirect(routes.Application.planejamentoDeCurso());
 	}

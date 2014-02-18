@@ -1,4 +1,4 @@
-@(sistemaPlanejamento: controllers.Planejamento, formTask:Form[models.Task])
+@(sistemaPlanejamento: controllers.Planejamento, formTask:Form[models.Task], message:String)
 
 @import helper._ 
 @main("Planejamento de Curso - CCC") {
@@ -15,15 +15,22 @@
 			<br>
 			<div class="addPeriodo">
 				@form(routes.Application.criaPeriodo()) {
+					<!--janela de alerta - limite de periodos-->
+					@if(message != ""){
+						<script language="JavaScript" type="text/javascript">
+							alert("@message")
+						</script>
+					} 
 					<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
 				}
 			</div>
 			@if(sistemaPlanejamento.getPeriodos.size() > 1) {  
 			<div class="addDisciplina">
 			  @form(routes.Application.adicionaDisciplinaEmPeriodo()){
-				 @if(sistemaPlanejamento.getPeriodos.size() > 1) {
+				@if(sistemaPlanejamento.getPeriodos.size() > 1) {
 				         <nome>Adicionar Disciplina
 				                <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
+
 				                @for(disciplina <-  sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
 				                	@if(!sistemaPlanejamento.estaAlocada(disciplina)){
 				                     <option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>
@@ -32,13 +39,20 @@
 				        </select>no Período</nome>
 				        <select class="selectpicker" data-width="100px" name="idPeriodo" >
 				            @for(periodo <- sistemaPlanejamento.getPeriodos()) {
+								
 				                 @if(sistemaPlanejamento.getPeriodos().indexOf(periodo) != 0) {
 				                      <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option><br>
+
 				                 }
 				            }
 				        </select><button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>  
-             
 				 }
+			<!--janela de alerta - limite de creditos em um periodo-->
+				@if(message != ""){
+					<script language="JavaScript" type="text/javascript">
+						alert("@message")
+					</script>
+				}
 			  }
 			  </div><br>
 		@if(sistemaPlanejamento.getPeriodos().get(1).getListaDeDisciplinas().size() > 0){
@@ -52,13 +66,19 @@
 			             }
 		            }
 		        </select><nome> do Período </nome><button type="submit" class="btn btn-primary" type="button">Remover Disciplina</button>
-			}
+				}
 			}</div><br><br>
+			<!--janela de alerta - remocao invalida de disciplina-->
+				@if(message != ""){
+					<script language="JavaScript" type="text/javascript">
+						alert("@message")
+					</script>
+				}
 		}
 	}
       </header>
 		<br><section class="planejamento">
-			<!-- tabela com as disciplinas e o calculd do total de creditos de qualquer periodo-->
+			<!-- tabela com as disciplinas e o calculo do total de creditos de qualquer periodo-->
 			<table>
 				@for(periodo <- sistemaPlanejamento.getPeriodos()){
 					<th class="titulo">@(sistemaPlanejamento.getPeriodos.indexOf(periodo)+1)º PERÍODO </th>
