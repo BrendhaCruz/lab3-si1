@@ -15,16 +15,16 @@
 			<br>
 			<div class="addPeriodo">
 				@form(routes.Application.criaPeriodo()) {
-					<!--janela de alerta - limite de periodos-->
+					<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
+				}
+			</div>
+			@if(sistemaPlanejamento.getPeriodos.size() > 1) {
+				<!--janela de alerta - limite de periodos-->
 					@if(message != ""){
 						<script language="JavaScript" type="text/javascript">
 							alert("@message")
 						</script>
-					} 
-					<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
-				}
-			</div>
-			@if(sistemaPlanejamento.getPeriodos.size() > 1) {  
+					}   
 			<div class="addDisciplina">
 			  @form(routes.Application.adicionaDisciplinaEmPeriodo()){
 				@if(sistemaPlanejamento.getPeriodos.size() > 1) {
@@ -47,12 +47,7 @@
 				            }
 				        </select><button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>  
 				 }
-			<!--janela de alerta - limite de creditos em um periodo-->
-				@if(message != ""){
-					<script language="JavaScript" type="text/javascript">
-						alert("@message")
-					</script>
-				}
+
 			  }
 			  </div><br>
 		@if(sistemaPlanejamento.getPeriodos().get(1).getListaDeDisciplinas().size() > 0){
@@ -68,12 +63,7 @@
 		        </select><nome> do Período </nome><button type="submit" class="btn btn-primary" type="button">Remover Disciplina</button>
 				}
 			}</div><br><br>
-			<!--janela de alerta - remocao invalida de disciplina-->
-				@if(message != ""){
-					<script language="JavaScript" type="text/javascript">
-						alert("@message")
-					</script>
-				}
+			
 		}
 	}
       </header>
