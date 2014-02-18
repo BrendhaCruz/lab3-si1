@@ -13,15 +13,16 @@
 		<header>
 			<h1 id="nome-principal"><strong>Planejamento de Curso - CCC</strong></h1>
 			<br>
-			<div class="addPeriodo">@form(routes.Application.criaPeriodo()) {
-				<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
-			}
+			<div class="addPeriodo">
+				@form(routes.Application.criaPeriodo()) {
+					<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
+				}
 			</div>
 			@if(sistemaPlanejamento.getPeriodos.size() > 1) {  
 			<div class="addDisciplina">
 			  @form(routes.Application.adicionaDisciplinaEmPeriodo()){
 				 @if(sistemaPlanejamento.getPeriodos.size() > 1) {
-				         <nome> Adicionar Disciplina
+				         <nome>Adicionar Disciplina
 				                <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
 				                @for(disciplina <-  sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
 				                	@if(!sistemaPlanejamento.estaAlocada(disciplina)){
@@ -35,7 +36,8 @@
 				                      <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option><br>
 				                 }
 				            }
-				        </select><button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>                
+				        </select><button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>  
+             
 				 }
 			  }
 			  </div><br>
@@ -71,7 +73,7 @@
 			<table class="table table-bordered">
 				<TH> Nome da disciplina</TH><TH> Créditos </TH> <TH> Pré-Requisitos</TH>
 				@for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()){	
-					<TR><TD> @disciplina.getNomeDaDisciplina()</td><td> @disciplina.getCreditos()</td><td>@disciplina.getPreRequisitos()</TD></TR> 
+					<TR><TD>@disciplina.getNomeDaDisciplina()</td><td> @disciplina.getCreditos()</td><td>@disciplina.preRequisitos()</TD></TR> 
 
 			}       
 		   	</table>

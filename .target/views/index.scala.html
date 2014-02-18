@@ -11,49 +11,53 @@
 
 	<body>
 		<header>
-			<h1 id="nome-principal">Planejamento de Curso - CCC</h1>
-
-			<div class="addPeriodo">@form(routes.Application.criaPeriodo()) {
-				<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Periodo</button>
-			}
+			<h1 id="nome-principal"><strong>Planejamento de Curso - CCC</strong></h1>
+			<br>
+			<div class="addPeriodo">
+				@form(routes.Application.criaPeriodo()) {
+					<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
+				}
 			</div>
-			<br><br>
+			@if(sistemaPlanejamento.getPeriodos.size() > 1) {  
 			<div class="addDisciplina">
 			  @form(routes.Application.adicionaDisciplinaEmPeriodo()){
 				 @if(sistemaPlanejamento.getPeriodos.size() > 1) {
-				         <nome> Adicionar Disciplina em Periodo :</nome>
+				         <nome>Adicionar Disciplina
 				                <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
 				                @for(disciplina <-  sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
 				                	@if(!sistemaPlanejamento.estaAlocada(disciplina)){
 				                     <option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>
 				                     }
 				                }
-				        </select>
+				        </select>no Período</nome>
 				        <select class="selectpicker" data-width="100px" name="idPeriodo" >
 				            @for(periodo <- sistemaPlanejamento.getPeriodos()) {
 				                 @if(sistemaPlanejamento.getPeriodos().indexOf(periodo) != 0) {
-				                      <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option>
+				                      <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option><br>
 				                 }
 				            }
-				        </select><button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>                
+				        </select><button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>  
+             
 				 }
 			  }
-			  </div>
-      </header>
-		<div class="removeDisciplina">
+			  </div><br>
+		@if(sistemaPlanejamento.getPeriodos().get(1).getListaDeDisciplinas().size() > 0){
+		<br><div class="removeDisciplina">
 		@form(routes.Application.removeDisciplinaPeriodo()){
 			@if(sistemaPlanejamento.getPeriodos.size() > 1) {
-		    	<select class="selectpicker" data-live-search="true" name="inputNameDisc" >
+		    	<nome>Remover disciplina <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
 		            @for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
 		            	@if(sistemaPlanejamento.estaAlocada(disciplina) && !sistemaPlanejamento.getPeriodos().get(0).getListaDeDisciplinas().contains(disciplina)){
-		        	         <option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc">@disciplina.getNomeDaDisciplina()</option>
+		        	         </nome><option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>
 			             }
 		            }
-		        </select><button type="submit" class="btn btn-primary" type="button">Remover Disciplina</button>
+		        </select><nome> do Período </nome><button type="submit" class="btn btn-primary" type="button">Remover Disciplina</button>
 			}
-		}</div>
-		<br>
-		<section class="planejamento">
+			}</div><br><br>
+		}
+	}
+      </header>
+		<br><section class="planejamento">
 			<!-- tabela com as disciplinas e o calculd do total de creditos de qualquer periodo-->
 			<table>
 				@for(periodo <- sistemaPlanejamento.getPeriodos()){
@@ -61,7 +65,7 @@
 						@for(disciplina <- sistemaPlanejamento.getDisciplinasDadoPeriodo(sistemaPlanejamento.getPeriodos.indexOf(periodo))){
 							<tr><td class="disciplina">@disciplina.getNomeDaDisciplina()</tr>
 						} 
-						<tr><td class="numero">Total de Créditos No Período: @periodo.calculaTotalDeCreditos()</tr></td><br><br>
+						<tr><td class="numero">Total de Créditos No Período: @periodo.calculaTotalDeCreditos()</tr></td>
 				 }   
 		</section> 
 		<footer class="curriculo">	
@@ -69,7 +73,7 @@
 			<table class="table table-bordered">
 				<TH> Nome da disciplina</TH><TH> Créditos </TH> <TH> Pré-Requisitos</TH>
 				@for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()){	
-					<TR><TD> @disciplina.getNomeDaDisciplina()</td><td> @disciplina.getCreditos()</td><td>@disciplina.getPreRequisitos()</TD></TR> 
+					<TR><TD>@disciplina.getNomeDaDisciplina()</td><td> @disciplina.getCreditos()</td><td>@disciplina.preRequisitos()</TD></TR> 
 
 			}       
 		   	</table>

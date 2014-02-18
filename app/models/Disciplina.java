@@ -40,6 +40,23 @@ public class Disciplina {
 	 */
 	//INFORMATION EXPERT: A disciplina possui os proprios preRequisitos
 	public Disciplina[] getPreRequisitos() {
+		return this.preRequisitos;
+	}
+	
+	/**
+	 * Obtém uma String com os pre-requisitos de uma Disciplina.
+	 * @return String contendo os pre-requisitos.
+	 */
+	//INFORMATION EXPERT: A disciplina possui os proprios preRequisitos
+	public String preRequisitos(){
+		String preRequisitos = "";
+		for (int i = 0; i < this.preRequisitos.length; i++) {
+			if (i < this.preRequisitos.length-1) {
+				preRequisitos += this.preRequisitos[i] + ", ";	
+			} else {
+				preRequisitos += this.preRequisitos[i];
+			}
+		}
 		return preRequisitos;
 	}
 

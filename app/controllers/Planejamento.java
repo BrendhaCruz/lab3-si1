@@ -47,10 +47,14 @@ public class Planejamento{
 	
 	/**
 	 * Adiciona um período sem disciplinas na lista de períodos.
+	 * @throws Exception O sistema não pode adicionar mais de 1 períodos.
 	 */
 	// INFORMATION EXPERT: Tem a lista de periodos.
-	public void adicionaPeriodo(){
-		periodos.add(new Periodo());
+	public void adicionaPeriodo() throws Exception{
+		if (this.quantidadeDePeriodos() < 10)
+			periodos.add(new Periodo());
+		else
+			throw new Exception("Não pode adicionar mais períodos.");
 	}
 	
 	/**
