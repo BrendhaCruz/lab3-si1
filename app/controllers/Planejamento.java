@@ -174,7 +174,7 @@ public class Planejamento{
 				for (int j = 0; j < periodo(i).getListaDeDisciplinas().size(); j++) {
 					for (int k = 0; k < periodo(i).getListaDeDisciplinas().get(j).getPreRequisitos().length; k++) {
 						if (periodo(i).getListaDeDisciplinas().get(j).getPreRequisitos()[k].equals(disciplina)) {
-							removeDisciplinaDoPeriodo(periodo, periodo(i).getListaDeDisciplinas().get(j).getNomeDaDisciplina());
+							removeDisciplinaDoPeriodo(i, periodo(i).getListaDeDisciplinas().get(j).getNomeDaDisciplina());
 						}
 					}
 				}
