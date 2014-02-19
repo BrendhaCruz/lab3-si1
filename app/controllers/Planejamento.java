@@ -167,18 +167,14 @@ public class Planejamento{
 	 */
 	// INFORMATION EXPERT: Tem a lista de periodos e pode chamar o removeDisciplina de um determinado periodo.
 	public void removeDisciplinaDoPeriodo(int periodo, String nomeDaDisciplina) throws Exception {
-//		List<Periodo> periodosBackup = this.getPeriodos();
 		Disciplina disciplina = curriculo.pesquisaDisciplina(nomeDaDisciplina);
 		this.periodo(periodo).removeDisciplina(disciplina);
 		if(periodo != 0){
-			if (periodo<(getPeriodos().size()) && (periodo!=0)){ 
-				for (int i = periodo; i < getPeriodos().size(); i++) {
-					for (int j = 0; j < periodo(i).getListaDeDisciplinas().size(); j++) {
-						for (int k = 0; k < periodo(i).getListaDeDisciplinas().get(j).getPreRequisitos().length; k++) {
-							if (periodo(i).getListaDeDisciplinas().get(j).getPreRequisitos()[k].equals(disciplina)) {
-								removeDisciplinaDoPeriodo(periodo, periodo(i).getListaDeDisciplinas().get(j).getNomeDaDisciplina());
-								j--;
-							}
+			for (int i = periodo; i < getPeriodos().size(); i++) {
+				for (int j = 0; j < periodo(i).getListaDeDisciplinas().size(); j++) {
+					for (int k = 0; k < periodo(i).getListaDeDisciplinas().get(j).getPreRequisitos().length; k++) {
+						if (periodo(i).getListaDeDisciplinas().get(j).getPreRequisitos()[k].equals(disciplina)) {
+							removeDisciplinaDoPeriodo(periodo, periodo(i).getListaDeDisciplinas().get(j).getNomeDaDisciplina());
 						}
 					}
 				}

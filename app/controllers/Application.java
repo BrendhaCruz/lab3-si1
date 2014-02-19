@@ -58,11 +58,8 @@ public class Application extends Controller {
 		Form<Task> form = formTask.bindFromRequest();
 		try {
 			for (int i = 0; i < sistemaPlanejamento.getPeriodos().size(); i++) {
-				if (sistemaPlanejamento.getDisciplinasDadoPeriodo(i).contains(
-						sistemaPlanejamento.getCurriculo().pesquisaDisciplina(
-								form.get().getInsereDisciplina()))) {
-					sistemaPlanejamento.removeDisciplinaDoPeriodo(i, form.get()
-							.getInsereDisciplina());
+				if (sistemaPlanejamento.getDisciplinasDadoPeriodo(i).contains(sistemaPlanejamento.getCurriculo().pesquisaDisciplina(form.get().getInsereDisciplina()))) {
+					sistemaPlanejamento.removeDisciplinaDoPeriodo(i, form.get().getInsereDisciplina());
 				}
 			}
 			message = "";
