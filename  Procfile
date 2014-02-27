@@ -1,7 +1,7 @@
-#web: target/universal/stage/bin/computer-database -Dhttp.port=${PORT} 
+web: target/universal/stage/bin/computer-database -Dhttp.port=${PORT} 
 
-#-DapplyEvolutions.default=true 
+-DapplyEvolutions.default=true 
 
-#-Ddb.default.driver=org.postgresql.Driver 
+-Ddb.default.driver=org.postgresql.Driver 
 
-#-Ddb.default.url=${DATABASE_URL}
+-Ddb.default.url=${DATABASE_URL}
