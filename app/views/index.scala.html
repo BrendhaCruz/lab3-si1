@@ -6,8 +6,6 @@
    
 <font color="#FFFFFF"> 
 	<head>
-	<b> Para mover as disciplinas desejadas para outro periodo de sua escolha, basta remover a disciplina
-        já alocado, e adiciona-la no periodo desejado!</b>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="../public/stylesheets/main.css">
 		 
@@ -17,11 +15,7 @@
 		<header>
 			<h1 id="nome-principal"><strong>Planejamento de Curso - CCC</strong></h1>
 			<br>
-			<div class="addPeriodo">
-				@form(routes.Application.criaPeriodo()) {
-					<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
-				}
-			</div>
+			<br>
 			@if(sistemaPlanejamento.getPeriodos.size() >= 1) {
 				<!--janela de alerta - limite de periodos-->
 					@if(message != ""){
@@ -29,6 +23,7 @@
 							alert("@message")
 						</script>
 					}   
+					
 			<div class="addDisciplina">
 			  @form(routes.Application.adicionaDisciplinaEmPeriodo()){
 				@if(sistemaPlanejamento.getPeriodos.size() >= 1) {
@@ -72,12 +67,31 @@
 			
 		}
 	}
-      </header>
+	
+	
+	<div class="addPeriodo">
+	@form(routes.Application.criaPeriodo()) {
+	<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
+    }
+	</div>
+	<br>
+	 <div>
+     @form(routes.Application.grade()) {
+        	<input type="submit" class="btn btn-primary" value="Plano de Curso">
+     } 
+      </div>
+     <br>
+      <div>
+     @form(routes.Application.mostraDisciplinas()) {
+    <input type="submit" class="btn btn-primary" value="Disciplinas e pré-requisitos">
+    }
+    </div>
+   </header>
 		<br><section class="planejamento">
 			<!-- tabela com as disciplinas e o calculo do total de creditos de qualquer periodo-->
 			<div id="colunas" style=" width: 135%;">
 				@for(periodo <- sistemaPlanejamento.getPeriodos()){
-				<div id="c@{sistemaPlanejamento.getPeriodos.indexOf(periodo)+1}" class="coluna" style="text-align:center; width:180px; height:580px ">
+				<div id="c@{sistemaPlanejamento.getPeriodos.indexOf(periodo)+1}" class="coluna" style="text-align:center; width:250px; height:525px ">
 					<span style="margin-top:50px; color:#000000;"><b>@{sistemaPlanejamento.getPeriodos.indexOf(periodo)+1}º PERÍODO </b></span>
 					<br>
 					<p style="text-align: center;">
@@ -99,17 +113,7 @@
 		</section> 
 		<br>
 		<br>
-		<table>
-		<footer class="curriculo">	
-			<!-- mostra lista todas as disciplinas e seus respectivos creditos -->
-			<table class="table table-bordered">
-				<TH> Nome da disciplina</TH><TH> Créditos </TH> <TH> Pré-Requisitos</TH>
-				@for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()){	
-					<TR><TD>@disciplina.getNomeDaDisciplina()</td><td> @disciplina.getCreditos()</td><td>@disciplina.preRequisitos()</TD></TR> 
-
-			}       
-		   	</table>
-		</footer>        
+		
 	</body>
 </font>
 }

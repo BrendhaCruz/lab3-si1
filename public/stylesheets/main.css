@@ -1,6 +1,6 @@
 nome {
 	color: #FFFFFF;
-	font-size: 15px;
+	font-size: 18px;
 	font-weight: bold;
 }
 
@@ -18,9 +18,9 @@ nome-principal {
 
 .body-back {
 	background-color: #000000;
-	margin-left: auto;
+	margin-left: 60px;
 	margin-right: auto;
-	width: 1190px;
+	width: 900px;
 }
 .planejamento{
 	
@@ -45,11 +45,6 @@ nome-principal {
 /*	display: inline;*/
 	float: left;
 }
-
-.addPeriodo {
-	float: right;
-}
-
 
 #content {
 	padding-top: 80px;
@@ -94,8 +89,8 @@ nome-principal {
 .disciplina {
 	background-color: #4682B4;
 	margin:auto;
-	margin-top:6px;
-	width: 138px;
+	margin-top:10px;
+	width: 180px;
 	border-radius: 10px;
 	padding-top: 10px;
 	padding-bottom: 10px;

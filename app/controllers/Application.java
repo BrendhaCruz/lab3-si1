@@ -35,6 +35,13 @@ public class Application extends Controller {
 		return ok(views.html.index.render(sistemaPlanejamento, formTask,
 				message));
 	}
+	
+	public static Result grade() {
+	     return ok(views.html.grade.render());
+	    }
+	 public static Result mostraDisciplinas() {
+	     return ok(views.html.disciplinas.render(sistemaPlanejamento));
+	    }
 
 	public static Result criaPeriodo() {
 		try {
