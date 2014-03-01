@@ -20,6 +20,9 @@ public class Application extends Controller {
 		if (sistemaPlanejamento.quantidadeDePeriodos() == 0) {
 			try {
 				sistemaPlanejamento.adicionaPrimeiroPeriodo();
+				sistemaPlanejamento.adicionaSegundoPeriodo();
+				sistemaPlanejamento.adicionaTerceiroPeriodo();
+				sistemaPlanejamento.adicionaQuartoPeriodo();
 				message = "";
 			} catch (Exception e) {
 				message = e.getMessage();

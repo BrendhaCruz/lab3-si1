@@ -12,7 +12,7 @@ public class Planejamento{
 
 	/**
      * Construtor da classe Planejamento, criando o gerenciador do sistema de Planejamento de Curso.
-     * @param curriculo Currículo utilizado no planejamento do curso do usuário.
+     * @param curriculo Curriculo utilizado no planejamento do curso do usuario.
      */
 	// CREATOR: Classe planejamento regista a lista dos periodos.
     private List<Periodo> periodos;
@@ -20,19 +20,26 @@ public class Planejamento{
     private static final int MAXIMO_DE_CREDITOS = 28;
     private Curriculo curriculo;
     private Periodo primeiroPeriodo;
+    private Periodo segundoPeriodo;
+    private Periodo terceiroPeriodo;
+    private Periodo quartoPeriodo;
 
     /**
      * Construtor da classe Planejamento, criando o gerenciador do sistema de Planejamento de Curso.
-     * @param curriculo Currículo utilizado no planejamento do curso do usuário.
+     * @param curriculo Curriculo utilizado no planejamento do curso do usuario.
      */
 	public Planejamento(Curriculo curriculo) {
 		periodos = new ArrayList<Periodo>();
 		this.curriculo = curriculo;
 		primeiroPeriodo = new Periodo();
+		segundoPeriodo = new Periodo();
+		terceiroPeriodo = new Periodo();
+		quartoPeriodo = new Periodo();
+
 	}
 	
 	/**
-	 * Adiciona o primeiro período na lista de Períodos.
+	 * Adiciona o primeiro periodo na lista de Periodos.
 	 */
 	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void adicionaPrimeiroPeriodo() throws Exception{
@@ -46,20 +53,65 @@ public class Planejamento{
 	}
 	
 	/**
-	 * Adiciona um período sem disciplinas na lista de períodos.
-	 * @throws Exception O sistema não pode adicionar mais de 1 períodos.
+	 * Adiciona o segundo periodo na lista de Periodos.
+	 */
+	// INFORMATION EXPERT: Tem a lista de periodos.
+	public void adicionaSegundoPeriodo() throws Exception{
+		segundoPeriodo.adicionaDisciplinas(curriculo.criaSegundoPeriodo().get(0));
+		segundoPeriodo.adicionaDisciplinas(curriculo.criaSegundoPeriodo().get(1));
+		segundoPeriodo.adicionaDisciplinas(curriculo.criaSegundoPeriodo().get(2));
+		segundoPeriodo.adicionaDisciplinas(curriculo.criaSegundoPeriodo().get(3));
+		segundoPeriodo.adicionaDisciplinas(curriculo.criaSegundoPeriodo().get(4));
+		segundoPeriodo.adicionaDisciplinas(curriculo.criaSegundoPeriodo().get(5));
+		segundoPeriodo.adicionaDisciplinas(curriculo.criaSegundoPeriodo().get(6));
+		this.periodos.add(segundoPeriodo);
+	}
+	
+	/**
+	 * Adiciona o terceiro periodo na lista de Periodos.
+	 */
+	// INFORMATION EXPERT: Tem a lista de periodos.
+	public void adicionaTerceiroPeriodo() throws Exception{
+		terceiroPeriodo.adicionaDisciplinas(curriculo.criaTerceiroPeriodo().get(0));
+		terceiroPeriodo.adicionaDisciplinas(curriculo.criaTerceiroPeriodo().get(1));
+		terceiroPeriodo.adicionaDisciplinas(curriculo.criaTerceiroPeriodo().get(2));
+		terceiroPeriodo.adicionaDisciplinas(curriculo.criaTerceiroPeriodo().get(3));
+		terceiroPeriodo.adicionaDisciplinas(curriculo.criaTerceiroPeriodo().get(4));
+		terceiroPeriodo.adicionaDisciplinas(curriculo.criaTerceiroPeriodo().get(5));
+		terceiroPeriodo.adicionaDisciplinas(curriculo.criaTerceiroPeriodo().get(6));
+		this.periodos.add(terceiroPeriodo);
+	}
+	
+	/**
+	 * Adiciona o quarto periodo na lista de Periodos.
+	 */
+	// INFORMATION EXPERT: Tem a lista de periodos.
+	public void adicionaQuartoPeriodo() throws Exception{
+		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(0));
+		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(1));
+		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(2));
+		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(3));
+		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(4));
+		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(5));
+		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(6));
+		this.periodos.add(quartoPeriodo);
+	}
+	
+	/**
+	 * Adiciona um periodo sem disciplinas na lista de periodos.
+	 * @throws Exception O sistema nao pode adicionar mais de 1 periodo.
 	 */
 	// INFORMATION EXPERT: Tem a lista de periodos.
 	public void adicionaPeriodo() throws Exception{
 		if (this.quantidadeDePeriodos() < 10)
 			periodos.add(new Periodo());
 		else
-			throw new Exception("Não pode adicionar mais períodos.");
+			throw new Exception("Nao pode adicionar mais per�odos.");
 	}
 	
 	/**
-	 * Obtém a lista dos períodos alocados no Planejamento.
-	 * @return Lista de Períodos alocados.
+	 * Obtem a lista dos periodos alocados no Planejamento.
+	 * @return Lista de Periodos alocados.
 	 */
 	// INFORMATION EXPERT: Tem a lista de periodos.
 	public List<Periodo> getPeriodos() {
@@ -67,8 +119,8 @@ public class Planejamento{
 	}
 	
 	/**
-	 * Modifica a lista de Períodos por outra passada como parâmetro.
-	 * @param periodos Nova lista de Períodos.
+	 * Modifica a lista de Periodos por outra passada como parametro.
+	 * @param periodos Nova lista de Periodos.
 	 */
 	// INFORMATION EXPERT: Tem a lista de periodos e pode modificalos.
     public void setPeriodos(List<Periodo> periodos) {
