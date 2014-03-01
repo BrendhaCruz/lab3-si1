@@ -23,6 +23,10 @@ public class Application extends Controller {
 				sistemaPlanejamento.adicionaSegundoPeriodo();
 				sistemaPlanejamento.adicionaTerceiroPeriodo();
 				sistemaPlanejamento.adicionaQuartoPeriodo();
+				sistemaPlanejamento.adicionaQuintoPeriodo();
+				sistemaPlanejamento.adicionaSextoPeriodo();
+				sistemaPlanejamento.adicionaSetimoPeriodo();
+				sistemaPlanejamento.adicionaOitavoPeriodo();
 				message = "";
 			} catch (Exception e) {
 				message = e.getMessage();

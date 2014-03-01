@@ -22,7 +22,13 @@ public class Planejamento{
     private Periodo primeiroPeriodo;
     private Periodo segundoPeriodo;
     private Periodo terceiroPeriodo;
-    private Periodo quartoPeriodo;
+    private Periodo quartoPeriodo;    
+    private Periodo quintoPeriodo;
+    private Periodo sextoPeriodo;
+    private Periodo setimoPeriodo;
+    private Periodo oitavoPeriodo;
+
+
 
     /**
      * Construtor da classe Planejamento, criando o gerenciador do sistema de Planejamento de Curso.
@@ -35,6 +41,10 @@ public class Planejamento{
 		segundoPeriodo = new Periodo();
 		terceiroPeriodo = new Periodo();
 		quartoPeriodo = new Periodo();
+		quintoPeriodo = new Periodo();
+		sextoPeriodo = new Periodo();
+		setimoPeriodo = new Periodo();
+		oitavoPeriodo = new Periodo();
 
 	}
 	
@@ -98,6 +108,66 @@ public class Planejamento{
 	}
 	
 	/**
+	 * Adiciona o quinto periodo na lista de Periodos.
+	 */
+	// INFORMATION EXPERT: Tem a lista de periodos.
+	public void adicionaQuintoPeriodo() throws Exception{
+		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(0));
+		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(1));
+		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(2));
+		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(3));
+		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(4));
+		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(5));
+		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(6));
+		this.periodos.add(quintoPeriodo);
+	}
+	
+	/**
+	 * Adiciona o sexto periodo na lista de Periodos.
+	 */
+	// INFORMATION EXPERT: Tem a lista de periodos.
+	public void adicionaSextoPeriodo() throws Exception{
+		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(0));
+		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(1));
+		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(2));
+		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(3));
+		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(4));
+		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(5));
+		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(6));
+		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(7));
+		this.periodos.add(sextoPeriodo);
+	}
+	
+	/**
+	 * Adiciona o setimo periodo na lista de Periodos.
+	 */
+	// INFORMATION EXPERT: Tem a lista de periodos.
+	public void adicionaSetimoPeriodo() throws Exception{
+		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(0));
+		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(1));
+		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(2));
+		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(3));
+		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(4));
+		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(5));
+		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(6));
+		this.periodos.add(setimoPeriodo);
+	}
+	
+	/**
+	 * Adiciona o oitavo periodo na lista de Periodos.
+	 */
+	// INFORMATION EXPERT: Tem a lista de periodos.
+	public void adicionaOitavoPeriodo() throws Exception{
+		oitavoPeriodo.adicionaDisciplinas(curriculo.criaOitavoPeriodo().get(0));
+		oitavoPeriodo.adicionaDisciplinas(curriculo.criaOitavoPeriodo().get(1));
+		oitavoPeriodo.adicionaDisciplinas(curriculo.criaOitavoPeriodo().get(2));
+		oitavoPeriodo.adicionaDisciplinas(curriculo.criaOitavoPeriodo().get(3));
+		oitavoPeriodo.adicionaDisciplinas(curriculo.criaOitavoPeriodo().get(4));
+		oitavoPeriodo.adicionaDisciplinas(curriculo.criaOitavoPeriodo().get(5));
+		this.periodos.add(oitavoPeriodo);
+	}
+	
+	/**
 	 * Adiciona um periodo sem disciplinas na lista de periodos.
 	 * @throws Exception O sistema nao pode adicionar mais de 1 periodo.
 	 */
@@ -106,7 +176,7 @@ public class Planejamento{
 		if (this.quantidadeDePeriodos() < 10)
 			periodos.add(new Periodo());
 		else
-			throw new Exception("Nao pode adicionar mais períodos.");
+			throw new Exception("Nao pode adicionar mais periodos.");
 	}
 	
 	/**
