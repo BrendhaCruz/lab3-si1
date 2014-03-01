@@ -22,8 +22,8 @@ public class TestaCurriculo {
 
 	@Test
 	public void testaElementosDoCurriculo() {
-		assertEquals(58, curriculo.quantDeDisciplinasCadastradas());
-		assertEquals(58, curriculo.getListaDeDisciplinas().length);
+		assertEquals(69, curriculo.quantDeDisciplinasCadastradas());
+		assertEquals(69, curriculo.getListaDeDisciplinas().length);
 		assertTrue(curriculo.contains(calculo1));
 		try {
 			assertEquals(calculo1, curriculo.pesquisaDisciplina("Cálculo I"));
@@ -46,6 +46,15 @@ public class TestaCurriculo {
 			e.getMessage();
 		}		
 		assertEquals(6,curriculo.criaPrimeiroPeriodo().size());
+		assertEquals(7,curriculo.criaSegundoPeriodo().size());
+		assertEquals(7,curriculo.criaTerceiroPeriodo().size());
+		assertEquals(7,curriculo.criaQuartoPeriodo().size());
+		assertEquals(7,curriculo.criaQuintoPeriodo().size());
+		assertEquals(8,curriculo.criaSextoPeriodo().size());
+		assertEquals(7,curriculo.criaSetimoPeriodo().size());
+		assertEquals(6,curriculo.criaOitavoPeriodo().size());
+
+
 	}
 
 }

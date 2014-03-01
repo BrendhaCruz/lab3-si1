@@ -13,10 +13,11 @@
 
 	<body>
 		<header>
-			<h1 id="nome-principal"><strong>Planejamento de Curso - CCC</strong></h1>
+			<h1 id="nome-principal"><strong><u>Planejamento de Curso - CCC</u></strong></h1>
+			<h2><small> Você pode manipular as disciplinas, organizá-las e salvá-las da maneira que preferir através de remoção e inserção das mesmas no período desejado. </small></h2>
 			<br>
 			<br>
-			@if(sistemaPlanejamento.getPeriodos.size() >= 1) {
+			@if(sistemaPlanejamento.getPeriodos.size() >= 0) {
 				<!--janela de alerta - limite de periodos-->
 					@if(message != ""){
 						<script language="JavaScript" type="text/javascript">
@@ -26,7 +27,7 @@
 					
 			<div class="addDisciplina">
 			  @form(routes.Application.adicionaDisciplinaEmPeriodo()){
-				@if(sistemaPlanejamento.getPeriodos.size() >= 1) {
+				@if(sistemaPlanejamento.getPeriodos.size() >= 0) {
 				         <nome>Adicionar Disciplina
 				                   <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
 
@@ -39,7 +40,7 @@
 				           <select class="selectpicker" data-width="100px" name="idPeriodo" >
 				            @for(periodo <- sistemaPlanejamento.getPeriodos()) {
 								
-				                 @if(sistemaPlanejamento.getPeriodos().indexOf(periodo) != 0) {
+				                 @if(sistemaPlanejamento.getPeriodos().indexOf(periodo) >= 0) {
 				                      <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option><br>
 
 				                 }
@@ -68,16 +69,17 @@
 		}
 	}
 	
-	
+	<h2><small>Caso você ache necessário, adicione um novo período no seu planejamento de curso.</small></h2>
 	<div class="addPeriodo">
 	@form(routes.Application.criaPeriodo()) {
 	<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
     }
 	</div>
 	<br>
+	
 	 <div>
      @form(routes.Application.grade()) {
-        	<input type="submit" class="btn btn-primary" value="Plano de Curso">
+        	<input type="submit" class="btn btn-primary" value="Grade do Curso">
      } 
       </div>
      <br>

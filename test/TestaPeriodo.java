@@ -96,20 +96,6 @@ public class TestaPeriodo {
 	}
 
 	@Test
-	public void deveFornecerCaracteristicasDoDisciplinasPrimeiroprimeiroPeriodo() {
-		primeiroPeriodo = planejamento.periodo(0);
-		assertEquals(listaDisciplinas.toString(), primeiroPeriodo
-				.getListaDeDisciplinas().toString());
-		assertEquals(listaDisciplinas.toString(),
-				planejamento.toStringDeUmDeterminadoPeriodo(0));
-		try {
-			this.planejamento.adicionaDisciplinaNoPeriodo(0, "Cálculo II");
-		} catch (Exception e) {
-			e.getMessage();
-		}
-	}
-
-	@Test
 	public void deveAdicionarDisciplinasDoSegundoPeriodo() {
 		try {
 			planejamento.adicionaPeriodo();
@@ -206,7 +192,7 @@ public class TestaPeriodo {
 	}
 	
 	@Test
-	public void deveRemoverDisciplinasNoPeriodoSelecionadoEAsDisciplinasAsQuaisSaoPreRequisitosDelasQuandoPedido() {
+	public void deveRemoverDisciplinasNoPeriodoSelecionado() {
 
 		try {
 			planejamento.adicionaPeriodo();
@@ -299,7 +285,7 @@ public class TestaPeriodo {
 			}
 			assertEquals(22, planejamento.periodo(1).calculaTotalDeCreditos());
 			assertEquals(24, planejamento.periodo(2).calculaTotalDeCreditos());
-			assertEquals(14, planejamento.periodo(3).calculaTotalDeCreditos());
+			assertEquals(26, planejamento.periodo(3).calculaTotalDeCreditos());
 
 			try {
 				planejamento.removeDisciplinaDoPeriodo(0, "Cálculo I");
