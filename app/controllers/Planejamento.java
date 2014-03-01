@@ -262,7 +262,7 @@ public class Planejamento{
 			}	
 		}
 		
-		if ((indicePeriodo != 0) && !this.estaAlocada(disciplina) && verificaPreRequisitos && (this.periodo(indicePeriodo).calculaTotalDeCreditos() + disciplina.getCreditos() <= maximoDeCreditos())) {
+		if ((indicePeriodo >= 0) && !this.estaAlocada(disciplina) && verificaPreRequisitos && (this.periodo(indicePeriodo).calculaTotalDeCreditos() + disciplina.getCreditos() <= maximoDeCreditos())) {
 			this.periodo(indicePeriodo).adicionaDisciplinas(disciplina);
 		} else{
 			if(this.estaAlocada(disciplina))throw new Exception("Disciplina ja esta alocada");
