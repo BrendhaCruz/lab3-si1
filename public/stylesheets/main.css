@@ -17,7 +17,7 @@ nome-principal {
 }
 
 .body-back {
-	background-color: #153e63;
+	background-color: #000000;
 	margin-left: auto;
 	margin-right: auto;
 	width: 1190px;
@@ -69,7 +69,7 @@ nome-principal {
 	height: 460px;
 	width: 1280px; 
 	display: inherit;
-	border-radius: 10px;
+	border-radius: 50px;
 }
 
 .coluna {
