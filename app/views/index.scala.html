@@ -58,7 +58,15 @@
 			@if(sistemaPlanejamento.getPeriodos.size() >= 1) {
 		    	<nome>Remover disciplina <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
 		            @for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
-		        	         </nome><option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>
+							@if(sistemaPlanejamento.estaAlocada(disciplina) && !sistemaPlanejamento.getPeriodos().get(0).getListaDeDisciplinas().contains(disciplina)){
+								</nome><option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>	
+							   <font color=#FF0000 id="@disciplina.getNomeDaDisciplina()" class="list-group" ></font>
+
+						} else {
+							</nome><option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>	
+							</div>
+							}
+		        	         
 			             
 		            }
 		        </select>
