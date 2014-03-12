@@ -101,6 +101,17 @@ nome-principal {
 	background-color: #b2cfe9;
 }
 
+.disciplina:naohouver { 
+	background-color: #FF0000;
+	margin:auto;
+	margin-top:10px;
+	width: 180px;
+	border-radius: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center; 
+}
+
 .float-left {
 	float: left;
 	margin-left: 10px;	
