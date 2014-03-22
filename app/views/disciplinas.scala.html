@@ -1,0 +1,37 @@
+@(sistemaPlanejamento: controllers.Planejamento)
+
+@import helper._ 
+
+@main("Planejamento de Curso - CCC") {
+
+<font color="#FFFFFF"> 
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../public/stylesheets/main.css">
+
+<h1><u>Planejamento de Curso - CCC </u></h1>
+<h2><small>Disciplinas e Pré-requisitos - CCC </h2></small>
+</head>
+
+<body>
+
+ @form(routes.Application.index()) {
+     <input type="submit" class="btn btn-primary" value="Voltar para página inicial">
+    }
+<br>
+<table>
+		<footer class="curriculo">	
+			<!-- mostra lista todas as disciplinas e seus respectivos creditos -->
+			<table class="table table-bordered">
+				<TH> Nome da disciplina</TH><TH> Créditos </TH> <TH> Pré-Requisitos</TH>
+				@for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()){	
+					<TR><TD>@disciplina.getNomeDaDisciplina()</td><td> @disciplina.getCreditos()</td><td>@disciplina.preRequisitos()</TD></TR> 
+
+			}       
+		   	</table>
+		</footer>   
+<br>
+</body>
+</font>
+
+}

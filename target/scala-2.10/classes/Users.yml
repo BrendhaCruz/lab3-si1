@@ -1,0 +1,6 @@
+# Users
+
+- &bob !!models.Usuario
+    email:      bob@example.com
+    nome:       Bob
+    senha:   senha

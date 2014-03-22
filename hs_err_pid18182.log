@@ -1,0 +1,826 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0xb6c50158, pid=18182, tid=1785195328
+#
+# JRE version: 7.0_21-b02
+# Java VM: OpenJDK Server VM (23.7-b01 mixed mode linux-x86 )
+# Problematic frame:
+# V  [libjvm.so+0x42b158]  java_lang_String::utf8_length(oopDesc*)+0x58
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please include
+# instructions on how to reproduce the bug and visit:
+#   https://bugs.launchpad.net/ubuntu/+source/openjdk-7/
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x66302400):  JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_in_vm, id=18203, stack(0x6a62e000,0x6a67f000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x00000008
+
+Registers:
+EAX=0x9e423a70, EBX=0xb715e000, ECX=0x00000000, EDX=0x00000000
+ESP=0x6a67dfb0, EBP=0x6a67e058, ESI=0x00000000, EDI=0x66af7ce4
+EIP=0xb6c50158, EFLAGS=0x00210246, CR2=0x00000008
+
+Top of Stack: (sp=0x6a67dfb0)
+0x6a67dfb0:   b666e9a0 b666e000 b666e9a0 b6658e15
+0x6a67dfc0:   b6c50109 b715e000 66302400 b6c61691
+0x6a67dfd0:   9e423a70 00000006 b6cf53f9 b666e000
+0x6a67dfe0:   66af7ce4 6a67e0bc 6a67e018 9e423a70
+0x6a67dff0:   66302400 00000000 6a67e028 00000000
+0x6a67e000:   00000190 00000008 b6658ccb b666e000
+0x6a67e010:   66302528 66af7ce4 6a67e058 b66381d0
+0x6a67e020:   66302528 66af7ce4 00000000 b664d8db 
+
+Instructions: (pc=0xb6c50158)
+0xb6c50138:   10 8d 4c 4e 0c 31 c0 85 d2 0f 45 c1 89 54 24 04
+0xb6c50148:   89 04 24 e8 d0 fd 30 00 83 c4 14 5b 5e c3 66 90
+0xb6c50158:   8b 56 08 eb dc 90 66 90 56 31 c9 53 e8 e2 f2 c6
+0xb6c50168:   ff 81 c3 97 de 50 00 83 ec 14 8b 44 24 20 8b 93 
+
+Register to memory mapping:
+
+EAX=0x9e423a70 is an oop
+java.lang.String 
+ - klass: 'java/lang/String'
+EBX=0xb715e000: <offset 0x939000> in /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/server/libjvm.so at 0xb6825000
+ECX=0x00000000 is an unknown value
+EDX=0x00000000 is an unknown value
+ESP=0x6a67dfb0 is pointing into the stack for thread: 0x66302400
+EBP=0x6a67e058 is pointing into the stack for thread: 0x66302400
+ESI=0x00000000 is an unknown value
+EDI=0x66af7ce4 is a global jni handle
+
+
+Stack: [0x6a62e000,0x6a67f000],  sp=0x6a67dfb0,  free space=319k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x42b158]  java_lang_String::utf8_length(oopDesc*)+0x58
+C  [libjdwp.so+0x126c9]  Agent_OnLoad+0x2cf9
+C  [libjdwp.so+0x25c0f]  Agent_OnLoad+0x1623f
+C  [libjdwp.so+0x25c70]  Agent_OnLoad+0x162a0
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x657f1800 JavaThread "ReaderThread" [_thread_in_native, id=18213, stack(0x652af000,0x65300000)]
+  0x6630a400 JavaThread "Service Thread" daemon [_thread_blocked, id=18211, stack(0x6a02e000,0x6a07f000)]
+  0x66308800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=18210, stack(0x65f7f000,0x66000000)]
+  0x66306800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=18209, stack(0x66d4a000,0x66dcb000)]
+  0x66400800 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=18205, stack(0x6a22e000,0x6a27f000)]
+  0x66304c00 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=18204, stack(0x6a42e000,0x6a47f000)]
+=>0x66302400 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_in_vm, id=18203, stack(0x6a62e000,0x6a67f000)]
+  0x66af1c00 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=18201, stack(0x6ab2e000,0x6ab7f000)]
+  0x66ab0000 JavaThread "Finalizer" daemon [_thread_blocked, id=18200, stack(0x6685e000,0x668af000)]
+  0x66aae400 JavaThread "Reference Handler" daemon [_thread_blocked, id=18199, stack(0x668af000,0x66900000)]
+  0xb650cc00 JavaThread "main" [_thread_blocked, id=18189, stack(0xb66a1000,0xb66f2000)]
+
+Other Threads:
+  0x66aa8400 VMThread [stack: 0x66b7f000,0x66c00000] [id=18198]
+  0x6630c400 WatcherThread [stack: 0x65efe000,0x65f7f000] [id=18212]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 19136K, used 7946K [0x9dcb0000, 0x9f200000, 0xb3200000)
+  eden space 16448K, 48% used [0x9dcb0000,0x9e4728e0,0x9ecc0000)
+  from space 2688K, 0% used [0x9ef60000,0x9ef60000,0x9f200000)
+  to   space 2688K, 0% used [0x9ecc0000,0x9ecc0000,0x9ef60000)
+ ParOldGen       total 43712K, used 0K [0x73200000, 0x75cb0000, 0x9dcb0000)
+  object space 43712K, 0% used [0x73200000,0x73200000,0x75cb0000)
+ PSPermGen       total 16384K, used 3081K [0x6b200000, 0x6c200000, 0x73200000)
+  object space 16384K, 18% used [0x6b200000,0x6b502658,0x6c200000)
+
+Card table byte_map: [0x6afbf000,0x6b200000] byte_map_base: 0x6ac66000
+
+Polling page: 0xb7779000
+
+Code Cache  [0xb32c3000, 0xb3503000, 0xb62c3000)
+ total_blobs=140 nmethods=23 adapters=78 free_code_cache=48805Kb largest_free_block=49954816
+
+Compilation events (10 events):
+Event: 0,533 Thread 0x66306800   16             java.lang.String::equals (81 bytes)
+Event: 0,535 Thread 0x66306800 nmethod 16 0xb3311f08 code [0xb3312020, 0xb33122d0]
+Event: 0,538 Thread 0x66308800   17             java.io.DataOutputStream::writeUTF (435 bytes)
+Event: 0,552 Thread 0x66308800 nmethod 17 0xb330fc48 code [0xb330fdc0, 0xb331081c]
+Event: 0,559 Thread 0x66306800   18             java.lang.String::length (6 bytes)
+Event: 0,560 Thread 0x66306800 nmethod 18 0xb3311548 code [0xb3311640, 0xb33116d0]
+Event: 0,571 Thread 0x66308800   19             java.lang.Math::max (11 bytes)
+Event: 0,571 Thread 0x66308800 nmethod 19 0xb330f808 code [0xb330f8e0, 0xb330f910]
+Event: 0,578 Thread 0x66306800   20             java.util.ArrayList::size (5 bytes)
+Event: 0,579 Thread 0x66306800 nmethod 20 0xb330f688 code [0xb330f760, 0xb330f7b0]
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 0,571 Thread 0xb650cc00 Threw 0x9e3c1030 at /build/buildd/openjdk-7-7u21-2.3.9/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 0,572 Thread 0xb650cc00 Threw 0x9e3cbd88 at /build/buildd/openjdk-7-7u21-2.3.9/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 0,573 Thread 0xb650cc00 Threw 0x9e3d9890 at /build/buildd/openjdk-7-7u21-2.3.9/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 0,573 Thread 0xb650cc00 Threw 0x9e3dfb28 at /build/buildd/openjdk-7-7u21-2.3.9/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 0,574 Thread 0xb650cc00 Threw 0x9e3e7cf0 at /build/buildd/openjdk-7-7u21-2.3.9/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 0,574 Thread 0xb650cc00 Threw 0x9e3f07a0 at /build/buildd/openjdk-7-7u21-2.3.9/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 0,575 Thread 0xb650cc00 Threw 0x9e3f9f18 at /build/buildd/openjdk-7-7u21-2.3.9/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 0,575 Thread 0xb650cc00 Threw 0x9e400818 at /build/buildd/openjdk-7-7u21-2.3.9/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 0,576 Thread 0xb650cc00 Threw 0x9e409a88 at /build/buildd/openjdk-7-7u21-2.3.9/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1166
+Event: 0,577 Thread 0xb650cc00 Threw 0x9e414d20 at /build/buildd/openjdk-7-7u21-2.3.9/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1166
+
+Events (10 events):
+Event: 74,336 Executing VM operation: GetCurrentLocation
+Event: 74,336 Executing VM operation: GetCurrentLocation done
+Event: 74,336 Executing VM operation: ChangeSingleStep
+Event: 74,336 Executing VM operation: ChangeSingleStep done
+Event: 74,337 Executing VM operation: ChangeSingleStep
+Event: 74,337 Executing VM operation: ChangeSingleStep done
+Event: 74,347 Executing VM operation: GetOrSetLocal
+Event: 74,347 Executing VM operation: GetOrSetLocal done
+Event: 74,353 Executing VM operation: GetOrSetLocal
+Event: 74,353 Executing VM operation: GetOrSetLocal done
+
+
+Dynamic libraries:
+08048000-08049000 r-xp 00000000 08:01 19146415   /usr/lib/jvm/java-7-openjdk-i386/jre/bin/java
+08049000-0804a000 r--p 00000000 08:01 19146415   /usr/lib/jvm/java-7-openjdk-i386/jre/bin/java
+0804a000-0804b000 rw-p 00001000 08:01 19146415   /usr/lib/jvm/java-7-openjdk-i386/jre/bin/java
+08fd5000-08ff6000 rw-p 00000000 00:00 0          [heap]
+64fb7000-65100000 rw-p 00000000 00:00 0 
+65100000-6515d000 rw-p 00000000 00:00 0 
+6515d000-65200000 ---p 00000000 00:00 0 
+652af000-652b2000 ---p 00000000 00:00 0 
+652b2000-65300000 rw-p 00000000 00:00 0          [stack:18213]
+6538b000-65426000 rw-p 00000000 00:00 0 
+65426000-65520000 r-xp 00000000 08:01 35914403   /lib/i386-linux-gnu/libglib-2.0.so.0.3400.1
+65520000-65521000 r--p 000f9000 08:01 35914403   /lib/i386-linux-gnu/libglib-2.0.so.0.3400.1
+65521000-65522000 rw-p 000fa000 08:01 35914403   /lib/i386-linux-gnu/libglib-2.0.so.0.3400.1
+65522000-65570000 r-xp 00000000 08:01 19136899   /usr/lib/i386-linux-gnu/libgobject-2.0.so.0.3400.1
+65570000-65571000 r--p 0004d000 08:01 19136899   /usr/lib/i386-linux-gnu/libgobject-2.0.so.0.3400.1
+65571000-65572000 rw-p 0004e000 08:01 19136899   /usr/lib/i386-linux-gnu/libgobject-2.0.so.0.3400.1
+65572000-656cd000 r-xp 00000000 08:01 19136875   /usr/lib/i386-linux-gnu/libgio-2.0.so.0.3400.1
+656cd000-656cf000 r--p 0015b000 08:01 19136875   /usr/lib/i386-linux-gnu/libgio-2.0.so.0.3400.1
+656cf000-656d0000 rw-p 0015d000 08:01 19136875   /usr/lib/i386-linux-gnu/libgio-2.0.so.0.3400.1
+656d0000-656d1000 rw-p 00000000 00:00 0 
+656e8000-656fe000 r-xp 00000000 08:01 19146515   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libnet.so
+656fe000-656ff000 r--p 00015000 08:01 19146515   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libnet.so
+656ff000-65700000 rw-p 00016000 08:01 19146515   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libnet.so
+65700000-657fc000 rw-p 00000000 00:00 0 
+657fc000-65800000 ---p 00000000 00:00 0 
+65804000-65876000 r--s 00659000 00:18 925247     /home/celiorcbf/Download/play/framework/sbt/boot/scala-2.10.2/lib/scala-library.jar
+65876000-65878000 r--s 00006000 00:18 3410851    /home/celiorcbf/Download/play/repository/local/org.easytesting/fest-util/1.1.6/jars/fest-util.jar
+65878000-6587b000 r--s 00011000 00:18 32639708   /home/celiorcbf/Download/play/repository/local/org.easytesting/fest-assert/1.4/jars/fest-assert.jar
+6587b000-6587f000 r--s 0001b000 00:18 3411049    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-support/2.32.0/jars/selenium-support.jar
+6587f000-65884000 r--s 00024000 00:18 3411097    /home/celiorcbf/Download/play/repository/local/org.webbitserver/webbit/0.4.14/jars/webbit.jar
+65884000-65886000 r--s 00030000 00:18 3411043    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-safari-driver/2.32.0/jars/selenium-safari-driver.jar
+65886000-65888000 r--s 00002000 00:18 3411025    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-iphone-driver/2.32.0/jars/selenium-iphone-driver.jar
+65888000-65889000 r--s 00002000 00:18 3411019    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-ie-driver/2.32.0/jars/selenium-ie-driver.jar
+65889000-6588b000 r--s 00268000 00:18 3411007    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-firefox-driver/2.32.0/jars/selenium-firefox-driver.jar
+6588b000-6588d000 r--s 00016000 00:18 3410857    /home/celiorcbf/Download/play/repository/local/org.eclipse.jetty/jetty-http/8.1.9.v20130131/jars/jetty-http.jar
+6588d000-65890000 r--s 00017000 00:18 30552881   /home/celiorcbf/Download/play/repository/local/org.eclipse.jetty/jetty-io/8.1.9.v20130131/jars/jetty-io.jar
+65890000-65895000 r--s 00041000 00:18 3410866    /home/celiorcbf/Download/play/repository/local/org.eclipse.jetty/jetty-util/8.1.9.v20130131/jars/jetty-util.jar
+65895000-65898000 r--s 0001c000 00:18 33030343   /home/celiorcbf/Download/play/repository/local/org.eclipse.jetty/jetty-websocket/8.1.9.v20130131/jars/jetty-websocket.jar
+65898000-6589c000 r--s 00027000 00:18 3410704    /home/celiorcbf/Download/play/repository/local/commons-io/commons-io/2.2/jars/commons-io.jar
+6589c000-6589d000 r--s 00003000 00:18 3411091    /home/celiorcbf/Download/play/repository/local/org.w3c.css/sac/1.3/jars/sac.jar
+6589d000-658a1000 r--s 00053000 00:18 30553831   /home/celiorcbf/Download/play/repository/local/net.sourceforge.cssparser/cssparser/0.9.9/jars/cssparser.jar
+658a1000-658a4000 r--s 0001c000 00:18 3410776    /home/celiorcbf/Download/play/repository/local/net.sourceforge.nekohtml/nekohtml/1.9.18/jars/nekohtml.jar
+658a4000-658b1000 r--s 000ec000 00:18 32646302   /home/celiorcbf/Download/play/repository/local/net.sourceforge.htmlunit/htmlunit-core-js/2.12/jars/htmlunit-core-js.jar
+658b1000-658b3000 r--s 00005000 00:18 3410827    /home/celiorcbf/Download/play/repository/local/org.apache.httpcomponents/httpmime/4.2.3/jars/httpmime.jar
+658b3000-658c1000 r--s 0007f000 00:18 3410692    /home/celiorcbf/Download/play/repository/local/commons-collections/commons-collections/3.2.1/jars/commons-collections.jar
+658c1000-658c4000 r--s 00041000 00:18 3411115    /home/celiorcbf/Download/play/repository/local/xalan/serializer/2.7.1/jars/serializer.jar
+658c4000-658e9000 r--s 002e3000 00:18 3411121    /home/celiorcbf/Download/play/repository/local/xalan/xalan/2.7.1/jars/xalan.jar
+658e9000-65900000 r--s 0011e000 00:18 32639693   /home/celiorcbf/Download/play/repository/local/net.sourceforge.htmlunit/htmlunit/2.12/jars/htmlunit.jar
+65900000-659f9000 rw-p 00000000 00:00 0 
+659f9000-65a00000 ---p 00000000 00:00 0 
+65a08000-65a0a000 r--s 0000c000 00:18 3411013    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-htmlunit-driver/2.32.0/jars/selenium-htmlunit-driver.jar
+65a0a000-65a0b000 r--s 00002000 00:18 3411001    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-chrome-driver/2.32.0/jars/selenium-chrome-driver.jar
+65a0b000-65a16000 r--s 000d5000 00:18 11676514   /home/celiorcbf/Download/play/repository/local/net.java.dev.jna/platform/3.4.0/jars/platform.jar
+65a16000-65a1a000 r--s 000f3000 00:18 3410770    /home/celiorcbf/Download/play/repository/local/net.java.dev.jna/jna/3.4.0/jars/jna.jar
+65a1a000-65a1c000 r--s 0000b000 00:18 3410800    /home/celiorcbf/Download/play/repository/local/org.apache.commons/commons-exec/1.1/jars/commons-exec.jar
+65a1c000-65a22000 r--s 00033000 00:18 3410686    /home/celiorcbf/Download/play/repository/local/commons-codec/commons-codec/1.6/jars/commons-codec.jar
+65a22000-65a28000 r--s 00031000 00:18 1192533    /home/celiorcbf/Download/play/repository/local/org.apache.httpcomponents/httpcore/4.2.1/jars/httpcore.jar
+65a28000-65a32000 r--s 0005f000 00:18 3410818    /home/celiorcbf/Download/play/repository/local/org.apache.httpcomponents/httpclient/4.2.1/jars/httpclient.jar
+65a32000-65a37000 r--s 0001e000 00:18 3410995    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-api/2.32.0/jars/selenium-api.jar
+65a37000-65a39000 r--s 00008000 00:18 3410878    /home/celiorcbf/Download/play/repository/local/org.json/json/20080701/jars/json.jar
+65a39000-65a40000 r--s 00049000 00:18 3410404    /home/celiorcbf/Download/play/repository/local/cglib/cglib-nodep/2.1_3/jars/cglib-nodep.jar
+65a40000-65a45000 r--s 00035000 00:18 3411037    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-remote-driver/2.32.0/jars/selenium-remote-driver.jar
+65a45000-65a48000 r--s 00052000 00:18 3410989    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-android-driver/2.32.0/jars/selenium-android-driver.jar
+65a48000-65a4e000 r--s 00065000 00:18 3411031    /home/celiorcbf/Download/play/repository/local/org.seleniumhq.selenium/selenium-java/2.32.0/jars/selenium-java.jar
+65a4e000-65a51000 r--s 00011000 00:18 33030700   /home/celiorcbf/Download/play/repository/local/org.fluentlenium/fluentlenium-core/0.8.0/jars/fluentlenium-core.jar
+65a51000-65a53000 r--s 00002000 00:18 33031070   /home/celiorcbf/Download/play/repository/local/org.fluentlenium/fluentlenium-festassert/0.8.0/jars/fluentlenium-festassert.jar
+65a53000-65b00000 r--s 00786000 00:18 3410974    /home/celiorcbf/Download/play/repository/local/org.scalaz/scalaz-core_2.10/7.0.2/bundles/scalaz-core_2.10.jar
+65b00000-65bfb000 rw-p 00000000 00:00 0 
+65bfb000-65c00000 ---p 00000000 00:00 0 
+65c00000-65cfd000 rw-p 00000000 00:00 0 
+65cfd000-65d00000 ---p 00000000 00:00 0 
+65d00000-65dfd000 rw-p 00000000 00:00 0 
+65dfd000-65e00000 ---p 00000000 00:00 0 
+65e2a000-65e68000 r-xp 00000000 08:01 35914509   /lib/i386-linux-gnu/libpcre.so.3.13.1
+65e68000-65e69000 r--p 0003d000 08:01 35914509   /lib/i386-linux-gnu/libpcre.so.3.13.1
+65e69000-65e6a000 rw-p 0003e000 08:01 35914509   /lib/i386-linux-gnu/libpcre.so.3.13.1
+65e6a000-65efe000 r--s 006c7000 00:18 3411061    /home/celiorcbf/Download/play/repository/local/org.specs2/specs2_2.10/2.1.1/jars/specs2_2.10.jar
+65efe000-65eff000 ---p 00000000 00:00 0 
+65eff000-65f7f000 rw-p 00000000 00:00 0          [stack:18212]
+65f7f000-65f82000 ---p 00000000 00:00 0 
+65f82000-66000000 rw-p 00000000 00:00 0          [stack:18210]
+66000000-660fc000 rw-p 00000000 00:00 0 
+660fc000-66100000 ---p 00000000 00:00 0 
+6613c000-66141000 r-xp 00000000 08:01 19141486   /usr/lib/i386-linux-gnu/libffi.so.6.0.0
+66141000-66142000 r--p 00005000 08:01 19141486   /usr/lib/i386-linux-gnu/libffi.so.6.0.0
+66142000-66143000 rw-p 00006000 08:01 19141486   /usr/lib/i386-linux-gnu/libffi.so.6.0.0
+66143000-66156000 r-xp 00000000 08:01 35917642   /lib/i386-linux-gnu/libresolv-2.15.so
+66156000-66157000 r--p 00013000 08:01 35917642   /lib/i386-linux-gnu/libresolv-2.15.so
+66157000-66158000 rw-p 00014000 08:01 35917642   /lib/i386-linux-gnu/libresolv-2.15.so
+66158000-6615a000 rw-p 00000000 00:00 0 
+6615a000-66177000 r-xp 00000000 08:01 35914528   /lib/i386-linux-gnu/libselinux.so.1
+66177000-66178000 r--p 0001c000 08:01 35914528   /lib/i386-linux-gnu/libselinux.so.1
+66178000-66179000 rw-p 0001d000 08:01 35914528   /lib/i386-linux-gnu/libselinux.so.1
+66179000-662fa000 r-xp 00000000 08:01 19141434   /usr/lib/i386-linux-gnu/libdb-5.1.so
+662fa000-662fb000 ---p 00181000 08:01 19141434   /usr/lib/i386-linux-gnu/libdb-5.1.so
+662fb000-662ff000 r--p 00181000 08:01 19141434   /usr/lib/i386-linux-gnu/libdb-5.1.so
+662ff000-66300000 rw-p 00185000 08:01 19141434   /usr/lib/i386-linux-gnu/libdb-5.1.so
+66300000-663fe000 rw-p 00000000 00:00 0 
+663fe000-66400000 ---p 00000000 00:00 0 
+66400000-664bf000 rw-p 00000000 00:00 0 
+664bf000-66500000 ---p 00000000 00:00 0 
+66500000-66521000 rw-p 00000000 00:00 0 
+66521000-66600000 ---p 00000000 00:00 0 
+66600000-66621000 rw-p 00000000 00:00 0 
+66621000-66700000 ---p 00000000 00:00 0 
+66700000-66721000 rw-p 00000000 00:00 0 
+66721000-66800000 ---p 00000000 00:00 0 
+66801000-66802000 rw-p 00000000 00:00 0 
+66802000-6680b000 r--s 000bc000 08:01 19146216   /usr/lib/jvm/java-7-openjdk-common/jre/lib/resources.jar
+6680b000-6680e000 r-xp 00000000 08:01 19136894   /usr/lib/i386-linux-gnu/libgmodule-2.0.so.0.3400.1
+6680e000-6680f000 r--p 00002000 08:01 19136894   /usr/lib/i386-linux-gnu/libgmodule-2.0.so.0.3400.1
+6680f000-66810000 rw-p 00003000 08:01 19136894   /usr/lib/i386-linux-gnu/libgmodule-2.0.so.0.3400.1
+66810000-66812000 r--s 00000000 00:18 3410965    /home/celiorcbf/Download/play/repository/local/org.scala-tools.testing/test-interface/0.5/jars/test-interface.jar
+66812000-6681c000 r--s 0005f000 00:18 3410980    /home/celiorcbf/Download/play/repository/local/org.scalaz/scalaz-effect_2.10/7.0.2/bundles/scalaz-effect_2.10.jar
+6681c000-6681e000 r--s 00009000 00:18 32901085   /home/celiorcbf/Download/play/repository/local/org.hamcrest/hamcrest-core/1.3/jars/hamcrest-core.jar
+6681e000-66824000 r--s 00036000 00:18 3410758    /home/celiorcbf/Download/play/repository/local/junit/junit/4.11/jars/junit.jar
+66824000-66827000 r--s 00024000 00:18 3410620    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-test_2.10/2.2.1/jars/play-test_2.10.jar
+66827000-66842000 r--s 0012e000 00:18 25306096   /home/celiorcbf/Download/play/repository/local/net.sf.ehcache/ehcache-core/2.6.6/jars/ehcache-core.jar
+66842000-6685e000 r--s 00167000 00:18 3410839    /home/celiorcbf/Download/play/repository/local/org.avaje.ebeanorm/avaje-ebeanorm/3.2.2/jars/avaje-ebeanorm.jar
+6685e000-66861000 ---p 00000000 00:00 0 
+66861000-668af000 rw-p 00000000 00:00 0          [stack:18200]
+668af000-668b2000 ---p 00000000 00:00 0 
+668b2000-66900000 rw-p 00000000 00:00 0          [stack:18199]
+66900000-66921000 rw-p 00000000 00:00 0 
+66921000-66a00000 ---p 00000000 00:00 0 
+66a00000-66afc000 rw-p 00000000 00:00 0 
+66afc000-66b00000 ---p 00000000 00:00 0 
+66b00000-66b01000 rw-p 00000000 00:00 0 
+66b01000-66b09000 r--s 0003f000 00:18 3410968    /home/celiorcbf/Download/play/repository/local/org.scalaz/scalaz-concurrent_2.10/7.0.2/bundles/scalaz-concurrent_2.10.jar
+66b09000-66b0b000 r--s 00007000 00:18 3410536    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-cache_2.10/2.2.1/jars/play-cache_2.10.jar
+66b0b000-66b10000 r--s 00015000 00:18 32901123   /home/celiorcbf/Download/play/repository/local/org.hibernate.javax.persistence/hibernate-jpa-2.0-api/1.0.1.Final/jars/hibernate-jpa-2.0-api.jar
+66b10000-66b13000 r--s 0002a000 00:18 3410845    /home/celiorcbf/Download/play/repository/local/org.avaje.ebeanorm/avaje-ebeanorm-agent/3.2.1/jars/avaje-ebeanorm-agent.jar
+66b13000-66b15000 r--s 00002000 00:18 3410584    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-java-ebean_2.10/2.2.1/jars/play-java-ebean_2.10.jar
+66b15000-66b18000 r--s 00012000 00:18 3410728    /home/celiorcbf/Download/play/repository/local/javax.servlet/javax.servlet-api/3.0.1/jars/javax.servlet-api.jar
+66b18000-66b1a000 r--s 00006000 00:18 3410440    /home/celiorcbf/Download/play/repository/local/com.google.code.findbugs/jsr305/2.0.1/jars/jsr305.jar
+66b1a000-66b1d000 r--s 00017000 00:18 3410929    /home/celiorcbf/Download/play/repository/local/org.reflections/reflections/0.9.8/jars/reflections.jar
+66b1d000-66b29000 r--s 00089000 00:18 3411067    /home/celiorcbf/Download/play/repository/local/org.springframework/spring-beans/3.2.3.RELEASE/jars/spring-beans.jar
+66b29000-66b3b000 r--s 000c2000 00:18 3411079    /home/celiorcbf/Download/play/repository/local/org.springframework/spring-core/3.2.3.RELEASE/jars/spring-core.jar
+66b3b000-66b50000 r--s 000be000 00:18 3411073    /home/celiorcbf/Download/play/repository/local/org.springframework/spring-context/3.2.3.RELEASE/jars/spring-context.jar
+66b50000-66b52000 r--s 0000d000 00:18 3410419    /home/celiorcbf/Download/play/repository/local/com.fasterxml/classmate/0.8.0/bundles/classmate.jar
+66b52000-66b56000 r--s 0000c000 00:18 3410740    /home/celiorcbf/Download/play/repository/local/javax.validation/validation-api/1.1.0.Final/jars/validation-api.jar
+66b56000-66b7f000 r--s 001ee000 00:18 3410443    /home/celiorcbf/Download/play/repository/local/com.google.guava/guava/14.0.1/bundles/guava.jar
+66b7f000-66b80000 ---p 00000000 00:00 0 
+66b80000-66c00000 rw-p 00000000 00:00 0          [stack:18198]
+66c00000-66cf1000 rw-p 00000000 00:00 0 
+66cf1000-66d00000 ---p 00000000 00:00 0 
+66d00000-66d02000 r--s 0000d000 00:18 32901143   /home/celiorcbf/Download/play/repository/local/org.jboss.logging/jboss-logging/3.1.1.GA/jars/jboss-logging.jar
+66d02000-66d0f000 r--s 0007f000 00:18 32901109   /home/celiorcbf/Download/play/repository/local/org.hibernate/hibernate-validator/5.0.1.Final/jars/hibernate-validator.jar
+66d0f000-66d16000 r--s 0003c000 00:18 3411100    /home/celiorcbf/Download/play/repository/local/org.yaml/snakeyaml/1.12/bundles/snakeyaml.jar
+66d16000-66d1b000 r--s 0002d000 00:18 3411109    /home/celiorcbf/Download/play/repository/local/tyrex/tyrex/1.0.1/jars/tyrex.jar
+66d1b000-66d28000 r--s 0016e000 00:18 3410458    /home/celiorcbf/Download/play/repository/local/com.h2database/h2/1.3.172/jars/h2.jar
+66d28000-66d31000 r--s 0002d000 00:18 3411133    /home/celiorcbf/Download/play/repository/local/xml-apis/xml-apis/1.4.01/jars/xml-apis.jar
+66d31000-66d4a000 r--s 00135000 00:18 3411127    /home/celiorcbf/Download/play/repository/local/xerces/xercesImpl/2.11.0/jars/xercesImpl.jar
+66d4a000-66d4d000 ---p 00000000 00:00 0 
+66d4d000-66e13000 rw-p 00000000 00:00 0          [stack:18209]
+66e13000-66fc0000 r--s 01cde000 08:01 19146494   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/rt.jar
+66fc0000-69f00000 rw-p 00000000 00:00 0 
+69f00000-69f21000 rw-p 00000000 00:00 0 
+69f21000-6a000000 ---p 00000000 00:00 0 
+6a000000-6a003000 r--s 00016000 00:18 3410602    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-java_2.10/2.2.1/jars/play-java_2.10.jar
+6a003000-6a006000 r--s 00019000 00:18 3410467    /home/celiorcbf/Download/play/repository/local/com.jolbox/bonecp/0.8.0.RELEASE/bundles/bonecp.jar
+6a006000-6a02e000 r--s 0025e000 00:18 3410500    /home/celiorcbf/Download/play/repository/local/com.typesafe.akka/akka-actor_2.10/2.2.0/jars/akka-actor_2.10.jar
+6a02e000-6a031000 ---p 00000000 00:00 0 
+6a031000-6a07f000 rw-p 00000000 00:00 0          [stack:18211]
+6a07f000-6a080000 ---p 00000000 00:00 0 
+6a080000-6a100000 rw-p 00000000 00:00 0          [stack:18197]
+6a100000-6a121000 rw-p 00000000 00:00 0 
+6a121000-6a200000 ---p 00000000 00:00 0 
+6a200000-6a202000 r--s 0000d000 00:18 3410716    /home/celiorcbf/Download/play/repository/local/commons-logging/commons-logging/1.1.1/jars/commons-logging.jar
+6a202000-6a203000 r--s 00001000 00:18 3410782    /home/celiorcbf/Download/play/repository/local/oauth.signpost/signpost-commonshttp4/1.2.1.2/jars/signpost-commonshttp4.jar
+6a203000-6a206000 r--s 00009000 00:18 3410788    /home/celiorcbf/Download/play/repository/local/oauth.signpost/signpost-core/1.2.1.2/jars/signpost-core.jar
+6a206000-6a210000 r--s 00071000 00:18 3410482    /home/celiorcbf/Download/play/repository/local/com.ning/async-http-client/1.7.18/jars/async-http-client.jar
+6a210000-6a216000 r--s 00048000 00:18 3410806    /home/celiorcbf/Download/play/repository/local/org.apache.commons/commons-lang3/3.1/jars/commons-lang3.jar
+6a216000-6a22e000 r--s 00110000 00:18 3410719    /home/celiorcbf/Download/play/repository/local/io.netty/netty/3.7.0.Final/bundles/netty.jar
+6a22e000-6a231000 ---p 00000000 00:00 0 
+6a231000-6a27f000 rw-p 00000000 00:00 0          [stack:18205]
+6a27f000-6a280000 ---p 00000000 00:00 0 
+6a280000-6a300000 rw-p 00000000 00:00 0          [stack:18196]
+6a300000-6a321000 rw-p 00000000 00:00 0 
+6a321000-6a400000 ---p 00000000 00:00 0 
+6a400000-6a401000 r--s 00005000 00:18 3410488    /home/celiorcbf/Download/play/repository/local/com.novocode/junit-interface/0.10/jars/junit-interface.jar
+6a401000-6a402000 r--s 00003000 00:18 3410734    /home/celiorcbf/Download/play/repository/local/javax.transaction/jta/1.1/jars/jta.jar
+6a402000-6a403000 r--s 00003000 00:18 3410503    /home/celiorcbf/Download/play/repository/local/com.typesafe.akka/akka-slf4j_2.10/2.2.0/bundles/akka-slf4j_2.10.jar
+6a403000-6a409000 r--s 0003b000 00:18 3410410    /home/celiorcbf/Download/play/repository/local/ch.qos.logback/logback-classic/1.0.13/jars/logback-classic.jar
+6a409000-6a413000 r--s 0005d000 00:18 3410416    /home/celiorcbf/Download/play/repository/local/ch.qos.logback/logback-core/1.0.13/jars/logback-core.jar
+6a413000-6a415000 r--s 00003000 00:18 25306033   /home/celiorcbf/Download/play/repository/local/org.slf4j/jcl-over-slf4j/1.7.5/jars/jcl-over-slf4j.jar
+6a415000-6a426000 r--s 000c3000 00:18 12075186   /home/celiorcbf/Download/play/repository/local/com.fasterxml.jackson.core/jackson-databind/2.2.2/jars/jackson-databind.jar
+6a426000-6a429000 r--s 0002c000 00:18 3410434    /home/celiorcbf/Download/play/repository/local/com.fasterxml.jackson.core/jackson-core/2.2.2/jars/jackson-core.jar
+6a429000-6a42c000 r--s 00006000 00:18 3410428    /home/celiorcbf/Download/play/repository/local/com.fasterxml.jackson.core/jackson-annotations/2.2.2/jars/jackson-annotations.jar
+6a42c000-6a42e000 r--s 00008000 00:18 3410872    /home/celiorcbf/Download/play/repository/local/org.joda/joda-convert/1.3.1/jars/joda-convert.jar
+6a42e000-6a431000 ---p 00000000 00:00 0 
+6a431000-6a47f000 rw-p 00000000 00:00 0          [stack:18204]
+6a47f000-6a480000 ---p 00000000 00:00 0 
+6a480000-6a500000 rw-p 00000000 00:00 0          [stack:18195]
+6a500000-6a521000 rw-p 00000000 00:00 0 
+6a521000-6a600000 ---p 00000000 00:00 0 
+6a600000-6a610000 r--s 0007d000 00:18 3410752    /home/celiorcbf/Download/play/repository/local/joda-time/joda-time/2.2/jars/joda-time.jar
+6a610000-6a611000 r--s 00001000 00:18 3410542    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-datacommons_2.10/2.2.1/jars/play-datacommons_2.10.jar
+6a611000-6a619000 r--s 00052000 00:18 3410566    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-functional_2.10/2.2.1/jars/play-functional_2.10.jar
+6a619000-6a625000 r--s 0008e000 00:18 3410614    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-json_2.10/2.2.1/jars/play-json_2.10.jar
+6a625000-6a62e000 r--s 00096000 00:18 3410953    /home/celiorcbf/Download/play/repository/local/org.scala-stm/scala-stm_2.10/0.7/jars/scala-stm_2.10.jar
+6a62e000-6a631000 ---p 00000000 00:00 0 
+6a631000-6a67f000 rw-p 00000000 00:00 0          [stack:18203]
+6a67f000-6a680000 ---p 00000000 00:00 0 
+6a680000-6a700000 rw-p 00000000 00:00 0          [stack:18194]
+6a700000-6a721000 rw-p 00000000 00:00 0 
+6a721000-6a800000 ---p 00000000 00:00 0 
+6a800000-6a84a000 r--s 00350000 00:18 3410626    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play_2.10/2.2.1/jars/play_2.10.jar
+6a84a000-6a87f000 r--s 00000000 08:01 55050329   /var/cache/nscd/hosts
+6a87f000-6a880000 ---p 00000000 00:00 0 
+6a880000-6a900000 rw-p 00000000 00:00 0          [stack:18193]
+6a900000-6a921000 rw-p 00000000 00:00 0 
+6a921000-6aa00000 ---p 00000000 00:00 0 
+6aa00000-6aa21000 rw-p 00000000 00:00 0 
+6aa21000-6ab00000 ---p 00000000 00:00 0 
+6ab00000-6ab01000 r--s 00001000 00:18 35656534   /home/celiorcbf/Download/play/repository/local/org.slf4j/jul-to-slf4j/1.7.5/jars/jul-to-slf4j.jar
+6ab01000-6ab05000 r--s 0002a000 00:18 3410491    /home/celiorcbf/Download/play/repository/local/com.typesafe/config/1.0.2/bundles/config.jar
+6ab05000-6ab16000 r--s 0009e000 00:18 3410578    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-iteratees_2.10/2.2.1/jars/play-iteratees_2.10.jar
+6ab16000-6ab19000 r--s 00010000 00:18 3410476    /home/celiorcbf/Download/play/repository/local/com.jsuereth/scala-arm_2.10/1.3/jars/scala-arm_2.10.jar
+6ab19000-6ab2e000 r--s 00128000 00:18 143238     /home/celiorcbf/Download/play/repository/local/com.github.scala-incubator.io/scala-io-core_2.10/0.4.2/jars/scala-io-core_2.10.jar
+6ab2e000-6ab31000 ---p 00000000 00:00 0 
+6ab31000-6ab7f000 rw-p 00000000 00:00 0          [stack:18201]
+6ab7f000-6ab80000 ---p 00000000 00:00 0 
+6ab80000-6ac00000 rw-p 00000000 00:00 0          [stack:18192]
+6ac00000-6ac21000 rw-p 00000000 00:00 0 
+6ac21000-6ad00000 ---p 00000000 00:00 0 
+6ad00000-6ad02000 r--s 00005000 00:18 3411055    /home/celiorcbf/Download/play/repository/local/org.slf4j/slf4j-api/1.7.5/jars/slf4j-api.jar
+6ad02000-6ad0a000 r--s 00063000 00:18 35801073   /home/celiorcbf/Download/play/repository/local/com.github.scala-incubator.io/scala-io-file_2.10/0.4.2/jars/scala-io-file_2.10.jar
+6ad0a000-6ad14000 r--s 000a5000 00:18 32901132   /home/celiorcbf/Download/play/repository/local/org.javassist/javassist/3.18.0-GA/bundles/javassist.jar
+6ad14000-6ad1a000 r--s 0002c000 00:18 3410608    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-jdbc_2.10/2.2.1/jars/play-jdbc_2.10.jar
+6ad1a000-6ad25000 r-xp 00000000 08:01 35917645   /lib/i386-linux-gnu/libnss_files-2.15.so
+6ad25000-6ad26000 r--p 0000a000 08:01 35917645   /lib/i386-linux-gnu/libnss_files-2.15.so
+6ad26000-6ad27000 rw-p 0000b000 08:01 35917645   /lib/i386-linux-gnu/libnss_files-2.15.so
+6ad27000-6ad28000 ---p 00000000 00:00 0 
+6ad28000-6ada8000 rw-p 00000000 00:00 0          [stack:18191]
+6ada8000-6ada9000 ---p 00000000 00:00 0 
+6ada9000-6ae31000 rw-p 00000000 00:00 0          [stack:18190]
+6ae31000-6ae69000 rw-p 00000000 00:00 0 
+6ae69000-6ae7f000 rw-p 00000000 00:00 0 
+6ae7f000-6afbf000 rw-p 00000000 00:00 0 
+6afbf000-6afc7000 rw-p 00000000 00:00 0 
+6afc7000-6afff000 rw-p 00000000 00:00 0 
+6afff000-6b015000 rw-p 00000000 00:00 0 
+6b015000-6b154000 rw-p 00000000 00:00 0 
+6b154000-6b15f000 rw-p 00000000 00:00 0 
+6b15f000-6b1ff000 rw-p 00000000 00:00 0 
+6b1ff000-6c200000 rw-p 00000000 00:00 0 
+6c200000-73200000 rw-p 00000000 00:00 0 
+73200000-75cb0000 rw-p 00000000 00:00 0 
+75cb0000-9dcb0000 rw-p 00000000 00:00 0 
+9dcb0000-9f200000 rw-p 00000000 00:00 0 
+9f200000-b3200000 rw-p 00000000 00:00 0 
+b3200000-b3201000 r--s 00001000 00:18 3410512    /home/celiorcbf/Download/play/repository/local/com.typesafe.netty/netty-http-pipelining/1.1.2/jars/netty-http-pipelining.jar
+b3201000-b3203000 r--s 00008000 00:18 3410656    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/templates_2.10/2.2.1/jars/templates_2.10.jar
+b3203000-b320c000 rw-p 00000000 00:00 0 
+b320c000-b32c3000 rw-p 00000000 00:00 0 
+b32c3000-b3503000 rwxp 00000000 00:00 0 
+b3503000-b62c3000 rw-p 00000000 00:00 0 
+b62c3000-b62cb000 rw-s 00000000 08:01 41550339   /tmp/hsperfdata_celiorcbf/18182
+b62cb000-b6300000 r--s 00000000 08:01 55050404   /var/cache/nscd/passwd
+b6300000-b6500000 r--p 00000000 08:01 19143936   /usr/lib/locale/locale-archive
+b6500000-b6600000 rw-p 00000000 00:00 0 
+b6600000-b6606000 r-xp 00000000 08:01 19146752   /usr/lib/libnss_db-2.2.3.so
+b6606000-b6607000 r--p 00005000 08:01 19146752   /usr/lib/libnss_db-2.2.3.so
+b6607000-b6608000 rw-p 00006000 08:01 19146752   /usr/lib/libnss_db-2.2.3.so
+b6608000-b660a000 r--s 00000000 00:18 3410560    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-exceptions/2.2.1/jars/play-exceptions.jar
+b660a000-b660c000 r--s 00001000 00:18 3410638    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/sbt-link/2.2.1/jars/sbt-link.jar
+b660c000-b660d000 r--s 00000000 00:18 3410590    /home/celiorcbf/Download/play/repository/local/com.typesafe.play/play-java-jdbc_2.10/2.2.1/jars/play-java-jdbc_2.10.jar
+b660d000-b6610000 r--s 00032000 08:01 19146219   /usr/lib/jvm/java-7-openjdk-common/jre/lib/ext/sunjce_provider.jar
+b6610000-b6613000 r--s 0003c000 08:01 19146217   /usr/lib/jvm/java-7-openjdk-common/jre/lib/ext/sunpkcs11.jar
+b6613000-b6614000 r--s 00002000 08:01 19146222   /usr/lib/jvm/java-7-openjdk-common/jre/lib/ext/dnsns.jar
+b6614000-b6618000 r--s 00085000 08:01 19146218   /usr/lib/jvm/java-7-openjdk-common/jre/lib/ext/localedata.jar
+b6618000-b661b000 r--s 0000f000 08:01 19146220   /usr/lib/jvm/java-7-openjdk-common/jre/lib/ext/pulse-java.jar
+b661b000-b661d000 r--s 00006000 08:01 19671018   /usr/share/java/java-atk-wrapper.jar
+b661d000-b661f000 r--s 00012000 08:01 19146223   /usr/lib/jvm/java-7-openjdk-common/jre/lib/ext/zipfs.jar
+b661f000-b6623000 r-xp 00000000 08:01 19146525   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libdt_socket.so
+b6623000-b6624000 r--p 00003000 08:01 19146525   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libdt_socket.so
+b6624000-b6625000 rw-p 00004000 08:01 19146525   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libdt_socket.so
+b6625000-b662d000 r-xp 00000000 08:01 19146500   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libzip.so
+b662d000-b662e000 r--p 00007000 08:01 19146500   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libzip.so
+b662e000-b662f000 rw-p 00008000 08:01 19146500   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libzip.so
+b662f000-b666d000 r-xp 00000000 08:01 19146527   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libjdwp.so
+b666d000-b666e000 r--p 0003d000 08:01 19146527   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libjdwp.so
+b666e000-b666f000 rw-p 0003e000 08:01 19146527   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libjdwp.so
+b666f000-b6696000 r-xp 00000000 08:01 19146523   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libjava.so
+b6696000-b6697000 r--p 00026000 08:01 19146523   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libjava.so
+b6697000-b6698000 rw-p 00027000 08:01 19146523   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libjava.so
+b6698000-b669f000 r-xp 00000000 08:01 35917651   /lib/i386-linux-gnu/librt-2.15.so
+b669f000-b66a0000 r--p 00006000 08:01 35917651   /lib/i386-linux-gnu/librt-2.15.so
+b66a0000-b66a1000 rw-p 00007000 08:01 35917651   /lib/i386-linux-gnu/librt-2.15.so
+b66a1000-b66a4000 ---p 00000000 00:00 0 
+b66a4000-b66f2000 rw-p 00000000 00:00 0          [stack:18189]
+b66f2000-b670e000 r-xp 00000000 08:01 35914447   /lib/i386-linux-gnu/libgcc_s.so.1
+b670e000-b670f000 r--p 0001b000 08:01 35914447   /lib/i386-linux-gnu/libgcc_s.so.1
+b670f000-b6710000 rw-p 0001c000 08:01 35914447   /lib/i386-linux-gnu/libgcc_s.so.1
+b6710000-b673a000 r-xp 00000000 08:01 35917647   /lib/i386-linux-gnu/libm-2.15.so
+b673a000-b673b000 r--p 00029000 08:01 35917647   /lib/i386-linux-gnu/libm-2.15.so
+b673b000-b673c000 rw-p 0002a000 08:01 35917647   /lib/i386-linux-gnu/libm-2.15.so
+b673c000-b6818000 r-xp 00000000 08:01 19141931   /usr/lib/i386-linux-gnu/libstdc++.so.6.0.17
+b6818000-b6819000 ---p 000dc000 08:01 19141931   /usr/lib/i386-linux-gnu/libstdc++.so.6.0.17
+b6819000-b681d000 r--p 000dc000 08:01 19141931   /usr/lib/i386-linux-gnu/libstdc++.so.6.0.17
+b681d000-b681e000 rw-p 000e0000 08:01 19141931   /usr/lib/i386-linux-gnu/libstdc++.so.6.0.17
+b681e000-b6825000 rw-p 00000000 00:00 0 
+b6825000-b7117000 r-xp 00000000 08:01 19146502   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/server/libjvm.so
+b7117000-b715e000 r--p 008f1000 08:01 19146502   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/server/libjvm.so
+b715e000-b7172000 rw-p 00938000 08:01 19146502   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/server/libjvm.so
+b7172000-b7590000 rw-p 00000000 00:00 0 
+b7590000-b75a7000 r-xp 00000000 08:01 35914556   /lib/i386-linux-gnu/libz.so.1.2.7
+b75a7000-b75a8000 r--p 00016000 08:01 35914556   /lib/i386-linux-gnu/libz.so.1.2.7
+b75a8000-b75a9000 rw-p 00017000 08:01 35914556   /lib/i386-linux-gnu/libz.so.1.2.7
+b75a9000-b75c0000 r-xp 00000000 08:01 35917646   /lib/i386-linux-gnu/libpthread-2.15.so
+b75c0000-b75c1000 r--p 00016000 08:01 35917646   /lib/i386-linux-gnu/libpthread-2.15.so
+b75c1000-b75c2000 rw-p 00017000 08:01 35917646   /lib/i386-linux-gnu/libpthread-2.15.so
+b75c2000-b75c4000 rw-p 00000000 00:00 0 
+b75c4000-b75c7000 r-xp 00000000 08:01 35917639   /lib/i386-linux-gnu/libdl-2.15.so
+b75c7000-b75c8000 r--p 00002000 08:01 35917639   /lib/i386-linux-gnu/libdl-2.15.so
+b75c8000-b75c9000 rw-p 00003000 08:01 35917639   /lib/i386-linux-gnu/libdl-2.15.so
+b75c9000-b776c000 r-xp 00000000 08:01 35917633   /lib/i386-linux-gnu/libc-2.15.so
+b776c000-b776d000 ---p 001a3000 08:01 35917633   /lib/i386-linux-gnu/libc-2.15.so
+b776d000-b776f000 r--p 001a3000 08:01 35917633   /lib/i386-linux-gnu/libc-2.15.so
+b776f000-b7770000 rw-p 001a5000 08:01 35917633   /lib/i386-linux-gnu/libc-2.15.so
+b7770000-b7773000 rw-p 00000000 00:00 0 
+b7773000-b7776000 r-xp 00000000 08:01 19146510   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libnpt.so
+b7776000-b7777000 r--p 00002000 08:01 19146510   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libnpt.so
+b7777000-b7778000 rw-p 00003000 08:01 19146510   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libnpt.so
+b7778000-b7779000 rw-p 00000000 00:00 0 
+b7779000-b777a000 r--p 00000000 00:00 0 
+b777a000-b7787000 r-xp 00000000 08:01 19146509   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libverify.so
+b7787000-b7788000 ---p 0000d000 08:01 19146509   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libverify.so
+b7788000-b7789000 r--p 0000d000 08:01 19146509   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libverify.so
+b7789000-b778a000 rw-p 0000e000 08:01 19146509   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/libverify.so
+b778a000-b7797000 r-xp 00000000 08:01 19146517   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/jli/libjli.so
+b7797000-b7798000 r--p 0000c000 08:01 19146517   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/jli/libjli.so
+b7798000-b7799000 rw-p 0000d000 08:01 19146517   /usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/jli/libjli.so
+b7799000-b779c000 rw-p 00000000 00:00 0 
+b779c000-b779d000 r-xp 00000000 00:00 0          [vdso]
+b779d000-b77bd000 r-xp 00000000 08:01 35917650   /lib/i386-linux-gnu/ld-2.15.so
+b77bd000-b77be000 r--p 0001f000 08:01 35917650   /lib/i386-linux-gnu/ld-2.15.so
+b77be000-b77bf000 rw-p 00020000 08:01 35917650   /lib/i386-linux-gnu/ld-2.15.so
+bfaef000-bfb13000 rw-p 00000000 00:00 0          [stack]
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:56912 -Dfile.encoding=UTF-8 
+java_command: org.eclipse.jdt.internal.junit.runner.RemoteTestRunner -version 3 -port 60348 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -classNames TestaPeriodo
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/var/scripts/:/usr/local/arduino:/usr/local/ADT/eclipse
+LD_LIBRARY_PATH=/usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/server:/usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386:/usr/lib/jvm/java-7-openjdk-i386/jre/../lib/i386:/usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386/client:/usr/lib/jvm/java-7-openjdk-i386/jre/lib/i386:
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x756e80], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x756e80], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x5f3c70], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x5f3c70], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x5f3c70], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x5f3c70], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x5f3b20], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x5f40b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x5f40b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x5f40b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x5f40b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Ubuntu 12.10 (quantal)
+uname:Linux 3.5.0-17-generic #28-Ubuntu SMP Tue Oct 9 19:32:08 UTC 2012 i686
+libc:glibc 2.15 NPTL 2.15 
+rlimit: STACK 8192k, CORE 0k, NPROC 62121, NOFILE 4096, AS infinity
+load average:0,15 0,27 0,27
+
+/proc/meminfo:
+MemTotal:        7967064 kB
+MemFree:         5122116 kB
+Buffers:           80664 kB
+Cached:          1262576 kB
+SwapCached:            0 kB
+Active:          1625428 kB
+Inactive:        1078824 kB
+Active(anon):    1418580 kB
+Inactive(anon):   514908 kB
+Active(file):     206848 kB
+Inactive(file):   563916 kB
+Unevictable:       37760 kB
+Mlocked:           37764 kB
+HighTotal:       7156632 kB
+HighFree:        4472156 kB
+LowTotal:         810432 kB
+LowFree:          649960 kB
+SwapTotal:       8066044 kB
+SwapFree:        8066044 kB
+Dirty:               624 kB
+Writeback:             0 kB
+AnonPages:       1399384 kB
+Mapped:           173236 kB
+Shmem:            560176 kB
+Slab:              52336 kB
+SReclaimable:      26056 kB
+SUnreclaim:        26280 kB
+KernelStack:        7416 kB
+PageTables:        12872 kB
+NFS_Unstable:         32 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    12049576 kB
+Committed_AS:    5775140 kB
+VmallocTotal:     122880 kB
+VmallocUsed:       22792 kB
+VmallocChunk:      89020 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       10232 kB
+DirectMap2M:      903168 kB
+
+
+CPU:total 8 (4 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, ht, tsc, tscinvbit
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz
+stepping	: 7
+microcode	: 0x23
+cpu MHz		: 3400.000
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 0
+cpu cores	: 4
+apicid		: 0
+initial apicid	: 0
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx rdtscp lm constant_tsc arch_perfmon pebs bts xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 6784.08
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz
+stepping	: 7
+microcode	: 0x23
+cpu MHz		: 1600.000
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 1
+cpu cores	: 4
+apicid		: 2
+initial apicid	: 2
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx rdtscp lm constant_tsc arch_perfmon pebs bts xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 6784.08
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz
+stepping	: 7
+microcode	: 0x23
+cpu MHz		: 1600.000
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 2
+cpu cores	: 4
+apicid		: 4
+initial apicid	: 4
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx rdtscp lm constant_tsc arch_perfmon pebs bts xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 6784.08
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz
+stepping	: 7
+microcode	: 0x23
+cpu MHz		: 1600.000
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 3
+cpu cores	: 4
+apicid		: 6
+initial apicid	: 6
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx rdtscp lm constant_tsc arch_perfmon pebs bts xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 6784.08
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 4
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz
+stepping	: 7
+microcode	: 0x23
+cpu MHz		: 1600.000
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 0
+cpu cores	: 4
+apicid		: 1
+initial apicid	: 1
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx rdtscp lm constant_tsc arch_perfmon pebs bts xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 6784.08
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 5
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz
+stepping	: 7
+microcode	: 0x23
+cpu MHz		: 1600.000
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 1
+cpu cores	: 4
+apicid		: 3
+initial apicid	: 3
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx rdtscp lm constant_tsc arch_perfmon pebs bts xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 6784.08
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 6
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz
+stepping	: 7
+microcode	: 0x23
+cpu MHz		: 1600.000
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 2
+cpu cores	: 4
+apicid		: 5
+initial apicid	: 5
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx rdtscp lm constant_tsc arch_perfmon pebs bts xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 6784.08
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+processor	: 7
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 42
+model name	: Intel(R) Core(TM) i7-2600 CPU @ 3.40GHz
+stepping	: 7
+microcode	: 0x23
+cpu MHz		: 1600.000
+cache size	: 8192 KB
+physical id	: 0
+siblings	: 8
+core id		: 3
+cpu cores	: 4
+apicid		: 7
+initial apicid	: 7
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe nx rdtscp lm constant_tsc arch_perfmon pebs bts xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid
+bogomips	: 6784.08
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 36 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 7967064k(5122116k free), swap 8066044k(8066044k free)
+
+vm_info: OpenJDK Server VM (23.7-b01) for linux-x86 JRE (1.7.0_21-b02), built on Apr 22 2013 22:34:21 by "buildd" with gcc 4.7.2
+
+time: Tue Feb 11 17:02:07 2014
+elapsed time: 74 seconds
+
