@@ -6,29 +6,23 @@ import play.data.validation.Constraints.Required;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
 import play.db.ebean.Model;
 
 @Entity
 public class Periodo extends Model {
 	
-    @Required
-    public int idPeriodo;
+    @Id
+	private Long id;
     
     
 	// CREATOR: Periodo é feito de disciplinas
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "disciplina", joinColumns = { 
-			@JoinColumn(name = "planejamento") }, inverseJoinColumns = { 
-			@JoinColumn(name = "disciplina") })
+    @ManyToMany(cascade = CascadeType.ALL)
 	private List<Disciplina> listaDisciplinas;
     
-    @Transient
 	public static Model.Finder<Long, Periodo> find = new Finder<Long, Periodo>(
 			Long.class, Periodo.class);
 
@@ -39,17 +33,15 @@ public class Periodo extends Model {
 		this.listaDisciplinas = new ArrayList<Disciplina>();
 	}
 	
-	public void setIdPeriodo(int idPeriodo) {
-       this.idPeriodo = idPeriodo;
-   }
-   public int getIdPeriodo() {
-	   return idPeriodo;
-   }
-	
-	public static void create(Periodo periodo) {
-		periodo.save();
+	public Long getId() {
+		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 	/**
 	 * Aloca uma Disciplina no Período, respeitando o limite de créditos,o status da Disciplina e se ela já foi alocada em outro Período.
 	 * @param disciplina Disciplina a ser alocada.

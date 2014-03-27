@@ -1,6 +1,6 @@
 // @SOURCE:C:/Users/Brendha/workspace/projeto/conf/routes
 // @HASH:86ed5b04c69fcb7b8e8eddbb933859ec6795a690
-// @DATE:Wed Mar 26 20:23:48 GMT-03:00 2014
+// @DATE:Thu Mar 27 19:02:34 GMT-03:00 2014
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._

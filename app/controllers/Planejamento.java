@@ -34,7 +34,6 @@ public class Planejamento extends Model{
 	Long id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	//@JoinTable(name = "TB_PLANO_PERIODO", joinColumns = { @JoinColumn(name = "CD_PLANO_PERIODO") }, inverseJoinColumns = { @JoinColumn(name = "CD_PERIODO") })
     private List<Periodo> periodos;
 	private static final int MINIMO_DE_CREDITOS = 16;
 	private static final int MAXIMO_DE_CREDITOS = 28;

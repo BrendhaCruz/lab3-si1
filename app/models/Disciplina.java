@@ -21,13 +21,18 @@ public class Disciplina extends Model {
 	@Column(unique = true, nullable = false)
 	private String nomeDaDisciplina;
 	
+	@Id
+	private Long id;
+	
 	@Column(name = "periodo_default")
 	private int periodo;
 	
 	private int creditos;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "CADEIRA_REQUISITO", joinColumns = { @JoinColumn(name = "CD_CADEIRA_1") }, inverseJoinColumns = { @JoinColumn(name = "CD_CADEIRA_2") })
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="preRequisitos", joinColumns=@JoinColumn(name="disciplina_codigo", referencedColumnName="id"),
+	inverseJoinColumns=@JoinColumn(name="requisito_codigo", referencedColumnName="id"))
+	
 	private Disciplina[] preRequisitos;
 	
 	/**
@@ -100,14 +105,12 @@ public class Disciplina extends Model {
 		return creditos;
 	}
 	
-	
-	/**
-	 * cria cadeira na tabela
-	 * 
-	 * @param c
-	 */
-	public static void create(Disciplina disc) {
-		disc.save();
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public int getPeriodo() {
