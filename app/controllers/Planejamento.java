@@ -5,22 +5,40 @@ import java.util.List;
 import models.Curriculo;
 import models.Disciplina;
 import models.Periodo;
-import models.Aluno;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
+import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import play.db.ebean.Model;
+import com.avaje.ebean.*;
+import play.db.ebean.*;
+
 
 
 //CONTROLLER: controlador do sistema
-public class Planejamento{ 
+@Entity
+public class Planejamento extends Model{ 
 
 	/**
      * Construtor da classe Planejamento, criando o gerenciador do sistema de Planejamento de Curso.
      * @param curriculo Curriculo utilizado no planejamento do curso do usuario.
      */
 	// CREATOR: Classe planejamento regista a lista dos periodos.
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	Long id;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	//@JoinTable(name = "TB_PLANO_PERIODO", joinColumns = { @JoinColumn(name = "CD_PLANO_PERIODO") }, inverseJoinColumns = { @JoinColumn(name = "CD_PERIODO") })
     private List<Periodo> periodos;
 	private static final int MINIMO_DE_CREDITOS = 16;
-    private static final int MAXIMO_DE_CREDITOS = 28;
+	private static final int MAXIMO_DE_CREDITOS = 28;
     private Curriculo curriculo;
-	private Aluno aluno;
     private Planejamento sistemaPlanejamento;
     private Periodo primeiroPeriodo;
     private Periodo segundoPeriodo;
@@ -31,8 +49,8 @@ public class Planejamento{
     private Periodo setimoPeriodo;
     private Periodo oitavoPeriodo;
 
-
-
+	public static Model.Finder<Long, Planejamento> find = new Model.Finder<Long, Planejamento>(
+			Long.class, Planejamento.class);
     /**
      * Construtor da classe Planejamento, criando o gerenciador do sistema de Planejamento de Curso.
      * @param curriculo Curriculo utilizado no planejamento do curso do usuario.
@@ -51,8 +69,9 @@ public class Planejamento{
 
 	}
 	
-	public Aluno getAluno() {
-		return aluno;
+	
+	public static void create(Planejamento sistemaPlanejamento) {
+		sistemaPlanejamento.save();
 	}
 	
 	/**

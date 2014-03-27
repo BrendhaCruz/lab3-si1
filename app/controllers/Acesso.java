@@ -6,6 +6,9 @@ import play.mvc.Result;
 import play.data.validation.Constraints.Required;
 import static play.data.Form.*;
 import play.db.ebean.Model.Finder;
+import com.avaje.ebean.Ebean;
+
+
 
 public class Acesso extends Controller {
 
@@ -35,13 +38,13 @@ public class Acesso extends Controller {
 
 		public static Result authenticate() {
 		    Form<Login> loginForm = form(Login.class).bindFromRequest();
-		  //  if (loginForm.hasErrors()) {
-		    //    return badRequest(views.html.logado.render(loginForm));
-		    //} else {
+		    if (loginForm.hasErrors()) {
+		       return badRequest(views.html.logado.render(loginForm));
+		    } else {
 		        session().clear();
 		        session("email", loginForm.get().email);
 		        return redirect(routes.Application.index());
-		    //}
+		    }
 		}
 
 		public static Result logout() {
@@ -60,7 +63,7 @@ public class Acesso extends Controller {
 				novoAluno.setEmail(cadastroForm.get().email);
 				novoAluno.setSenha(cadastroForm.get().senha);
 				novoAluno.setNome(cadastroForm.get().nome);
-				novoAluno.save();
+				Ebean.save(novoAluno);
 				return redirect(routes.Application.index());
 			}
 		}
@@ -86,7 +89,7 @@ public class Acesso extends Controller {
 					novoAluno.setNome(nome);
 					novoAluno.setSenha(senha);
 					
-					novoAluno.save();
+					Ebean.save(novoAluno);
 
 					valor ++;
 				}

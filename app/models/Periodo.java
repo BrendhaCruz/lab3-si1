@@ -2,17 +2,52 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import play.data.validation.Constraints.Required;
 
-public class Periodo {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
+import play.db.ebean.Model;
 
+@Entity
+public class Periodo extends Model {
+	
+    @Required
+    public int idPeriodo;
+    
+    
 	// CREATOR: Periodo é feito de disciplinas
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "disciplina", joinColumns = { 
+			@JoinColumn(name = "planejamento") }, inverseJoinColumns = { 
+			@JoinColumn(name = "disciplina") })
 	private List<Disciplina> listaDisciplinas;
+    
+    @Transient
+	public static Model.Finder<Long, Periodo> find = new Finder<Long, Periodo>(
+			Long.class, Periodo.class);
 
 	/**
 	 * Construtor da classe Período; cria um Periodo contendo um ArrayList para receber as Disciplinas a serem alocadas e uma instância de Currículo.
 	 */
 	public Periodo() {
 		this.listaDisciplinas = new ArrayList<Disciplina>();
+	}
+	
+	public void setIdPeriodo(int idPeriodo) {
+       this.idPeriodo = idPeriodo;
+   }
+   public int getIdPeriodo() {
+	   return idPeriodo;
+   }
+	
+	public static void create(Periodo periodo) {
+		periodo.save();
 	}
 
 	/**

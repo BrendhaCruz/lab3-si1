@@ -1,6 +1,6 @@
 // @SOURCE:C:/Users/Brendha/workspace/projeto/conf/routes
-// @HASH:20885232f584dc7de7f643a8b88c4ad11fa746b1
-// @DATE:Sat Mar 22 10:46:25 GMT-03:00 2014
+// @HASH:86ed5b04c69fcb7b8e8eddbb933859ec6795a690
+// @DATE:Wed Mar 26 20:23:48 GMT-03:00 2014
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,7 +13,14 @@ import play.libs.F
 import Router.queryString
 
 
-// @LINE:24
+// @LINE:33
+// @LINE:30
+// @LINE:29
+// @LINE:28
+// @LINE:27
+// @LINE:26
+// @LINE:25
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -79,11 +86,11 @@ def login(): Call = {
 }
                           
 
-// @LINE:24
+// @LINE:33
 class ReverseAssets {
     
 
-// @LINE:24
+// @LINE:33
 def at(file:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
 }
@@ -92,6 +99,13 @@ def at(file:String): Call = {
 }
                           
 
+// @LINE:30
+// @LINE:29
+// @LINE:28
+// @LINE:27
+// @LINE:26
+// @LINE:25
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -102,45 +116,101 @@ def at(file:String): Call = {
 class ReverseApplication {
     
 
+// @LINE:25
 // @LINE:16
 def planejamentoDeCurso(): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "planejamentoDeCurso")
+   () match {
+// @LINE:16
+case () if true => Call("GET", _prefix + { _defaultPrefix } + "planejamentoDeCurso")
+                                                        
+// @LINE:25
+case () if true => Call("GET", _prefix + { _defaultPrefix } + "planejamentoDeCurso")
+                                                        
+   }
 }
                                                 
 
+// @LINE:28
 // @LINE:19
 def criaPeriodo(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "criaPeriodo")
+   () match {
+// @LINE:19
+case () if true => Call("POST", _prefix + { _defaultPrefix } + "criaPeriodo")
+                                                        
+// @LINE:28
+case () if true => Call("POST", _prefix + { _defaultPrefix } + "planejamentoDeCurso/criaPeriodo")
+                                                        
+   }
 }
                                                 
 
+// @LINE:26
 // @LINE:17
 def grade(): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "grade")
+   () match {
+// @LINE:17
+case () if true => Call("GET", _prefix + { _defaultPrefix } + "grade")
+                                                        
+// @LINE:26
+case () if true => Call("GET", _prefix + { _defaultPrefix } + "planejamentoDeCurso/grade")
+                                                        
+   }
 }
                                                 
 
+// @LINE:30
 // @LINE:21
 def removeDisciplinaPeriodo(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "removeDisciplinaPeriodo")
+   () match {
+// @LINE:21
+case () if true => Call("POST", _prefix + { _defaultPrefix } + "removeDisciplinaPeriodo")
+                                                        
+// @LINE:30
+case () if true => Call("POST", _prefix + { _defaultPrefix } + "planejamentoDeCurso/removeDisciplinaPeriodo")
+                                                        
+   }
 }
                                                 
 
+// @LINE:29
 // @LINE:20
 def adicionaDisciplinaEmPeriodo(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "adicionaDisciplinaEmPeriodo")
+   () match {
+// @LINE:20
+case () if true => Call("POST", _prefix + { _defaultPrefix } + "adicionaDisciplinaEmPeriodo")
+                                                        
+// @LINE:29
+case () if true => Call("POST", _prefix + { _defaultPrefix } + "planejamentoDeCurso/adicionaDisciplinaEmPeriodo")
+                                                        
+   }
 }
                                                 
 
+// @LINE:27
 // @LINE:18
 def mostraDisciplinas(): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "mostraDisciplinas")
+   () match {
+// @LINE:18
+case () if true => Call("GET", _prefix + { _defaultPrefix } + "mostraDisciplinas")
+                                                        
+// @LINE:27
+case () if true => Call("GET", _prefix + { _defaultPrefix } + "planejamentoDeCurso/mostraDisciplinas")
+                                                        
+   }
 }
                                                 
 
+// @LINE:22
 // @LINE:6
 def index(): Call = {
-   Call("GET", _prefix)
+   () match {
+// @LINE:6
+case () if true => Call("GET", _prefix)
+                                                        
+// @LINE:22
+case () if true => Call("GET", _prefix)
+                                                        
+   }
 }
                                                 
     
@@ -150,7 +220,14 @@ def index(): Call = {
                   
 
 
-// @LINE:24
+// @LINE:33
+// @LINE:30
+// @LINE:29
+// @LINE:28
+// @LINE:27
+// @LINE:26
+// @LINE:25
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -239,11 +316,11 @@ def login : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:24
+// @LINE:33
 class ReverseAssets {
     
 
-// @LINE:24
+// @LINE:33
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -257,6 +334,13 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
+// @LINE:30
+// @LINE:29
+// @LINE:28
+// @LINE:27
+// @LINE:26
+// @LINE:25
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -267,78 +351,120 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 class ReverseApplication {
     
 
+// @LINE:25
 // @LINE:16
 def planejamentoDeCurso : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.planejamentoDeCurso",
    """
       function() {
+      if (true) {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "planejamentoDeCurso"})
+      }
+      if (true) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "planejamentoDeCurso"})
+      }
       }
    """
 )
                         
 
+// @LINE:28
 // @LINE:19
 def criaPeriodo : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.criaPeriodo",
    """
       function() {
+      if (true) {
       return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "criaPeriodo"})
+      }
+      if (true) {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "planejamentoDeCurso/criaPeriodo"})
+      }
       }
    """
 )
                         
 
+// @LINE:26
 // @LINE:17
 def grade : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.grade",
    """
       function() {
+      if (true) {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "grade"})
+      }
+      if (true) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "planejamentoDeCurso/grade"})
+      }
       }
    """
 )
                         
 
+// @LINE:30
 // @LINE:21
 def removeDisciplinaPeriodo : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.removeDisciplinaPeriodo",
    """
       function() {
+      if (true) {
       return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "removeDisciplinaPeriodo"})
+      }
+      if (true) {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "planejamentoDeCurso/removeDisciplinaPeriodo"})
+      }
       }
    """
 )
                         
 
+// @LINE:29
 // @LINE:20
 def adicionaDisciplinaEmPeriodo : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.adicionaDisciplinaEmPeriodo",
    """
       function() {
+      if (true) {
       return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "adicionaDisciplinaEmPeriodo"})
+      }
+      if (true) {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "planejamentoDeCurso/adicionaDisciplinaEmPeriodo"})
+      }
       }
    """
 )
                         
 
+// @LINE:27
 // @LINE:18
 def mostraDisciplinas : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.mostraDisciplinas",
    """
       function() {
+      if (true) {
       return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "mostraDisciplinas"})
+      }
+      if (true) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "planejamentoDeCurso/mostraDisciplinas"})
+      }
       }
    """
 )
                         
 
+// @LINE:22
 // @LINE:6
 def index : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.index",
    """
       function() {
+      if (true) {
       return _wA({method:"GET", url:"""" + _prefix + """"})
+      }
+      if (true) {
+      return _wA({method:"GET", url:"""" + _prefix + """"})
+      }
       }
    """
 )
@@ -350,7 +476,14 @@ def index : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:24
+// @LINE:33
+// @LINE:30
+// @LINE:29
+// @LINE:28
+// @LINE:27
+// @LINE:26
+// @LINE:25
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19
@@ -409,11 +542,11 @@ def login(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 }
                           
 
-// @LINE:24
+// @LINE:33
 class ReverseAssets {
     
 
-// @LINE:24
+// @LINE:33
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )
@@ -422,6 +555,13 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
+// @LINE:30
+// @LINE:29
+// @LINE:28
+// @LINE:27
+// @LINE:26
+// @LINE:25
+// @LINE:22
 // @LINE:21
 // @LINE:20
 // @LINE:19

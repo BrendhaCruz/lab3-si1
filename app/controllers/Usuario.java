@@ -7,6 +7,9 @@ import controllers.*;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToOne;
+
 
 
 import com.avaje.ebean.*;
@@ -23,6 +26,9 @@ public class Usuario extends Model {
     public  String nome;
 	@Constraints.Required
     public  String senha;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Planejamento sistemaPlanejamento;
+	
 	
     public static Model.Finder<String,Usuario> find = new Finder<String,Usuario>(String.class, Usuario.class); 
     
@@ -34,10 +40,9 @@ public class Usuario extends Model {
 		return find;
 	}
     
-    public  Usuario findEmail(String email) {
+    public static Usuario findEmail(String email) {
 		return find.where().eq("email", email).findUnique();
 	}
-
 
 	public String getNome() {
 		return nome;
@@ -61,6 +66,14 @@ public class Usuario extends Model {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public Planejamento getSistemaPlanejamento() {
+		return sistemaPlanejamento;
+	}
+
+	public void getSistemaPlanejamento(Planejamento sistemaPlanejamento) {
+		this.sistemaPlanejamento = sistemaPlanejamento;
 	}
 
 	@Override

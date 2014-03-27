@@ -2,9 +2,14 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
 
+import play.db.ebean.Model;
+import com.avaje.ebean.*;
+import play.db.ebean.*;
 
-public class Curriculo {
+@Entity
+public class Curriculo extends Model {
 	
 	private Disciplina[] listaDeDisciplinas;
 	private List<Disciplina> disciplinasPrimeiroPeriodo; 

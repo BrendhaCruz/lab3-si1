@@ -8,20 +8,28 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+
 public class Application extends Controller {
 
 	static Curriculo curriculo = new Curriculo();
 	static Planejamento sistemaPlanejamento = new Planejamento(curriculo);
 	static Form<Task> formTask = Form.form(Task.class);
 	
-	
-	static Periodo periodo = new Periodo();
 	static String message = "";
-	static Aluno NAO_LOGADO;
-	
-	@Security.Authenticated(Secured.class)
+	static Periodo periodo = new Periodo();
+
+
 	public static Result index() {
-		return redirect(routes.Application.planejamentoDeCurso());
+				if (session("sistema_planejamento_id") == null) {
+					return redirect(routes.Acesso.login());
+				}
+				sistemaPlanejamento = Planejamento.find.byId(Long.parseLong(session("sistema_planejamento_id")));
+				if (sistemaPlanejamento == null) {
+					session().clear();
+					return redirect(routes.Application.planejamentoDeCurso());
+				}
+				return redirect(routes.Application.planejamentoDeCurso());
+		
 	}
 
 	public static Result planejamentoDeCurso() {
@@ -48,7 +56,7 @@ public class Application extends Controller {
 	     return ok(views.html.grade.render());
 	    }
 	
-	 public static Result mostraDisciplinas() {
+	public static Result mostraDisciplinas() {
 	     return ok(views.html.disciplinas.render(sistemaPlanejamento));
 	    }
 
@@ -91,5 +99,5 @@ public class Application extends Controller {
 		}
 		return redirect(routes.Application.planejamentoDeCurso());
 	}
-	
+
 }

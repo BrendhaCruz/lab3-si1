@@ -1,11 +1,33 @@
 package models;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
-public class Disciplina {
+import play.data.validation.Constraints;
+import play.db.ebean.Model;
+
+@Entity
+public class Disciplina extends Model {
 
 	//CREATOR: A Disciplina conhece seu nome, creditos e preRequisitos
+
+	@Constraints.Required
+	@Column(unique = true, nullable = false)
 	private String nomeDaDisciplina;
+	
+	@Column(name = "periodo_default")
+	private int periodo;
+	
 	private int creditos;
+
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "CADEIRA_REQUISITO", joinColumns = { @JoinColumn(name = "CD_CADEIRA_1") }, inverseJoinColumns = { @JoinColumn(name = "CD_CADEIRA_2") })
 	private Disciplina[] preRequisitos;
 	
 	/**
@@ -76,6 +98,24 @@ public class Disciplina {
 	//CREATOR: A Disciplina conhece seus créditos.
 	public int getCreditos() {
 		return creditos;
+	}
+	
+	
+	/**
+	 * cria cadeira na tabela
+	 * 
+	 * @param c
+	 */
+	public static void create(Disciplina disc) {
+		disc.save();
+	}
+	
+	public int getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(int periodo) {
+		this.periodo = periodo;
 	}
 
 	/**
