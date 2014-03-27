@@ -38,13 +38,13 @@ public class Acesso extends Controller {
 
 		public static Result authenticate() {
 		    Form<Login> loginForm = form(Login.class).bindFromRequest();
-		    if (loginForm.hasErrors()) {
-		       return badRequest(views.html.logado.render(loginForm));
-		    } else {
+		   // if (loginForm.hasErrors()) {
+		   //    return badRequest(views.html.logado.render(loginForm));
+		    //} else {
 		        session().clear();
 		        session("email", loginForm.get().email);
 		        return redirect(routes.Application.index());
-		    }
+		   // }
 		}
 
 		public static Result logout() {

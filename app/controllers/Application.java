@@ -20,10 +20,10 @@ public class Application extends Controller {
 
 
 	public static Result index() {
-				if (session("sistema_planejamento_id") == null) {
-					return redirect(routes.Acesso.login());
-				}
-				sistemaPlanejamento = Planejamento.find.byId(Long.parseLong(session("sistema_planejamento_id")));
+				//if (session("sistema_planejamento_id") == null) {
+				//	return redirect(routes.Acesso.login());
+				//}
+				//sistemaPlanejamento = Planejamento.find.byId(Long.parseLong(session("sistema_planejamento_id")));
 				if (sistemaPlanejamento == null) {
 					session().clear();
 					return redirect(routes.Application.planejamentoDeCurso());
