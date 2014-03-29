@@ -3,6 +3,11 @@
 
 # --- !Ups
 
+create table novo_planejamento (
+  id                        bigint not null,
+  constraint pk_novo_planejamento primary key (id))
+;
+
 create table planejamento (
   id                        bigint not null,
   constraint pk_planejamento primary key (id))
@@ -15,6 +20,8 @@ create table usuario (
   sistema_planejamento_id   bigint,
   constraint pk_usuario primary key (email))
 ;
+
+create sequence novo_planejamento_seq;
 
 create sequence planejamento_seq;
 
@@ -29,11 +36,15 @@ create index ix_usuario_sistemaPlanejamento_1 on usuario (sistema_planejamento_i
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
+drop table if exists novo_planejamento;
+
 drop table if exists planejamento;
 
 drop table if exists usuario;
 
 SET REFERENTIAL_INTEGRITY TRUE;
+
+drop sequence if exists novo_planejamento_seq;
 
 drop sequence if exists planejamento_seq;
 

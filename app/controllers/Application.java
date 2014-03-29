@@ -12,7 +12,9 @@ import play.mvc.Result;
 public class Application extends Controller {
 
 	static Curriculo curriculo = new Curriculo();
+	static NovaGrade novaGrade = new NovaGrade();
 	static Planejamento sistemaPlanejamento = new Planejamento(curriculo);
+	static NovoPlanejamento sistemaNovoPlanejamento = new NovoPlanejamento(novaGrade);
 	static Form<Task> formTask = Form.form(Task.class);
 	
 	static String message = "";
@@ -52,8 +54,33 @@ public class Application extends Controller {
 				message));
 	}
 	
+	public static Result planejamentoDeCursoNovo() {
+		if (sistemaNovoPlanejamento.quantidadeDePeriodos() == 0) {
+			try {
+				sistemaNovoPlanejamento.adicionaPrimeiroPeriodo();
+				sistemaNovoPlanejamento.adicionaSegundoPeriodo();
+				sistemaNovoPlanejamento.adicionaTerceiroPeriodo();
+				sistemaNovoPlanejamento.adicionaQuartoPeriodo();
+				sistemaNovoPlanejamento.adicionaQuintoPeriodo();
+				sistemaNovoPlanejamento.adicionaSextoPeriodo();
+				sistemaNovoPlanejamento.adicionaSetimoPeriodo();
+				sistemaNovoPlanejamento.adicionaOitavoPeriodo();
+				sistemaNovoPlanejamento.adicionaNonoPeriodo();
+				message = "";
+			} catch (Exception e) {
+				message = e.getMessage();
+			}
+		}
+		return ok(views.html.indexNovo.render(sistemaNovoPlanejamento, formTask,
+				message));
+	}
+	
 	public static Result grade() {
 	     return ok(views.html.grade.render());
+	    }
+	
+	public static Result planoNovo() {
+		return redirect(routes.Application.planejamentoDeCursoNovo());
 	    }
 	
 	public static Result mostraDisciplinas() {

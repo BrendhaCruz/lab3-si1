@@ -15,6 +15,8 @@ POST /criaUsuario					                              controllers.Acesso.criaUsuar
 GET  /logout                                                      controllers.Acesso.logout()
 GET  /planejamentoDeCurso                                         controllers.Application.planejamentoDeCurso()
 GET	 /grade					                                      controllers.Application.grade()
+GET	 /planoNovo				                                      controllers.Application.planoNovo()
+GET  /planejamentoDeCursoNovo                                         controllers.Application.planejamentoDeCursoNovo()
 GET  /mostraDisciplinas 		                                  controllers.Application.mostraDisciplinas()
 POST /criaPeriodo                                                 controllers.Application.criaPeriodo()
 POST /adicionaDisciplinaEmPeriodo                                 controllers.Application.adicionaDisciplinaEmPeriodo()

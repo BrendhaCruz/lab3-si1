@@ -1,4 +1,4 @@
-@(sistemaPlanejamento: controllers.Planejamento, formTask:Form[models.Task], message:String)
+@(sistemaNovoPlanejamento: controllers.NovoPlanejamento, formTask:Form[models.Task], message:String)
 
 @import helper._ 
 @main("Planejamento de Curso - CCC") {
@@ -20,6 +20,9 @@
             <a href="@routes.Acesso.logout()">Logout</a>
         </dd>
     </dl>
+      @form(routes.Application.index()) {
+     <input type="submit" class="btn btn-primary" value="Voltar para página inicial">
+    }
 </header>
 	
 		<header>
@@ -27,7 +30,7 @@
 			<h2><small> Você pode manipular as disciplinas, organizá-las e salvá-las da maneira que preferir através de remoção e inserção das mesmas no período desejado. </small></h2>
 			<br>
 			<br>
-			@if(sistemaPlanejamento.getPeriodos.size() >= 0) {
+			@if(sistemaNovoPlanejamento.getPeriodos.size() >= 0) {
 				<!--janela de alerta - limite de periodos-->
 					@if(message != ""){
 						<script language="JavaScript" type="text/javascript">
@@ -37,22 +40,22 @@
 					
 			<div class="addDisciplina"> 
 			  @form(routes.Application.adicionaDisciplinaEmPeriodo()){
-				@if(sistemaPlanejamento.getPeriodos.size() >= 0) {
+				@if(sistemaNovoPlanejamento.getPeriodos.size() >= 0) {
 				         <nome>Adicionar Disciplina
 				                   <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
 
-				                @for(disciplina <-  sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
-				                	@if(!sistemaPlanejamento.estaAlocada(disciplina)){
+				                @for(disciplina <-  sistemaNovoPlanejamento.getCurriculo().getNovaListaDeDisciplinas()) {
+				                	@if(!sistemaNovoPlanejamento.estaAlocada(disciplina)){
 				                     <option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>
 				                     }
 				                     
 				                }
 				        </select>        no Período    </nome>
 				           <select class="selectpicker" data-width="100px" name="idPeriodo" >
-				            @for(periodo <- sistemaPlanejamento.getPeriodos()) {
+				            @for(periodo <- sistemaNovoPlanejamento.getPeriodos()) {
 								
-				                 @if(sistemaPlanejamento.getPeriodos().indexOf(periodo) >= 0) {
-				                      <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option><br>
+				                 @if(sistemaNovoPlanejamento.getPeriodos().indexOf(periodo) >= 0) {
+				                      <option value=@(sistemaNovoPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaNovoPlanejamento.getPeriodos().indexOf(periodo)+1)</option><br>
 
 				                 }
 				            }
@@ -63,13 +66,13 @@
 			  }
 			  </div><br>
 			  
-		@if(sistemaPlanejamento.getPeriodos().get(0).getListaDeDisciplinas().size() > 0){
+		@if(sistemaNovoPlanejamento.getPeriodos().get(0).getListaDeDisciplinas().size() > 0){
 		<br><div class="removeDisciplina">
 		@form(routes.Application.removeDisciplinaPeriodo()){
-			@if(sistemaPlanejamento.getPeriodos.size() >= 0) {
+			@if(sistemaNovoPlanejamento.getPeriodos.size() >= 0) {
 		    	<nome>Remover disciplina <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
-		            @for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
-		                 @if(sistemaPlanejamento.estaAlocada(disciplina) && sistemaPlanejamento.getCurriculo().getListaDeDisciplinas().contains(disciplina)){
+		            @for(disciplina <- sistemaNovoPlanejamento.getCurriculo().getNovaListaDeDisciplinas()) {
+		                 @if(sistemaNovoPlanejamento.estaAlocada(disciplina) && sistemaNovoPlanejamento.getCurriculo().getNovaListaDeDisciplinas().contains(disciplina)){
 		        	         </nome><option value="@disciplina.getNomeDaDisciplina()" name="inputNameDisc" >@disciplina.getNomeDaDisciplina()</option>
 			             }
 		            }
@@ -94,12 +97,6 @@
         	<input type="submit" class="btn btn-primary" value="Grade do Curso">
      } 
       </div>
-      <br>
-       <div>
-     @form(routes.Application.planoNovo()) {
-        	<input type="submit" class="btn btn-primary" value="Nova Grade do Curso">
-     } 
-      </div>
      <br>
       <div>
      @form(routes.Application.mostraDisciplinas()) {
@@ -110,21 +107,21 @@
 		<br><section class="planejamento">
 			<!-- tabela com as disciplinas e o calculo do total de creditos de qualquer periodo-->
 			<div id="colunas" style=" width: 135%;">
-				@for(periodo <- sistemaPlanejamento.getPeriodos()){
-				<div id="c@{sistemaPlanejamento.getPeriodos.indexOf(periodo)+1}" class="coluna" style="text-align:center; width:250px; height:525px ">
-					<span style="margin-top:50px; color:#000000;"><b>@{sistemaPlanejamento.getPeriodos.indexOf(periodo)+1}º PERÍODO </b></span>
+				@for(periodo <- sistemaNovoPlanejamento.getPeriodos()){
+				<div id="c@{sistemaNovoPlanejamento.getPeriodos.indexOf(periodo)+1}" class="coluna" style="text-align:center; width:250px; height:425px ">
+					<span style="margin-top:50px; color:#000000;"><b>@{sistemaNovoPlanejamento.getPeriodos.indexOf(periodo)+1}º PERÍODO </b></span>
 					<br>
 					<p style="text-align: center;">
 						</span>
 						
-						@for(disciplina <- sistemaPlanejamento.getDisciplinasDadoPeriodo(sistemaPlanejamento.getPeriodos.indexOf(periodo))){
+						@for(disciplina <- sistemaNovoPlanejamento.getDisciplinasDadoPeriodo(sistemaNovoPlanejamento.getPeriodos.indexOf(periodo))){
 							<div class="disciplina" style="position:relative;">
 							<tr><td class="disciplina">@disciplina.getNomeDaDisciplina()</tr>
 							</div>
 						} 
 						<font color="#000000">
 						<tr><td class="numero">Total de Créditos no Período: @periodo.calculaTotalDeCreditos()</tr></td>
-						@if(sistemaPlanejamento.getCreditosDeUmPeriodo(sistemaPlanejamento.getPeriodos.indexOf(periodo)) < sistemaPlanejamento.minimoDeCreditos()){
+						@if(sistemaNovoPlanejamento.getCreditosDeUmPeriodo(sistemaNovoPlanejamento.getPeriodos.indexOf(periodo)) < sistemaNovoPlanejamento.minimoDeCreditos()){
 							<tr><td class="numero">Creditos desse periodo estao abaixo do minimo de creditos.</tr></td>
 						}
 						</font>
