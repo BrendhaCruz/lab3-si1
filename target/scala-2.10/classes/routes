@@ -4,6 +4,7 @@
 
 # Home page
 GET /                                       controllers.Application.index()
+GET  /login                                                    	  controllers.Acesso.login()
 
 # Planejamento
 
@@ -14,9 +15,11 @@ GET	 /criaUsuario					                              controllers.Acesso.criaUsuar
 POST /criaUsuario					                              controllers.Acesso.criaUsuario()
 GET  /logout                                                      controllers.Acesso.logout()
 GET  /planejamentoDeCurso                                         controllers.Application.planejamentoDeCurso()
-GET	 /grade					                                      controllers.Application.grade()
 GET	 /planoNovo				                                      controllers.Application.planoNovo()
 GET  /planejamentoDeCursoNovo                                         controllers.Application.planejamentoDeCursoNovo()
+GET	 /planoComum				                                      controllers.Application.planoComum()
+GET  /planejamentoDeCursoComum                                         controllers.Application.planejamentoDeCursoComum()
+GET	 /grade					                                      controllers.Application.grade()
 GET  /mostraDisciplinas 		                                  controllers.Application.mostraDisciplinas()
 POST /criaPeriodo                                                 controllers.Application.criaPeriodo()
 POST /adicionaDisciplinaEmPeriodo                                 controllers.Application.adicionaDisciplinaEmPeriodo()

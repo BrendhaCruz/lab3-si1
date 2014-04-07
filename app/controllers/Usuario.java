@@ -4,33 +4,50 @@ import javax.persistence.*;
 import javax.persistence.Table;
 import play.db.ebean.*;
 import controllers.*;
+import models.*;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToOne;
-
-
-
 import com.avaje.ebean.*;
 
 @Entity
-@Table(name = "usuario")
-public class Usuario extends Model {
+public class Usuario extends Model implements Comparable <Usuario>{
 
     @Id
-    @Constraints.Required
-	@Formats.NonEmpty
-    public  String email;
-	@Constraints.Required
-    public  String nome;
-	@Constraints.Required
-    public  String senha;
-	@OneToOne(cascade = CascadeType.ALL)
-	private Planejamento sistemaPlanejamento;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	Long id;
+    
+	//@Required
+    private  String email;
 	
+    //@Required
+    private String nome;
+	
+    //@Required
+    private String senha;
+    //@OneToOne(cascade = CascadeType.ALL)	
+    
+	private Curriculo curriculo;// = new Curriculo();
+    	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private Planejamento sistemaPlanejamento;// = new Planejamento(curriculo);
+
 	
     public static Model.Finder<String,Usuario> find = new Finder<String,Usuario>(String.class, Usuario.class); 
+    //public static Finder<String,Usuario> find = new Finder<String,Usuario>(String.class, Usuario.class);
+    
+    public Usuario(String email, String nome, String senha) {
+		this.email = email;
+    	this.nome = nome;
+		this.senha = senha;
+		curriculo = new Curriculo();
+		sistemaPlanejamento = new Planejamento();
+	} 
+	
+	public Usuario() {
+		
+	} 
     
     public  Usuario authenticate(String email, String senha) {
         return find.where().eq("email", email).eq("senha", senha).findUnique();
@@ -74,6 +91,25 @@ public class Usuario extends Model {
 
 	public void getSistemaPlanejamento(Planejamento sistemaPlanejamento) {
 		this.sistemaPlanejamento = sistemaPlanejamento;
+	}
+	
+	public static void create(Usuario user) {
+		user.save();
+	}
+
+    
+	//public static void delete(String email) {
+		//find.ref(email).delete();
+	//}
+
+    public static void atualizar(String email) {
+		Usuario user = find.ref(email);
+		user.update();
+	}
+	
+	@Override
+	public int compareTo(Usuario outro) {
+		return getNome().compareTo(outro.getNome());
 	}
 
 	@Override

@@ -1,6 +1,6 @@
-// @SOURCE:C:/Users/Brendha/workspace/projeto1/conf/routes
-// @HASH:9e46e4e632a85ecfbac4e388f611a3d42370046a
-// @DATE:Fri Mar 28 21:39:30 GMT-03:00 2014
+// @SOURCE:C:/Users/Brendha/workspace/Novo/conf/routes
+// @HASH:619a8d5fddae0b85780631882ac50b6e52fa07af
+// @DATE:Mon Apr 07 14:15:24 GMT-03:00 2014
 
 package controllers;
 

@@ -5,8 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import play.data.validation.Constraints;
@@ -30,9 +28,6 @@ public class Disciplina extends Model {
 	private int creditos;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="preRequisitos", joinColumns=@JoinColumn(name="disciplina_codigo", referencedColumnName="id"),
-	inverseJoinColumns=@JoinColumn(name="requisito_codigo", referencedColumnName="id"))
-	
 	private Disciplina[] preRequisitos;
 	
 	/**

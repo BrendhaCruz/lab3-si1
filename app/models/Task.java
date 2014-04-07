@@ -2,6 +2,13 @@ package models;
 
 import play.data.validation.Constraints.Required;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 import javax.persistence.Entity;
 import play.db.ebean.Model;
 import com.avaje.ebean.*;

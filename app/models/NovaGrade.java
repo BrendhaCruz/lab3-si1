@@ -11,7 +11,7 @@ import play.db.ebean.*;
 @Entity
 public class NovaGrade extends Model {
 
-	private Disciplina[] novaListaDeDisciplinas;
+	private Disciplina[] listaDeDisciplinas;
 	private List<Disciplina> disciplinasPrimeiroPeriodo;
 	private List<Disciplina> disciplinasSegundoPeriodo;
 	private List<Disciplina> disciplinasTerceiroPeriodo;
@@ -41,7 +41,7 @@ public class NovaGrade extends Model {
 	 */
 	// CREATOR: Cria a lista das disciplinas.
 	public NovaGrade() {
-		novaListaDeDisciplinas = new Disciplina[] {
+		listaDeDisciplinas = new Disciplina[] {
 				matDisc1 = new Disciplina("Matematica Discreta I", 4,
 						new Disciplina[0]),
 				prog1 = new Disciplina("Programação I", 4, new Disciplina[0]),
@@ -204,8 +204,8 @@ public class NovaGrade extends Model {
 	 *         Ciencia da Computacao.
 	 */
 	// INFORMATION EXPERT: Possui a lista das disciplinas cadastradas
-	public Disciplina[] getNovaListaDeDisciplinas() {
-		return this.novaListaDeDisciplinas;
+	public Disciplina[] getListaDeDisciplinas() {
+		return this.listaDeDisciplinas;
 	}
 
 	/**
@@ -216,7 +216,7 @@ public class NovaGrade extends Model {
 	// INFORMATION EXPERT: Possui a lista das disciplinas cadastradas e deve
 	// saber sua quantidade.
 	public int quantDeDisciplinasCadastradas() {
-		return this.novaListaDeDisciplinas.length;
+		return this.listaDeDisciplinas.length;
 	}
 
 	/**
@@ -232,8 +232,8 @@ public class NovaGrade extends Model {
 	// disciplinas que estao contidas nela.
 	public boolean contains(Disciplina disciplina) {
 		boolean resp = false;
-		for (int i = 0; i < this.getNovaListaDeDisciplinas().length; i++) {
-			if (this.getNovaListaDeDisciplinas()[i].equals(disciplina)) {
+		for (int i = 0; i < this.getListaDeDisciplinas().length; i++) {
+			if (this.getListaDeDisciplinas()[i].equals(disciplina)) {
 				resp = true;
 			}
 		}
@@ -402,9 +402,9 @@ public class NovaGrade extends Model {
 	public Disciplina pesquisaDisciplina(String nomeDaDisciplina)
 			throws Exception {
 		for (int i = 0; i < this.quantDeDisciplinasCadastradas(); i++) {
-			if (this.getNovaListaDeDisciplinas()[i].getNomeDaDisciplina()
+			if (this.getListaDeDisciplinas()[i].getNomeDaDisciplina()
 					.equalsIgnoreCase(nomeDaDisciplina)) {
-				return this.getNovaListaDeDisciplinas()[i];
+				return this.getListaDeDisciplinas()[i];
 			}
 		}
 		throw new Exception("Nao existe essa disciplina");

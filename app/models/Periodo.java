@@ -7,8 +7,6 @@ import play.data.validation.Constraints.Required;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import play.db.ebean.Model;
 

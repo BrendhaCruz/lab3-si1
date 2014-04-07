@@ -13,17 +13,25 @@ create table planejamento (
   constraint pk_planejamento primary key (id))
 ;
 
+create table planejamento_comum (
+  id                        bigint not null,
+  constraint pk_planejamento_comum primary key (id))
+;
+
 create table usuario (
-  email                     varchar(255) not null,
+  id                        bigint not null,
+  email                     varchar(255),
   nome                      varchar(255),
   senha                     varchar(255),
   sistema_planejamento_id   bigint,
-  constraint pk_usuario primary key (email))
+  constraint pk_usuario primary key (id))
 ;
 
 create sequence novo_planejamento_seq;
 
 create sequence planejamento_seq;
+
+create sequence planejamento_comum_seq;
 
 create sequence usuario_seq;
 
@@ -40,6 +48,8 @@ drop table if exists novo_planejamento;
 
 drop table if exists planejamento;
 
+drop table if exists planejamento_comum;
+
 drop table if exists usuario;
 
 SET REFERENTIAL_INTEGRITY TRUE;
@@ -47,6 +57,8 @@ SET REFERENTIAL_INTEGRITY TRUE;
 drop sequence if exists novo_planejamento_seq;
 
 drop sequence if exists planejamento_seq;
+
+drop sequence if exists planejamento_comum_seq;
 
 drop sequence if exists usuario_seq;
 

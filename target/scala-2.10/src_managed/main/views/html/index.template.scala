@@ -55,79 +55,79 @@ Seq[Any](format.raw/*1.93*/("""
 			<h2><small> Você pode manipular as disciplinas, organizá-las e salvá-las da maneira que preferir através de remoção e inserção das mesmas no período desejado. </small></h2>
 			<br>
 			<br>
-			"""),_display_(Seq[Any](/*30.5*/if(sistemaPlanejamento.getPeriodos.size() >= 0)/*30.52*/ {_display_(Seq[Any](format.raw/*30.54*/("""
 				<!--janela de alerta - limite de periodos-->
-					"""),_display_(Seq[Any](/*32.7*/if(message != "")/*32.24*/{_display_(Seq[Any](format.raw/*32.25*/("""
+					"""),_display_(Seq[Any](/*31.7*/if(message != "")/*31.24*/{_display_(Seq[Any](format.raw/*31.25*/("""
 						<script language="JavaScript" type="text/javascript">
-							alert(""""),_display_(Seq[Any](/*34.16*/message)),format.raw/*34.23*/("""")
+							alert(""""),_display_(Seq[Any](/*33.16*/message)),format.raw/*33.23*/("""")
 						</script>
-					""")))})),format.raw/*36.7*/("""   
+					""")))})),format.raw/*35.7*/("""   
 					
 			<div class="addDisciplina"> 
-			  """),_display_(Seq[Any](/*39.7*/form(routes.Application.adicionaDisciplinaEmPeriodo())/*39.61*/{_display_(Seq[Any](format.raw/*39.62*/("""
-				"""),_display_(Seq[Any](/*40.6*/if(sistemaPlanejamento.getPeriodos.size() >= 0)/*40.53*/ {_display_(Seq[Any](format.raw/*40.55*/("""
+			  """),_display_(Seq[Any](/*38.7*/form(routes.Application.adicionaDisciplinaEmPeriodo())/*38.61*/{_display_(Seq[Any](format.raw/*38.62*/("""
 				         <nome>Adicionar Disciplina
 				                   <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
 
-				                """),_display_(Seq[Any](/*44.22*/for(disciplina <-  sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) yield /*44.100*/ {_display_(Seq[Any](format.raw/*44.102*/("""
-				                	"""),_display_(Seq[Any](/*45.23*/if(!sistemaPlanejamento.estaAlocada(disciplina))/*45.71*/{_display_(Seq[Any](format.raw/*45.72*/("""
-				                     <option value=""""),_display_(Seq[Any](/*46.42*/disciplina/*46.52*/.getNomeDaDisciplina())),format.raw/*46.74*/("""" name="inputNameDisc" >"""),_display_(Seq[Any](/*46.99*/disciplina/*46.109*/.getNomeDaDisciplina())),format.raw/*46.131*/("""</option>
-				                     """)))})),format.raw/*47.27*/("""
+				                """),_display_(Seq[Any](/*42.22*/for(disciplina <-  sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) yield /*42.100*/ {_display_(Seq[Any](format.raw/*42.102*/("""
+				                	"""),_display_(Seq[Any](/*43.23*/if(!sistemaPlanejamento.estaAlocada(disciplina))/*43.71*/{_display_(Seq[Any](format.raw/*43.72*/("""
+				                     <option value=""""),_display_(Seq[Any](/*44.42*/disciplina/*44.52*/.getNomeDaDisciplina())),format.raw/*44.74*/("""" name="inputNameDisc" >"""),_display_(Seq[Any](/*44.99*/disciplina/*44.109*/.getNomeDaDisciplina())),format.raw/*44.131*/("""</option>
+				                     """)))})),format.raw/*45.27*/("""
 				                     
-				                """)))})),format.raw/*49.22*/("""
+				                """)))})),format.raw/*47.22*/("""
 				        </select>        no Período    </nome>
 				           <select class="selectpicker" data-width="100px" name="idPeriodo" >
-				            """),_display_(Seq[Any](/*52.18*/for(periodo <- sistemaPlanejamento.getPeriodos()) yield /*52.67*/ {_display_(Seq[Any](format.raw/*52.69*/("""
+				            """),_display_(Seq[Any](/*50.18*/for(periodo <- sistemaPlanejamento.getPeriodos()) yield /*50.67*/ {_display_(Seq[Any](format.raw/*50.69*/("""
 								
-				                 """),_display_(Seq[Any](/*54.23*/if(sistemaPlanejamento.getPeriodos().indexOf(periodo) >= 0)/*54.82*/ {_display_(Seq[Any](format.raw/*54.84*/("""
-				                      <option value="""),_display_(Seq[Any](/*55.42*/(sistemaPlanejamento.getPeriodos().indexOf(periodo)))),format.raw/*55.94*/(""" name="idPeriodo" >"""),_display_(Seq[Any](/*55.114*/(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1))),format.raw/*55.168*/("""</option><br>
+				                 """),_display_(Seq[Any](/*52.23*/if(sistemaPlanejamento.getPeriodos().indexOf(periodo) >= 0)/*52.82*/ {_display_(Seq[Any](format.raw/*52.84*/("""
+				                      <option value="""),_display_(Seq[Any](/*53.42*/(sistemaPlanejamento.getPeriodos().indexOf(periodo)))),format.raw/*53.94*/(""" name="idPeriodo" >"""),_display_(Seq[Any](/*53.114*/(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1))),format.raw/*53.168*/("""</option><br>
 
-				                 """)))})),format.raw/*57.23*/("""
-				            """)))})),format.raw/*58.18*/("""
+				                 """)))})),format.raw/*55.23*/("""
+				            """)))})),format.raw/*56.18*/("""
 				        </select>
 				        <button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>  
-				 """)))})),format.raw/*61.7*/("""
+				
 
-			  """)))})),format.raw/*63.7*/("""
+			  """)))})),format.raw/*61.7*/("""
 			  </div><br>
 			  
-		"""),_display_(Seq[Any](/*66.4*/if(sistemaPlanejamento.getPeriodos().get(0).getListaDeDisciplinas().size() > 0)/*66.83*/{_display_(Seq[Any](format.raw/*66.84*/("""
+		"""),_display_(Seq[Any](/*64.4*/if(sistemaPlanejamento.getPeriodos().get(0).getListaDeDisciplinas().size() > 0)/*64.83*/{_display_(Seq[Any](format.raw/*64.84*/("""
 		<br><div class="removeDisciplina">
-		"""),_display_(Seq[Any](/*68.4*/form(routes.Application.removeDisciplinaPeriodo())/*68.54*/{_display_(Seq[Any](format.raw/*68.55*/("""
-			"""),_display_(Seq[Any](/*69.5*/if(sistemaPlanejamento.getPeriodos.size() >= 0)/*69.52*/ {_display_(Seq[Any](format.raw/*69.54*/("""
+		"""),_display_(Seq[Any](/*66.4*/form(routes.Application.removeDisciplinaPeriodo())/*66.54*/{_display_(Seq[Any](format.raw/*66.55*/("""
 		    	<nome>Remover disciplina <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
-		            """),_display_(Seq[Any](/*71.16*/for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) yield /*71.93*/ {_display_(Seq[Any](format.raw/*71.95*/("""
-		                 """),_display_(Seq[Any](/*72.21*/if(sistemaPlanejamento.estaAlocada(disciplina) && sistemaPlanejamento.getCurriculo().getListaDeDisciplinas().contains(disciplina))/*72.151*/{_display_(Seq[Any](format.raw/*72.152*/("""
-		        	         </nome><option value=""""),_display_(Seq[Any](/*73.44*/disciplina/*73.54*/.getNomeDaDisciplina())),format.raw/*73.76*/("""" name="inputNameDisc" >"""),_display_(Seq[Any](/*73.101*/disciplina/*73.111*/.getNomeDaDisciplina())),format.raw/*73.133*/("""</option>
-			             """)))})),format.raw/*74.18*/("""
-		            """)))})),format.raw/*75.16*/("""
+		            """),_display_(Seq[Any](/*68.16*/for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) yield /*68.93*/ {_display_(Seq[Any](format.raw/*68.95*/("""
+		                 """),_display_(Seq[Any](/*69.21*/if(sistemaPlanejamento.estaAlocada(disciplina) && sistemaPlanejamento.getCurriculo().getListaDeDisciplinas().contains(disciplina))/*69.151*/{_display_(Seq[Any](format.raw/*69.152*/("""
+		        	         </nome><option value=""""),_display_(Seq[Any](/*70.44*/disciplina/*70.54*/.getNomeDaDisciplina())),format.raw/*70.76*/("""" name="inputNameDisc" >"""),_display_(Seq[Any](/*70.101*/disciplina/*70.111*/.getNomeDaDisciplina())),format.raw/*70.133*/("""</option>
+			             """)))})),format.raw/*71.18*/("""
+		            """)))})),format.raw/*72.16*/("""
 		        </select>
 		        <button type="submit" class="btn btn-primary" type="button">Remover Disciplina</button>
-				""")))})),format.raw/*78.6*/("""
-			""")))})),format.raw/*79.5*/("""</div><br><br>
+			""")))})),format.raw/*75.5*/("""</div><br><br>
 			
-		""")))})),format.raw/*81.4*/("""
-	""")))})),format.raw/*82.3*/("""
-	
+		""")))})),format.raw/*77.4*/("""
 	<h2><small>Caso você ache necessário, adicione um novo período no seu planejamento de curso.</small></h2>
 	<div class="addPeriodo">
-	"""),_display_(Seq[Any](/*86.3*/form(routes.Application.criaPeriodo())/*86.41*/ {_display_(Seq[Any](format.raw/*86.43*/("""
+	"""),_display_(Seq[Any](/*80.3*/form(routes.Application.criaPeriodo())/*80.41*/ {_display_(Seq[Any](format.raw/*80.43*/("""
 	<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
-    """)))})),format.raw/*88.6*/("""
+    """)))})),format.raw/*82.6*/("""
 	</div>
 	<br>
-	
 	 <div>
-     """),_display_(Seq[Any](/*93.7*/form(routes.Application.grade())/*93.39*/ {_display_(Seq[Any](format.raw/*93.41*/("""
-        	<input type="submit" class="btn btn-primary" value="Grade do Curso">
-     """)))})),format.raw/*95.7*/(""" 
-      </div>
-      <br>
-       <div>
-     """),_display_(Seq[Any](/*99.7*/form(routes.Application.planoNovo())/*99.43*/ {_display_(Seq[Any](format.raw/*99.45*/("""
+	 <br>
+	 """),_display_(Seq[Any](/*87.4*/form(routes.Application.planoNovo())/*87.40*/ {_display_(Seq[Any](format.raw/*87.42*/("""
         	<input type="submit" class="btn btn-primary" value="Nova Grade do Curso">
-     """)))})),format.raw/*101.7*/(""" 
+     """)))})),format.raw/*89.7*/(""" 
+	 </div>
+	  <br>
+	  """),_display_(Seq[Any](/*92.5*/form(routes.Application.planoComum())/*92.42*/ {_display_(Seq[Any](format.raw/*92.44*/("""
+        	<input type="submit" class="btn btn-primary" value="Grade Comum do Curso">
+     """)))})),format.raw/*94.7*/(""" 
+	 </div>
+	  <br>
+	 <div>
+     """),_display_(Seq[Any](/*98.7*/form(routes.Application.grade())/*98.39*/ {_display_(Seq[Any](format.raw/*98.41*/("""
+        	<input type="submit" class="btn btn-primary" value="Grade do Curso">
+     """)))})),format.raw/*100.7*/(""" 
       </div>
+    
      <br>
       <div>
      """),_display_(Seq[Any](/*105.7*/form(routes.Application.mostraDisciplinas())/*105.51*/ {_display_(Seq[Any](format.raw/*105.53*/("""
@@ -157,14 +157,13 @@ Seq[Any](format.raw/*1.93*/("""
 						""")))})),format.raw/*129.8*/("""
 						</font>
 			</div>
-				 """)))})),format.raw/*132.7*/(""" 
 		</section> 
 		<br>
 		<br>
-		
+		""")))})),format.raw/*135.4*/("""
 	</body>
 </font>
-""")))})),format.raw/*139.2*/("""
+""")))})),format.raw/*138.2*/("""
 
 """))}
     }
@@ -178,11 +177,11 @@ Seq[Any](format.raw/*1.93*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Mar 28 21:34:51 GMT-03:00 2014
-                    SOURCE: C:/Users/Brendha/workspace/projeto1/app/views/index.scala.html
-                    HASH: d4ca8c52a2cf2dbd8c427f75138eea466c2c22ea
-                    MATRIX: 817->1|1020->92|1059->116|1102->151|1141->153|1362->338|1377->344|1417->362|1550->459|1565->465|1603->481|1988->831|2044->878|2084->880|2177->938|2203->955|2242->956|2356->1034|2385->1041|2443->1068|2529->1119|2592->1173|2631->1174|2673->1181|2729->1228|2769->1230|2971->1396|3066->1474|3107->1476|3167->1500|3224->1548|3263->1549|3342->1592|3361->1602|3405->1624|3466->1649|3486->1659|3531->1681|3600->1718|3682->1768|3872->1922|3937->1971|3977->1973|4047->2007|4115->2066|4155->2068|4234->2111|4308->2163|4365->2183|4442->2237|4513->2276|4564->2295|4731->2431|4772->2441|4836->2470|4924->2549|4963->2550|5041->2593|5100->2643|5139->2644|5180->2650|5236->2697|5276->2699|5438->2825|5531->2902|5571->2904|5629->2926|5769->3056|5809->3057|5890->3102|5909->3112|5953->3134|6015->3159|6035->3169|6080->3191|6140->3219|6189->3236|6347->3363|6384->3369|6439->3393|6474->3397|6651->3539|6698->3577|6738->3579|6879->3689|6950->3725|6991->3757|7031->3759|7149->3846|7233->3895|7278->3931|7318->3933|7442->4025|7525->4072|7579->4116|7620->4118|7747->4213|7990->4420|8056->4469|8096->4470|8150->4487|8225->4539|8390->4667|8466->4719|8604->4821|8736->4935|8777->4936|8911->5033|8931->5043|8976->5065|9037->5094|9167->5187|9184->5194|9232->5219|9287->5238|9435->5375|9476->5376|9617->5485|9683->5519|9773->5577
-                    LINES: 26->1|30->1|32->4|32->4|32->4|44->16|44->16|44->16|48->20|48->20|48->20|58->30|58->30|58->30|60->32|60->32|60->32|62->34|62->34|64->36|67->39|67->39|67->39|68->40|68->40|68->40|72->44|72->44|72->44|73->45|73->45|73->45|74->46|74->46|74->46|74->46|74->46|74->46|75->47|77->49|80->52|80->52|80->52|82->54|82->54|82->54|83->55|83->55|83->55|83->55|85->57|86->58|89->61|91->63|94->66|94->66|94->66|96->68|96->68|96->68|97->69|97->69|97->69|99->71|99->71|99->71|100->72|100->72|100->72|101->73|101->73|101->73|101->73|101->73|101->73|102->74|103->75|106->78|107->79|109->81|110->82|114->86|114->86|114->86|116->88|121->93|121->93|121->93|123->95|127->99|127->99|127->99|129->101|133->105|133->105|133->105|135->107|141->113|141->113|141->113|142->114|142->114|143->115|143->115|148->120|148->120|148->120|150->122|150->122|150->122|152->124|154->126|154->126|154->126|155->127|155->127|155->127|157->129|160->132|167->139
+                    DATE: Mon Apr 07 14:15:26 GMT-03:00 2014
+                    SOURCE: C:/Users/Brendha/workspace/Novo/app/views/index.scala.html
+                    HASH: e1fd26173e5e7ed0ec268f97c52470c295c47931
+                    MATRIX: 817->1|1020->92|1059->116|1102->151|1141->153|1362->338|1377->344|1417->362|1550->459|1565->465|1603->481|2040->883|2066->900|2105->901|2219->979|2248->986|2306->1013|2392->1064|2455->1118|2494->1119|2696->1285|2791->1363|2832->1365|2892->1389|2949->1437|2988->1438|3067->1481|3086->1491|3130->1513|3191->1538|3211->1548|3256->1570|3325->1607|3407->1657|3597->1811|3662->1860|3702->1862|3772->1896|3840->1955|3880->1957|3959->2000|4033->2052|4090->2072|4167->2126|4238->2165|4289->2184|4464->2328|4528->2357|4616->2436|4655->2437|4733->2480|4792->2530|4831->2531|4993->2657|5086->2734|5126->2736|5184->2758|5324->2888|5364->2889|5445->2934|5464->2944|5508->2966|5570->2991|5590->3001|5635->3023|5695->3051|5744->3068|5901->3194|5956->3218|6130->3357|6177->3395|6217->3397|6358->3507|6431->3545|6476->3581|6516->3583|6639->3675|6700->3701|6746->3738|6786->3740|6910->3833|6982->3870|7023->3902|7063->3904|7182->3991|7271->4044|7325->4088|7366->4090|7493->4185|7736->4392|7802->4441|7842->4442|7896->4459|7971->4511|8136->4639|8212->4691|8350->4793|8482->4907|8523->4908|8657->5005|8677->5015|8722->5037|8783->5066|8913->5159|8930->5166|8978->5191|9033->5210|9181->5347|9222->5348|9363->5457|9457->5519|9511->5541
+                    LINES: 26->1|30->1|32->4|32->4|32->4|44->16|44->16|44->16|48->20|48->20|48->20|59->31|59->31|59->31|61->33|61->33|63->35|66->38|66->38|66->38|70->42|70->42|70->42|71->43|71->43|71->43|72->44|72->44|72->44|72->44|72->44|72->44|73->45|75->47|78->50|78->50|78->50|80->52|80->52|80->52|81->53|81->53|81->53|81->53|83->55|84->56|89->61|92->64|92->64|92->64|94->66|94->66|94->66|96->68|96->68|96->68|97->69|97->69|97->69|98->70|98->70|98->70|98->70|98->70|98->70|99->71|100->72|103->75|105->77|108->80|108->80|108->80|110->82|115->87|115->87|115->87|117->89|120->92|120->92|120->92|122->94|126->98|126->98|126->98|128->100|133->105|133->105|133->105|135->107|141->113|141->113|141->113|142->114|142->114|143->115|143->115|148->120|148->120|148->120|150->122|150->122|150->122|152->124|154->126|154->126|154->126|155->127|155->127|155->127|157->129|163->135|166->138
                     -- GENERATED --
                 */
             

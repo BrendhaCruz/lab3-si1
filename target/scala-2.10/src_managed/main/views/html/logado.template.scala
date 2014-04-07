@@ -46,26 +46,29 @@ Seq[Any](format.raw/*1.42*/("""
 	<form class="form-signin" role="form" action=""""),_display_(Seq[Any](/*18.49*/routes/*18.55*/.Acesso.authenticate())),format.raw/*18.77*/("""" method="post">
 		<div class="textBox">
 			<input type="email" class="form-control" name="email" placeholder="e-mail" value=""""),_display_(Seq[Any](/*20.87*/formUser("email")/*20.104*/.value)),format.raw/*20.110*/("""" required>
+			<br>
 			<input type="password" class="form-control" name="password" placeholder="senha" required><br>
+			
 			<button type="submit" class="btn btn-primary">Entrar</button>
-			<button type="button" class="btn" onclick="location.href ='"""),_display_(Seq[Any](/*23.64*/routes/*23.70*/.Acesso.cadastraUsuario())),format.raw/*23.95*/("""';">Cadastrar</button>
+			
+			<button type="button" class="btn btn-primary" onclick="location.href ='"""),_display_(Seq[Any](/*26.76*/routes/*26.82*/.Acesso.cadastraUsuario())),format.raw/*26.107*/("""';">Cadastrar</button>
 
 		</div>
 	</form>
 
 		<div class="form-actions">
-			"""),_display_(Seq[Any](/*29.5*/if(flash.containsKey("erro"))/*29.34*/{_display_(Seq[Any](format.raw/*29.35*/("""
+			"""),_display_(Seq[Any](/*32.5*/if(flash.containsKey("erro"))/*32.34*/{_display_(Seq[Any](format.raw/*32.35*/("""
 				<div class="alert alert-erro container">
-					"""),_display_(Seq[Any](/*31.7*/flash/*31.12*/.get("erro"))),format.raw/*31.24*/("""
+					"""),_display_(Seq[Any](/*34.7*/flash/*34.12*/.get("erro"))),format.raw/*34.24*/("""
 				</div>
-			""")))})),format.raw/*33.5*/("""
-			"""),_display_(Seq[Any](/*34.5*/if(flash.containsKey("success"))/*34.37*/{_display_(Seq[Any](format.raw/*34.38*/("""
+			""")))})),format.raw/*36.5*/("""
+			"""),_display_(Seq[Any](/*37.5*/if(flash.containsKey("success"))/*37.37*/{_display_(Seq[Any](format.raw/*37.38*/("""
 				<div class="alert alert-success container">
-					"""),_display_(Seq[Any](/*36.7*/flash/*36.12*/.get("success"))),format.raw/*36.27*/("""
+					"""),_display_(Seq[Any](/*39.7*/flash/*39.12*/.get("success"))),format.raw/*39.27*/("""
 				</div>
-			""")))})),format.raw/*38.5*/("""
+			""")))})),format.raw/*41.5*/("""
 		</div>
-""")))})),format.raw/*40.2*/("""
+""")))})),format.raw/*43.2*/("""
 
 """))}
     }
@@ -79,11 +82,11 @@ Seq[Any](format.raw/*1.42*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Fri Mar 28 21:28:10 GMT-03:00 2014
-                    SOURCE: C:/Users/Brendha/workspace/projeto1/app/views/logado.scala.html
-                    HASH: 5cabe1aa1a0ad3646ba0fe5509c31580705c2536
-                    MATRIX: 797->1|949->41|979->64|1018->69|1055->98|1093->99|1393->363|1408->369|1452->391|1617->520|1644->537|1673->543|1949->783|1964->789|2011->814|2128->896|2166->925|2205->926|2294->980|2308->985|2342->997|2391->1015|2432->1021|2473->1053|2512->1054|2604->1111|2618->1116|2655->1131|2704->1149|2748->1162
-                    LINES: 26->1|30->1|32->4|34->6|34->6|34->6|46->18|46->18|46->18|48->20|48->20|48->20|51->23|51->23|51->23|57->29|57->29|57->29|59->31|59->31|59->31|61->33|62->34|62->34|62->34|64->36|64->36|64->36|66->38|68->40
+                    DATE: Mon Apr 07 14:15:27 GMT-03:00 2014
+                    SOURCE: C:/Users/Brendha/workspace/Novo/app/views/logado.scala.html
+                    HASH: c831a4971a1de2b6b2dbfa506a5f0dbe24cba2d4
+                    MATRIX: 797->1|949->41|979->64|1018->69|1055->98|1093->99|1393->363|1408->369|1452->391|1617->520|1644->537|1673->543|1980->814|1995->820|2043->845|2160->927|2198->956|2237->957|2326->1011|2340->1016|2374->1028|2423->1046|2464->1052|2505->1084|2544->1085|2636->1142|2650->1147|2687->1162|2736->1180|2780->1193
+                    LINES: 26->1|30->1|32->4|34->6|34->6|34->6|46->18|46->18|46->18|48->20|48->20|48->20|54->26|54->26|54->26|60->32|60->32|60->32|62->34|62->34|62->34|64->36|65->37|65->37|65->37|67->39|67->39|67->39|69->41|71->43
                     -- GENERATED --
                 */
             

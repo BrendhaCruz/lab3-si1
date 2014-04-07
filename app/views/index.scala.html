@@ -27,7 +27,6 @@
 			<h2><small> Você pode manipular as disciplinas, organizá-las e salvá-las da maneira que preferir através de remoção e inserção das mesmas no período desejado. </small></h2>
 			<br>
 			<br>
-			@if(sistemaPlanejamento.getPeriodos.size() >= 0) {
 				<!--janela de alerta - limite de periodos-->
 					@if(message != ""){
 						<script language="JavaScript" type="text/javascript">
@@ -37,7 +36,6 @@
 					
 			<div class="addDisciplina"> 
 			  @form(routes.Application.adicionaDisciplinaEmPeriodo()){
-				@if(sistemaPlanejamento.getPeriodos.size() >= 0) {
 				         <nome>Adicionar Disciplina
 				                   <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
 
@@ -58,7 +56,7 @@
 				            }
 				        </select>
 				        <button type="submit" class="btn btn-primary" type="button">Adicionar Disciplina</button>  
-				 }
+				
 
 			  }
 			  </div><br>
@@ -66,7 +64,6 @@
 		@if(sistemaPlanejamento.getPeriodos().get(0).getListaDeDisciplinas().size() > 0){
 		<br><div class="removeDisciplina">
 		@form(routes.Application.removeDisciplinaPeriodo()){
-			@if(sistemaPlanejamento.getPeriodos.size() >= 0) {
 		    	<nome>Remover disciplina <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
 		            @for(disciplina <- sistemaPlanejamento.getCurriculo().getListaDeDisciplinas()) {
 		                 @if(sistemaPlanejamento.estaAlocada(disciplina) && sistemaPlanejamento.getCurriculo().getListaDeDisciplinas().contains(disciplina)){
@@ -75,12 +72,9 @@
 		            }
 		        </select>
 		        <button type="submit" class="btn btn-primary" type="button">Remover Disciplina</button>
-				}
 			}</div><br><br>
 			
 		}
-	}
-	
 	<h2><small>Caso você ache necessário, adicione um novo período no seu planejamento de curso.</small></h2>
 	<div class="addPeriodo">
 	@form(routes.Application.criaPeriodo()) {
@@ -88,18 +82,24 @@
     }
 	</div>
 	<br>
-	
+	 <div>
+	 <br>
+	 @form(routes.Application.planoNovo()) {
+        	<input type="submit" class="btn btn-primary" value="Nova Grade do Curso">
+     } 
+	 </div>
+	  <br>
+	  @form(routes.Application.planoComum()) {
+        	<input type="submit" class="btn btn-primary" value="Grade Comum do Curso">
+     } 
+	 </div>
+	  <br>
 	 <div>
      @form(routes.Application.grade()) {
         	<input type="submit" class="btn btn-primary" value="Grade do Curso">
      } 
       </div>
-      <br>
-       <div>
-     @form(routes.Application.planoNovo()) {
-        	<input type="submit" class="btn btn-primary" value="Nova Grade do Curso">
-     } 
-      </div>
+    
      <br>
       <div>
      @form(routes.Application.mostraDisciplinas()) {
@@ -129,11 +129,10 @@
 						}
 						</font>
 			</div>
-				 } 
 		</section> 
 		<br>
 		<br>
-		
+		}
 	</body>
 </font>
 }

@@ -2,17 +2,13 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import models.Curriculo;
+import models.GradeComum;
 import models.Disciplina;
 import models.Periodo;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 import javax.persistence.*;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
 import play.db.ebean.Model;
 import com.avaje.ebean.*;
 import play.db.ebean.*;
@@ -21,7 +17,7 @@ import play.db.ebean.*;
 
 //CONTROLLER: controlador do sistema
 @Entity
-public class Planejamento extends Model{ 
+public class PlanejamentoComum extends Model{ 
 
 	/**
      * Construtor da classe Planejamento, criando o gerenciador do sistema de Planejamento de Curso.
@@ -36,8 +32,8 @@ public class Planejamento extends Model{
     private List<Periodo> periodos;
 	private static final int MINIMO_DE_CREDITOS = 16;
 	private static final int MAXIMO_DE_CREDITOS = 28;
-    private Curriculo curriculo;
-    private Planejamento sistemaPlanejamento;
+    private GradeComum curriculo;
+    private PlanejamentoComum sistemaPlanejamento;
     private Periodo primeiroPeriodo;
     private Periodo segundoPeriodo;
     private Periodo terceiroPeriodo;
@@ -46,14 +42,16 @@ public class Planejamento extends Model{
     private Periodo sextoPeriodo;
     private Periodo setimoPeriodo;
     private Periodo oitavoPeriodo;
+    private Periodo nonoPeriodo;
 
-	public static Model.Finder<Long, Planejamento> find = new Model.Finder<Long, Planejamento>(
-			Long.class, Planejamento.class);
+
+	public static Model.Finder<Long, PlanejamentoComum> find = new Model.Finder<Long, PlanejamentoComum>(
+			Long.class, PlanejamentoComum.class);
     /**
      * Construtor da classe Planejamento, criando o gerenciador do sistema de Planejamento de Curso.
      * @param curriculo Curriculo utilizado no planejamento do curso do usuario.
      */
-	public Planejamento(Curriculo curriculo) {
+	public PlanejamentoComum(GradeComum curriculo) {
 		periodos = new ArrayList<Periodo>();
 		this.curriculo = curriculo;
 		primeiroPeriodo = new Periodo();
@@ -64,10 +62,12 @@ public class Planejamento extends Model{
 		sextoPeriodo = new Periodo();
 		setimoPeriodo = new Periodo();
 		oitavoPeriodo = new Periodo();
+		nonoPeriodo = new Periodo();
+
 
 	}
 	
-	public Planejamento(){
+	public PlanejamentoComum(){
 	
 	}
 	
@@ -75,7 +75,7 @@ public class Planejamento extends Model{
 		return id;
 	}
 	
-	public static void create(Planejamento sistemaPlanejamento) {
+	public static void create(PlanejamentoComum sistemaPlanejamento) {
 		sistemaPlanejamento.save();
 	}
 	
@@ -134,7 +134,6 @@ public class Planejamento extends Model{
 		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(3));
 		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(4));
 		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(5));
-		quartoPeriodo.adicionaDisciplinas(curriculo.criaQuartoPeriodo().get(6));
 		this.periodos.add(quartoPeriodo);
 	}
 	
@@ -148,8 +147,6 @@ public class Planejamento extends Model{
 		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(2));
 		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(3));
 		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(4));
-		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(5));
-		quintoPeriodo.adicionaDisciplinas(curriculo.criaQuintoPeriodo().get(6));
 		this.periodos.add(quintoPeriodo);
 	}
 	
@@ -164,8 +161,6 @@ public class Planejamento extends Model{
 		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(3));
 		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(4));
 		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(5));
-		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(6));
-		sextoPeriodo.adicionaDisciplinas(curriculo.criaSextoPeriodo().get(7));
 		this.periodos.add(sextoPeriodo);
 	}
 	
@@ -180,7 +175,6 @@ public class Planejamento extends Model{
 		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(3));
 		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(4));
 		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(5));
-		setimoPeriodo.adicionaDisciplinas(curriculo.criaSetimoPeriodo().get(6));
 		this.periodos.add(setimoPeriodo);
 	}
 	
@@ -198,7 +192,15 @@ public class Planejamento extends Model{
 		this.periodos.add(oitavoPeriodo);
 	}
 	
-	
+	public void adicionaNonoPeriodo() throws Exception{
+		nonoPeriodo.adicionaDisciplinas(curriculo.criaNonoPeriodo().get(0));
+		nonoPeriodo.adicionaDisciplinas(curriculo.criaNonoPeriodo().get(1));
+		nonoPeriodo.adicionaDisciplinas(curriculo.criaNonoPeriodo().get(2));
+		nonoPeriodo.adicionaDisciplinas(curriculo.criaNonoPeriodo().get(3));
+		nonoPeriodo.adicionaDisciplinas(curriculo.criaNonoPeriodo().get(4));
+		nonoPeriodo.adicionaDisciplinas(curriculo.criaNonoPeriodo().get(5));
+		this.periodos.add(nonoPeriodo);
+	}
 	
 	/**
 	 * Adiciona um periodo sem disciplinas na lista de periodos.
@@ -310,7 +312,7 @@ public class Planejamento extends Model{
 	 * @return Um Currículo, do Curso de Ciência da Computação.
 	 */
 	// INFORMATION EXPERT: Conhece curriculo.
-	public Curriculo getCurriculo(){
+	public GradeComum getCurriculo(){
 		return curriculo;
 	}
 	

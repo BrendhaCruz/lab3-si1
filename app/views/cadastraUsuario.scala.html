@@ -13,14 +13,14 @@
 
 	<br><br>
 	<h3>Preencha os campos abaixo para fazer o cadastro</h3>
-<form class="form-signin" role="form" action="@routes.Acesso.criaUsuario()" method="post">
+	@helper.form(routes.Acesso.criaUsuario) {
  		<br><br>
 		<div class="textBox">
-			<input type="email" class="form-control" name="email" placeholder="e-mail" required>
-			<br>
-			<input type="nome" class="form-control" name="nome" placeholder="nome de usuário" value="@formUser("email").value" required>
-			<br>
-			<input type="password" class="form-control" name="password" placeholder="senha" required>
+	   <input type="email" class="form-control" name="email" placeholder="Email" title="E-mail" required value="@formUser("email").value">
+       <br>
+       <input type="nome" class="form-control" name="nome" placeholder="Nome" title="Nome" required value="@formUser("nome").value">
+       <br>
+	   <input type="password" class="form-control" name="password" placeholder="Senha" required value="@formUser("senha").value">
 			<br>
 			<button type="submit" class="btn  btn-primary">Cadastrar</button>
 		</div>
@@ -38,6 +38,6 @@
 				</div>
 			}
 		</div>
-       </p>
-    }
+    }   </p>
+}
 
