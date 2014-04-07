@@ -34,6 +34,18 @@
 						</script>
 					}   
 					
+			<nome>Informe seu período
+				<select class="selectpicker" data-width="100px" name="idPeriodo" >
+				@for(periodo <- sistemaPlanejamento.getPeriodos()) {								
+				                 @if(sistemaPlanejamento.getPeriodos().indexOf(periodo) >= 0) {
+				                      <option value=@(sistemaPlanejamento.getPeriodos().indexOf(periodo)) name="idPeriodo" >@(sistemaPlanejamento.getPeriodos().indexOf(periodo)+1)</option><br>
+								
+				                 }
+				            }
+				        </select>
+				        <button type="submit" class="btn btn-primary" type="button">Ok</button>  		
+					
+					
 			<div class="addDisciplina"> 
 			  @form(routes.Application.adicionaDisciplinaEmPeriodo()){
 				         <nome>Adicionar Disciplina
